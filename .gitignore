@@ -1,0 +1,53 @@
+# Secrets and local environment files
+.env
+.env.*
+!.env.example
+!*.env.example
+
+# Dependencies and package manager caches
+node_modules/
+.pnpm-store/
+
+# Build outputs and coverage
+dist/
+build/
+coverage/
+.cache/
+.parcel-cache/
+.turbo/
+.next/
+.nuxt/
+.svelte-kit/
+*.tsbuildinfo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+__MACOSX/
+
+# Editor and local IDE metadata
+.idea/
+.cursor/
+.vscode/
+
+# Temporary local files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# Local-only planning and publishing helpers
+100_LOCAL_ONLY/
+43_BLOGS/txt/
+
+# Large personal file to keep out of Git
+31_T_CLASSES/t4-js-in-action/class-notes/The_Format_of_Our_Memory_lyst1771580699965.pdf

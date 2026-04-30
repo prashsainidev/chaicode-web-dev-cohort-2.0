@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 06 — Event Delegation</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* COMPARISON VISUAL */
+      .compare-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 28px;
+      }
+
+      .cmp {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 20px;
+      }
+
+      .cmp h4 {
+        font-size: 13px;
+        font-weight: 700;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .cmp .btn-list {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .fake-btn {
+        padding: 8px 14px;
+        border-radius: 8px;
+        font-size: 13px;
+        text-align: center;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      .listener-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      /* DEMO LISTS */
+      #bad-list,
+      #good-list {
+        list-style: none;
+        min-height: 40px;
+        margin-bottom: 12px;
+      }
+
+      #bad-list li,
+      #good-list li {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 16px;
+        margin-bottom: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.15s;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        animation: slideIn 0.25s ease;
+      }
+
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateX(-8px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      #bad-list li:hover,
+      #good-list li:hover {
+        border-color: rgba(124, 106, 247, 0.3);
+      }
+
+      #bad-list li.selected,
+      #good-list li.selected {
+        background: rgba(78, 205, 196, 0.08);
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      .counter-badge {
+        background: rgba(124, 106, 247, 0.12);
+        border: 1px solid rgba(124, 106, 247, 0.25);
+        color: var(--accent);
+        font-size: 12px;
+        padding: 2px 10px;
+        border-radius: 20px;
+        font-family: monospace;
+      }
+
+      .action-row {
+        display: flex;
+        gap: 10px;
+      }
+
+      .add-btn-style {
+        background: transparent;
+        border: 1px solid var(--green);
+        color: var(--green);
+        padding: 7px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .add-btn-style:hover {
+        background: rgba(61, 220, 151, 0.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 06 / 08</div>
+        <h1>Event <span>Delegation</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: bubbling ka fayda · e.target · dynamic elements
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- CONCEPT VISUAL -->
+      <div class="section">
+        <h2>💡 Concept First — Problem vs Solution</h2>
+
+        <div class="compare-grid">
+          <div class="cmp" style="border-color: rgba(255, 107, 107, 0.2)">
+            <h4><span style="color: var(--red)">❌ Galat Tarika</span></h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px">
+              Har button pe alag listener — 100 buttons = 100 listeners = memory waste
+            </p>
+            <div class="btn-list">
+              <div class="fake-btn">
+                Button 1
+                <span class="listener-dot" style="background: var(--red); margin-left: 8px"></span>
+              </div>
+              <div class="fake-btn">
+                Button 2
+                <span class="listener-dot" style="background: var(--red); margin-left: 8px"></span>
+              </div>
+              <div class="fake-btn">
+                Button 3
+                <span class="listener-dot" style="background: var(--red); margin-left: 8px"></span>
+              </div>
+              <div style="font-size: 12px; color: var(--red); text-align: center; margin-top: 8px">
+                3 listeners 😰
+              </div>
+            </div>
+          </div>
+          <div class="cmp" style="border-color: rgba(61, 220, 151, 0.2)">
+            <h4><span style="color: var(--green)">✅ Sahi Tarika</span></h4>
+            <p style="font-size: 13px; color: var(--muted); margin-bottom: 12px">
+              Parent pe 1 listener — sab children handle! Naye buttons automatically bhi!
+            </p>
+            <div
+              style="
+                background: #090a0d;
+                border: 2px solid rgba(61, 220, 151, 0.3);
+                border-radius: 10px;
+                padding: 12px;
+              "
+            >
+              <div
+                style="
+                  font-size: 11px;
+                  color: var(--green);
+                  margin-bottom: 8px;
+                  font-family: monospace;
+                "
+              >
+                Parent — 1 listener
+                <span
+                  class="listener-dot"
+                  style="background: var(--green); margin-left: 4px"
+                ></span>
+              </div>
+              <div class="btn-list" style="padding-left: 12px">
+                <div class="fake-btn">Button 1</div>
+                <div class="fake-btn">Button 2</div>
+                <div class="fake-btn">Button 3</div>
+              </div>
+            </div>
+            <div style="font-size: 12px; color: var(--green); text-align: center; margin-top: 8px">
+              1 listener 😎
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- LIVE COMPARE -->
+      <div class="section">
+        <h2>👀 Live Demo — Dono Ko Compare Karo</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px">
+          <!-- BAD -->
+          <div
+            style="
+              background: var(--card);
+              border: 1px solid rgba(255, 107, 107, 0.2);
+              border-radius: 12px;
+              padding: 20px;
+            "
+          >
+            <div style="font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 12px">
+              ❌ Har item pe listener
+            </div>
+            <ul id="bad-list">
+              <li>Item A <span class="counter-badge" id="bad-count">0 clicks</span></li>
+              <li>Item B <span class="counter-badge">click me</span></li>
+              <li>Item C <span class="counter-badge">click me</span></li>
+            </ul>
+            <button id="add-bad" class="add-btn-style">+ Add Item (naya listener lagega)</button>
+            <div style="margin-top: 10px; font-size: 12px; color: var(--muted)">
+              Total listeners:
+              <span id="bad-listener-count" style="color: var(--red); font-family: monospace"
+                >3</span
+              >
+            </div>
+          </div>
+
+          <!-- GOOD -->
+          <div
+            style="
+              background: var(--card);
+              border: 1px solid rgba(61, 220, 151, 0.2);
+              border-radius: 12px;
+              padding: 20px;
+            "
+          >
+            <div
+              style="font-size: 13px; font-weight: 700; color: var(--green); margin-bottom: 12px"
+            >
+              ✅ Parent pe ek listener
+            </div>
+            <ul id="good-list">
+              <li>Item A <span class="counter-badge">click me</span></li>
+              <li>Item B <span class="counter-badge">click me</span></li>
+              <li>Item C <span class="counter-badge">click me</span></li>
+            </ul>
+            <button id="add-good" class="add-btn-style">
+              + Add Item (koi naya listener nahi!)
+            </button>
+            <div style="margin-top: 10px; font-size: 12px; color: var(--muted)">
+              Total listeners:
+              <span style="color: var(--green); font-family: monospace">1 (hamesha)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="section">
+        <h2>✏️ Tasks</h2>
+
+        <!-- TASK 1 -->
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>Basic Event Delegation Samjho</h3>
+          <p>
+            good-list pe ek listener hai jo saare li items handle karta hai. Neeche code mein dekho
+            — <code>e.target</code> kaisa kaam karta hai.
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 JavaScript — Delegation ka Core Pattern</span><span>Padho + Samjho</span>
+          </div>
+          <pre><span class="cmt">// ── CORE PATTERN — Event Delegation ─────────────────</span>
+
+<span class="kw">const</span> goodList = document.<span class="fn">getElementById</span>(<span class="str">'good-list'</span>);
+
+<span class="cmt">// SIRF YEK LISTENER — ul (parent) pe</span>
+goodList.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+
+  <span class="cmt">// e.target = exactly jo click hua</span>
+  <span class="cmt">// Agar &lt;li&gt; click hua toh e.target = li element</span>
+  <span class="cmt">// Agar koi aur cheez click hui toh e.target = woh element</span>
+
+  <span class="kw">if</span> (e.target.<span class="task-arrow">tagName</span> === <span class="str">'LI'</span>) {    <span class="cmt">// sirf li clicks handle karo</span>
+    console.<span class="fn">log</span>(<span class="str">'Li click hua:'</span>, e.target.<span class="task-arrow">textContent</span>);
+    e.target.classList.<span class="fn">add</span>(<span class="str">'selected'</span>);
+  }
+
+  <span class="cmt">// YAAD RAKHO:</span>
+  <span class="cmt">// e.target    = jo actually click hua (li)</span>
+  <span class="cmt">// e.currentTarget = jahan listener hai (ul)</span>
+  console.<span class="fn">log</span>(<span class="str">'target:'</span>,        e.<span class="task-arrow">target</span>.tagName);
+  console.<span class="fn">log</span>(<span class="str">'currentTarget:'</span>, e.<span class="task-arrow">currentTarget</span>.tagName);
+});</pre>
+        </div>
+
+        <!-- TASK 2 — Dynamic -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>Dynamic Items — Delegation Ki Asli Taakat</h3>
+          <ol>
+            <li>good-list mein "Add Item" button pe listener lagao — naya li add ho</li>
+            <li>
+              Naye item ko click karo — <strong>koi naya listener lagaye bina</strong> click handle
+              hona chahiye
+            </li>
+            <li>Yahi event delegation ki asli power hai!</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: Dynamic Items + Delegation ──────────────</span>
+<span class="kw">const</span> goodList  = document.<span class="fn">getElementById</span>(<span class="str">'good-list'</span>);
+<span class="kw">const</span> addGoodBtn = document.<span class="fn">getElementById</span>(<span class="str">'add-good'</span>);
+<span class="kw">let</span> itemCount = <span class="task-arrow">4</span>;
+
+<span class="cmt">// 1. New item add karo — koi naya click listener NAHI lagana</span>
+addGoodBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="kw">const</span> newItem = document.<span class="task-arrow">/* createElement('li') */</span>;
+  newItem.<span class="task-arrow">textContent</span> = <span class="str">'New Item '</span> + itemCount++;
+  goodList.<span class="task-arrow">/* append(newItem) */</span>;
+  <span class="cmt">// Note: koi addEventListener nahi lagaya naye item pe!</span>
+  <span class="cmt">// Parent ka listener automatically handle karega 🎉</span>
+});
+
+<span class="cmt">// 2. Parent listener (pehle se hai) — naye items bhi catch karega</span>
+goodList.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+  <span class="kw">if</span> (e.target.tagName === <span class="str">'LI'</span>) {
+    console.<span class="fn">log</span>(<span class="str">'Clicked:'</span>, e.target.<span class="task-arrow">textContent</span>);
+    <span class="cmt">// Pehle selected remove karo sabse</span>
+    goodList.<span class="fn">querySelectorAll</span>(<span class="str">'li'</span>).<span class="fn">forEach</span>(li => li.classList.<span class="fn">remove</span>(<span class="str">'selected'</span>));
+    <span class="cmt">// Phir clicked item highlight karo</span>
+    e.target.classList.<span class="task-arrow">add</span>(<span class="str">'selected'</span>);
+  }
+});</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h2')">💡 Hint</button>
+        <div class="hint-box" id="h2">
+          Delegation ka key: listener sirf parent pe lagao.<br />
+          <code>e.target.tagName === 'LI'</code> — check karo ki actually li click hua<br />
+          Naye element add karne ke baad koi naya listener nahi chahiye — parent already sun raha
+          hai!<br />
+          <code>e.target</code> har baar naya element bhi pakdega.
+        </div>
+
+        <!-- TASK 3 — CLOSER + REAL PATTERN -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Real Pattern — closest() se Safe Delegation</h3>
+          <p>
+            Jab li ke andar aur elements ho, <code>e.target</code> inner element ho sakta hai.
+            <code>closest()</code> use karo safe delegation ke liye.
+          </p>
+        </div>
+
+        <div
+          style="
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+          "
+        >
+          <ul id="advanced-list" style="list-style: none">
+            <li
+              style="
+                background: #13151a;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px 16px;
+                margin-bottom: 8px;
+                cursor: pointer;
+                transition: all 0.15s;
+              "
+              data-id="1"
+            >
+              <strong>Task 1</strong>
+              <span style="font-size: 12px; color: var(--muted); margin-left: 8px">important</span>
+            </li>
+            <li
+              style="
+                background: #13151a;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px 16px;
+                margin-bottom: 8px;
+                cursor: pointer;
+                transition: all 0.15s;
+              "
+              data-id="2"
+            >
+              <strong>Task 2</strong>
+              <span style="font-size: 12px; color: var(--muted); margin-left: 8px">pending</span>
+            </li>
+            <li
+              style="
+                background: #13151a;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px 16px;
+                cursor: pointer;
+                transition: all 0.15s;
+              "
+              data-id="3"
+            >
+              <strong>Task 3</strong>
+              <span style="font-size: 12px; color: var(--muted); margin-left: 8px">done</span>
+            </li>
+          </ul>
+          <div
+            id="advanced-output"
+            style="
+              margin-top: 12px;
+              padding: 10px 14px;
+              background: #090a0d;
+              border-radius: 8px;
+              font-size: 13px;
+              color: var(--muted);
+              font-family: monospace;
+            "
+          >
+            Koi li click karo...
+          </div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 JavaScript</span><span>TASK 3 — closest() Pattern</span>
+          </div>
+          <pre><span class="cmt">// ── TASK 3: closest() — Safe Delegation ─────────────</span>
+<span class="kw">const</span> advList = document.<span class="fn">getElementById</span>(<span class="str">'advanced-list'</span>);
+<span class="kw">const</span> output  = document.<span class="fn">getElementById</span>(<span class="str">'advanced-output'</span>);
+
+advList.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+
+  <span class="cmt">// Problem: agar &lt;strong&gt; ya &lt;span&gt; click kiya toh</span>
+  <span class="cmt">// e.target = strong/span hoga, li nahi!</span>
+
+  <span class="cmt">// Solution: closest('li') — click se upar jaata hai</span>
+  <span class="cmt">// jab tak li nahi milta</span>
+  <span class="kw">const</span> li = e.target.<span class="task-arrow">closest</span>(<span class="str">'li'</span>);
+
+  <span class="kw">if</span> (!li) <span class="kw">return</span>; <span class="cmt">// li nahi mila = ul ke bahar click hua</span>
+
+  <span class="cmt">// data-id attribute se item ka id lo</span>
+  <span class="kw">const</span> id = li.<span class="task-arrow">dataset</span>.<span class="task-arrow">id</span>;   <span class="cmt">// data-id="1" → dataset.id = "1"</span>
+
+  output.<span class="fn">textContent</span> = <span class="str">'Clicked li with data-id: '</span> + id;
+  output.<span class="fn">style</span>.<span class="fn">color</span> = <span class="str">'#4ecdc4'</span>;
+});</pre>
+        </div>
+
+        <!-- CHALLENGE -->
+        <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+          <span
+            class="task-num"
+            style="
+              background: rgba(255, 107, 107, 0.1);
+              color: var(--red);
+              border-color: rgba(255, 107, 107, 0.3);
+            "
+            >CHALLENGE 🔥</span
+          >
+          <h3>Multi-Action Delegation</h3>
+          <p>
+            Ek list hai jisme har item pe <strong>Edit</strong> aur <strong>Delete</strong> — dono
+            buttons hain. Sirf <strong>ek parent listener</strong> se dono handle karo —
+            <code>data-action</code> attribute se pata karo kaunsa button click hua.
+          </p>
+        </div>
+
+        <div
+          style="
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+          "
+        >
+          <ul id="action-list" style="list-style: none"></ul>
+          <div
+            id="action-output"
+            style="
+              margin-top: 12px;
+              padding: 10px 14px;
+              background: #090a0d;
+              border-radius: 8px;
+              font-size: 13px;
+              color: var(--muted);
+              font-family: monospace;
+            "
+          >
+            Action log yahan aayega...
+          </div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>CHALLENGE</span></div>
+          <pre><span class="cmt">// ── CHALLENGE: Multi-Action Delegation ───────────────</span>
+<span class="kw">const</span> actionList = document.<span class="fn">getElementById</span>(<span class="str">'action-list'</span>);
+<span class="kw">const</span> actionOut  = document.<span class="fn">getElementById</span>(<span class="str">'action-output'</span>);
+
+<span class="cmt">// List setup — 3 items banao</span>
+[<span class="str">'Aarav'</span>, <span class="str">'Priya'</span>, <span class="str">'Rajan'</span>].<span class="fn">forEach</span>(<span class="kw">function</span>(name, i) {
+  <span class="kw">const</span> li = document.<span class="fn">createElement</span>(<span class="str">'li'</span>);
+  li.dataset.id = i + <span class="task-arrow">1</span>;
+  li.innerHTML = <span class="str">`
+    &lt;span style="flex:1"&gt;${name}&lt;/span&gt;
+    &lt;button data-action="edit"   style="background:rgba(124,106,247,0.15);border:1px solid rgba(124,106,247,0.3);color:#7c6af7;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;margin-right:6px;"&gt;Edit&lt;/button&gt;
+    &lt;button data-action="delete" style="background:rgba(255,107,107,0.1);border:1px solid rgba(255,107,107,0.25);color:#ff6b6b;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;"&gt;Delete&lt;/button&gt;
+  `</span>;
+  li.style.cssText = <span class="str">'display:flex;align-items:center;background:#13151a;border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:10px 16px;margin-bottom:8px;font-size:14px;'</span>;
+  actionList.<span class="fn">append</span>(li);
+});
+
+<span class="cmt">// EK LISTENER — parent pe</span>
+actionList.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+  <span class="kw">const</span> btn = e.target.<span class="task-arrow">closest</span>(<span class="str">'button'</span>);
+  <span class="kw">if</span> (!btn) <span class="kw">return</span>;
+
+  <span class="kw">const</span> action = btn.<span class="task-arrow">dataset</span>.<span class="task-arrow">action</span>; <span class="cmt">// 'edit' ya 'delete'</span>
+  <span class="kw">const</span> li     = btn.<span class="task-arrow">closest</span>(<span class="str">'li'</span>);
+  <span class="kw">const</span> id     = li.<span class="task-arrow">dataset</span>.<span class="task-arrow">id</span>;
+  <span class="kw">const</span> name   = li.<span class="fn">querySelector</span>(<span class="str">'span'</span>).<span class="task-arrow">textContent</span>;
+
+  <span class="kw">if</span> (action === <span class="str">'edit'</span>) {
+    actionOut.<span class="fn">textContent</span> = <span class="str">`✏️ Edit: ${name} (id: ${id})`</span>;
+    actionOut.<span class="fn">style</span>.<span class="fn">color</span> = <span class="str">'#7c6af7'</span>;
+  } <span class="kw">else if</span> (action === <span class="task-arrow">/* 'delete' */</span>) {
+    li.<span class="task-arrow">remove</span>();
+    actionOut.<span class="fn">textContent</span> = <span class="str">`🗑️ Deleted: ${name}`</span>;
+    actionOut.<span class="fn">style</span>.<span class="fn">color</span> = <span class="str">'#ff6b6b'</span>;
+  }
+});</pre>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>Event delegation ka ek line mein matlab bata sakte ho? ✓</li>
+          <li>e.target aur e.currentTarget ka fark samjh aaya? ✓</li>
+          <li>Naye dynamically added elements bhi delegation se handle hote hain — kyun? ✓</li>
+          <li>closest() kyun use karte hain tagName check ke bajaye? ✓</li>
+          <li>data-action pattern se multiple actions delegate karna aaya? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="05-events.html" class="nav-btn back">← Back</a>
+        <a href="07-traversal.html" class="nav-btn">Next: DOM Traversal →</a>
+      </div>
+    </div>
+
+    <script>
+      // Bad list — har item pe listener
+      let badCount = 0;
+      let listenerCount = 3;
+      document.querySelectorAll('#bad-list li').forEach(li => {
+        li.addEventListener('click', function () {
+          this.classList.toggle('selected');
+          badCount++;
+        });
+      });
+      document.getElementById('add-bad').addEventListener('click', function () {
+        const li = document.createElement('li');
+        li.textContent = 'New Item ' + (document.querySelectorAll('#bad-list li').length + 1);
+        li.innerHTML += ' <span class="counter-badge">click me</span>';
+        li.addEventListener('click', function () {
+          this.classList.toggle('selected');
+        });
+        document.getElementById('bad-list').append(li);
+        listenerCount++;
+        document.getElementById('bad-listener-count').textContent = listenerCount;
+      });
+      // Good list — delegation
+      let goodItemCount = 4;
+      document.getElementById('good-list').addEventListener('click', function (e) {
+        if (e.target.tagName === 'LI' || e.target.closest('li')) {
+          const li = e.target.tagName === 'LI' ? e.target : e.target.closest('li');
+          document.querySelectorAll('#good-list li').forEach(l => l.classList.remove('selected'));
+          li.classList.add('selected');
+        }
+      });
+      document.getElementById('add-good').addEventListener('click', function () {
+        const li = document.createElement('li');
+        li.textContent = 'New Item ' + goodItemCount++;
+        li.innerHTML += ' <span class="counter-badge">click me</span>';
+        document.getElementById('good-list').append(li);
+      });
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

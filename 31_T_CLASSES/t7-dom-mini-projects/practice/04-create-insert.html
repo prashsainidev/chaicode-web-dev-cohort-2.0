@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 04 — Create & Insert</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* VISUAL FLOW */
+      .flow-steps {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+      }
+
+      .flow-step {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 18px;
+        font-size: 13px;
+        text-align: center;
+        flex: 1;
+        min-width: 130px;
+      }
+
+      .flow-step .step-num {
+        font-size: 22px;
+        margin-bottom: 4px;
+      }
+
+      .flow-step .step-label {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .flow-step strong {
+        color: var(--accent);
+        display: block;
+        font-family: monospace;
+        font-size: 13px;
+      }
+
+      .flow-arrow {
+        color: var(--muted);
+        font-size: 20px;
+        padding: 0 8px;
+      }
+
+      /* SANDBOX */
+      #sandbox {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+        min-height: 80px;
+      }
+
+      #sandbox h3 {
+        color: var(--accent3);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        font-family: monospace;
+      }
+
+      .item-card {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        animation: fadeIn 0.3s ease;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .remove-btn {
+        background: rgba(255, 107, 107, 0.1);
+        border: 1px solid rgba(255, 107, 107, 0.25);
+        color: var(--red);
+        padding: 4px 12px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+      }
+
+      .remove-btn:hover {
+        background: rgba(255, 107, 107, 0.2);
+      }
+
+      #list-container {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      #demo-list {
+        list-style: none;
+        min-height: 40px;
+      }
+
+      #demo-list li {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 16px;
+        margin-bottom: 6px;
+        font-size: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      #demo-list li::before {
+        content: '▸';
+        color: var(--accent);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 04 / 08</div>
+        <h1>Elements <span>Banana &amp; Insert Karna</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: createElement · append · prepend · remove · cloneNode
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- FLOW -->
+      <div class="section">
+        <h2>💡 Process — 3 Steps Hamesha</h2>
+        <div class="flow-steps">
+          <div class="flow-step">
+            <div class="step-num">1️⃣</div>
+            <strong>createElement</strong>
+            <div class="step-label">Memory mein element banao</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">2️⃣</div>
+            <strong>Properties set</strong>
+            <div class="step-label">Text, class, style lagao</div>
+          </div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step">
+            <div class="step-num">3️⃣</div>
+            <strong>append/prepend</strong>
+            <div class="step-label">DOM mein add karo</div>
+          </div>
+        </div>
+
+        <!-- LIVE DEMO -->
+        <div
+          style="
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+          "
+        >
+          <div
+            style="font-size: 14px; color: var(--accent2); font-weight: 600; margin-bottom: 16px"
+          >
+            Live Demo — Elements add/remove karo
+          </div>
+          <div id="sandbox">
+            <h3>// Yahan naye elements aayenge</h3>
+          </div>
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <button
+              onclick="demoAdd()"
+              style="
+                background: transparent;
+                border: 1px solid var(--green);
+                color: var(--green);
+                padding: 8px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+              "
+            >
+              + Element Add Karo
+            </button>
+            <button
+              onclick="demoPrepend()"
+              style="
+                background: transparent;
+                border: 1px solid var(--accent);
+                color: var(--accent);
+                padding: 8px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+              "
+            >
+              ↑ Prepend (Upar Add)
+            </button>
+            <button
+              onclick="demoClone()"
+              style="
+                background: transparent;
+                border: 1px solid var(--accent3);
+                color: var(--accent3);
+                padding: 8px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+              "
+            >
+              Clone Last Element
+            </button>
+            <button
+              onclick="demoRemoveLast()"
+              style="
+                background: transparent;
+                border: 1px solid var(--red);
+                color: var(--red);
+                padding: 8px 18px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+              "
+            >
+              ✕ Last Hatao
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="section">
+        <h2>✏️ Tasks</h2>
+
+        <!-- TASK 1 -->
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>createElement — Basic Flow</h3>
+          <ol>
+            <li>Ek naya <strong>&lt;p&gt;</strong> element banao</li>
+            <li>Uska textContent <strong>"Mera naya paragraph!"</strong> rakho</li>
+            <li>Usmein class <strong>"item-card"</strong> add karo</li>
+            <li>Sandbox mein <strong>append</strong> karo (end mein add)</li>
+            <li>Phir ek aur paragraph banao aur <strong>prepend</strong> karo (start mein)</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 1</span></div>
+          <pre><span class="cmt">// ── TASK 1: createElement + append ──────────────────</span>
+<span class="kw">const</span> sandbox = document.<span class="fn">getElementById</span>(<span class="str">'sandbox'</span>);
+
+<span class="cmt">// Step 1: Element banao (memory mein hai, DOM mein nahi abhi)</span>
+<span class="kw">const</span> newPara = document.<span class="task-arrow">/* createElement */</span>(<span class="str">'p'</span>);
+
+<span class="cmt">// Step 2: Properties set karo</span>
+newPara.<span class="task-arrow">textContent</span> = <span class="str">'Mera naya paragraph!'</span>;
+newPara.classList.<span class="task-arrow">add</span>(<span class="str">'item-card'</span>);
+
+<span class="cmt">// Step 3: DOM mein daalo — END mein</span>
+sandbox.<span class="task-arrow">/* append */</span>(newPara);
+
+<span class="cmt">// ── Prepend — START mein add ─────────────────────────</span>
+<span class="kw">const</span> firstPara = document.<span class="fn">createElement</span>(<span class="str">'p'</span>);
+firstPara.<span class="task-arrow">textContent</span> = <span class="str">'Main sabse pehle hoon!'</span>;
+firstPara.classList.<span class="fn">add</span>(<span class="str">'item-card'</span>);
+firstPara.style.borderColor = <span class="str">'rgba(61,220,151,0.4)'</span>;
+sandbox.<span class="task-arrow">/* prepend */</span>(firstPara);</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h1')">💡 Hint</button>
+        <div class="hint-box" id="h1">
+          <code>document.createElement('p')</code> — element banao<br />
+          <code>parent.append(newEl)</code> — END mein add<br />
+          <code>parent.prepend(newEl)</code> — START mein add<br />
+          Note: append strings bhi accept karta hai! <code>parent.append('Hello text')</code>
+        </div>
+
+        <!-- TASK 2 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>Remove karna — 2 tarike</h3>
+          <ol>
+            <li>Sandbox ka <strong>last child</strong> remove karo — modern way se</li>
+            <li>
+              Sandbox ka <strong>first element child</strong> remove karo — old way (removeChild) se
+              bhi dekho
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: Remove ──────────────────────────────────</span>
+<span class="kw">const</span> sandbox = document.<span class="fn">getElementById</span>(<span class="str">'sandbox'</span>);
+
+<span class="cmt">// Modern way — seedha element pe .remove() call karo</span>
+<span class="kw">const</span> lastChild = sandbox.<span class="task-arrow">lastElementChild</span>;
+<span class="kw">if</span> (lastChild) lastChild.<span class="task-arrow">/* remove() */</span>;
+
+<span class="cmt">// Old way — parent.removeChild(child)</span>
+<span class="kw">const</span> firstChild = sandbox.<span class="task-arrow">firstElementChild</span>;
+<span class="kw">if</span> (firstChild) sandbox.<span class="task-arrow">/* removeChild(firstChild) */</span>;</pre>
+        </div>
+
+        <!-- TASK 3 — LIST BUILDER -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Dynamic List Builder — Real Use!</h3>
+          <p>
+            Input mein text type karo, button dabaao — list mein item add ho. Ye real-world pattern
+            hai!
+          </p>
+        </div>
+
+        <div id="list-container">
+          <ul id="demo-list">
+            <li>Pehle se ek item hai</li>
+          </ul>
+          <div style="display: flex; gap: 10px; margin-top: 16px">
+            <input
+              type="text"
+              id="list-input"
+              placeholder="Naya item likho..."
+              style="
+                flex: 1;
+                padding: 10px 14px;
+                background: #090a0d;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                color: var(--text);
+                font-size: 14px;
+              "
+            />
+            <button
+              id="add-item-btn"
+              style="
+                background: var(--accent);
+                color: white;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 14px;
+                font-weight: 600;
+              "
+            >
+              Add
+            </button>
+          </div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 JavaScript</span><span>TASK 3 — List Builder</span>
+          </div>
+          <pre><span class="cmt">// ── TASK 3: Dynamic List ────────────────────────────</span>
+<span class="kw">const</span> addBtn   = document.<span class="fn">getElementById</span>(<span class="str">'add-item-btn'</span>);
+<span class="kw">const</span> listInput = document.<span class="fn">getElementById</span>(<span class="str">'list-input'</span>);
+<span class="kw">const</span> list      = document.<span class="fn">getElementById</span>(<span class="str">'demo-list'</span>);
+
+addBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="cmt">// 1. Input ka value lo</span>
+  <span class="kw">const</span> text = listInput.<span class="task-arrow">value</span>.<span class="fn">trim</span>(); <span class="cmt">// trim() = extra spaces hatao</span>
+
+  <span class="cmt">// 2. Agar empty hai toh kuch mat karo</span>
+  <span class="kw">if</span> (text === <span class="str">''</span>) <span class="kw">return</span>;
+
+  <span class="cmt">// 3. Naya &lt;li&gt; banao</span>
+  <span class="kw">const</span> newItem = document.<span class="task-arrow">/* createElement('li') */</span>;
+  newItem.<span class="task-arrow">textContent</span> = text;
+
+  <span class="cmt">// 4. List mein add karo</span>
+  list.<span class="task-arrow">/* append(newItem) */</span>;
+
+  <span class="cmt">// 5. Input clear karo</span>
+  listInput.<span class="task-arrow">value</span> = <span class="str">''</span>;
+  listInput.<span class="fn">focus</span>(); <span class="cmt">// cursor wapas input mein</span>
+});</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h3')">💡 Hint</button>
+        <div class="hint-box" id="h3">
+          <code>input.value</code> — input ka current text<br />
+          <code>text.trim()</code> — start/end ke spaces hatao<br />
+          <code>document.createElement('li')</code> — li element banao<br />
+          <code>list.append(newItem)</code> — add to end<br />
+          <code>input.value = ''</code> — input clear karo
+        </div>
+
+        <!-- CHALLENGE -->
+        <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+          <span
+            class="task-num"
+            style="
+              background: rgba(255, 107, 107, 0.1);
+              color: var(--red);
+              border-color: rgba(255, 107, 107, 0.3);
+            "
+            >CHALLENGE 🔥</span
+          >
+          <h3>Delete Button Wali List</h3>
+          <p>
+            Upar wali list ko upgrade karo — har naye item ke saath ek
+            <strong>✕ delete button</strong> bhi add ho. Delete button click karne se woh item
+            remove ho jaaye.
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>CHALLENGE</span></div>
+          <pre><span class="cmt">// ── CHALLENGE: Delete Button ─────────────────────────</span>
+<span class="cmt">// Pehle wale addEventListener ke andar — newItem banane ke baad:</span>
+
+<span class="cmt">// 1. Delete button banao</span>
+<span class="kw">const</span> delBtn = document.<span class="fn">createElement</span>(<span class="str">'button'</span>);
+delBtn.<span class="task-arrow">textContent</span> = <span class="str">'✕'</span>;
+delBtn.className = <span class="str">'remove-btn'</span>;
+
+<span class="cmt">// 2. Delete button par click listener lagao</span>
+delBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  newItem.<span class="task-arrow">/* remove() */</span>;  <span class="cmt">// parent ki zarurat nahi — seedha remove!</span>
+});
+
+<span class="cmt">// 3. Button ko li ke andar add karo</span>
+newItem.<span class="task-arrow">/* append(delBtn) */</span>;
+
+<span class="cmt">// 4. List mein add karo (pehle jaisa)</span>
+list.<span class="fn">append</span>(newItem);</pre>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>
+            createElement → properties set → append — ye 3-step flow bina dekhey likh sakte ho? ✓
+          </li>
+          <li>append aur prepend ka fark samajh aaya? ✓</li>
+          <li>element.remove() modern way yaad hai? ✓</li>
+          <li>Ek naye element mein button add karna aaya? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="03-styles-classes.html" class="nav-btn back">← Back</a>
+        <a href="05-events.html" class="nav-btn">Next: Events →</a>
+      </div>
+    </div>
+
+    <script>
+      let counter = 0;
+      function demoAdd() {
+        counter++;
+        const sandbox = document.getElementById('sandbox');
+        const el = document.createElement('div');
+        el.className = 'item-card';
+        el.innerHTML = `<span>Item #${counter} — append se add hua</span><button class="remove-btn" onclick="this.parentElement.remove()">✕</button>`;
+        sandbox.append(el);
+      }
+      function demoPrepend() {
+        counter++;
+        const sandbox = document.getElementById('sandbox');
+        const el = document.createElement('div');
+        el.className = 'item-card';
+        el.style.borderColor = 'rgba(124,106,247,0.4)';
+        el.innerHTML = `<span>Item #${counter} — prepend se add hua (upar!)</span><button class="remove-btn" onclick="this.parentElement.remove()">✕</button>`;
+        sandbox.prepend(el);
+      }
+      function demoClone() {
+        const sandbox = document.getElementById('sandbox');
+        const last = sandbox.lastElementChild;
+        if (last) {
+          const clone = last.cloneNode(true);
+          clone.style.opacity = '0.7';
+          clone.querySelector('span').textContent += ' (clone)';
+          sandbox.append(clone);
+        }
+      }
+      function demoRemoveLast() {
+        const sandbox = document.getElementById('sandbox');
+        const last = sandbox.lastElementChild;
+        if (last && !last.tagName === 'H3') last.remove();
+        else if (last) last.remove();
+      }
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

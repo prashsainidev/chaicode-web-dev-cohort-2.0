@@ -1,0 +1,101 @@
+title Instagram_Thrift_Creator_Store_ER_Diagram
+notation crows-foot
+colorMode pastel
+styleMode shadow
+typeface mono
+
+product_type [color: teal] {
+  product_type_id number pk
+  type_name string
+}
+
+product_category [color: blue] {
+  product_category_id number pk
+  category_name string
+}
+
+product [color: green] {
+  product_id number pk
+  product_type_id number fk
+  product_category_id number fk
+  product_name string
+  description_text string
+  condition_label string
+  size_label string
+  color_name string
+  list_price number
+  is_active boolean
+}
+
+inventory_record [color: green] {
+  inventory_record_id number pk
+  product_id number fk unique
+  stock_mode string
+  quantity_on_hand number
+  reserved_quantity number
+  is_unique_piece boolean
+}
+
+customer [color: orange] {
+  customer_id number pk
+  full_name string
+  phone_number string
+  instagram_handle string
+}
+
+customer_address [color: orange] {
+  customer_address_id number pk
+  customer_id number fk
+  recipient_name string
+  address_line string
+  city string
+  state_name string
+  postal_code string
+}
+
+sales_order [color: pink] {
+  sales_order_id number pk
+  customer_id number fk
+  customer_address_id number fk
+  ordered_at datetime
+  order_status string
+  order_total number
+}
+
+order_item [color: pink] {
+  order_item_id number pk
+  sales_order_id number fk
+  product_id number fk
+  quantity_ordered number
+  unit_price number
+}
+
+payment_record [color: gray] {
+  payment_record_id number pk
+  sales_order_id number fk unique
+  amount_paid number
+  payment_status string
+  payment_method string
+  paid_at datetime
+}
+
+shipment [color: purple] {
+  shipment_id number pk
+  sales_order_id number fk unique
+  courier_name string
+  tracking_number string
+  shipping_status string
+  shipped_at datetime
+  delivered_at datetime
+}
+
+product.product_type_id > product_type.product_type_id: [color: teal]
+product.product_category_id > product_category.product_category_id: [color: blue]
+inventory_record.product_id > product.product_id: [color: green]
+customer_address.customer_id > customer.customer_id: [color: orange]
+sales_order.customer_id > customer.customer_id: [color: orange]
+sales_order.customer_address_id > customer_address.customer_address_id: [color: orange]
+order_item.sales_order_id > sales_order.sales_order_id: [color: pink]
+order_item.product_id > product.product_id: [color: green]
+payment_record.sales_order_id > sales_order.sales_order_id: [color: gray]
+shipment.sales_order_id > sales_order.sales_order_id: [color: purple]

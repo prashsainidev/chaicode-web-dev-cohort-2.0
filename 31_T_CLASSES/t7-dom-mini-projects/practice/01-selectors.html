@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 01 — DOM Selectors</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      .progress {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      /* OBSERVE AREA */
+      .observe-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        margin-bottom: 12px;
+      }
+
+      .observe-box p {
+        color: var(--muted);
+        font-size: 14px;
+        margin-bottom: 18px;
+      }
+
+      .demo-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .demo-row {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+
+      .demo-row label {
+        font-size: 13px;
+        color: var(--muted);
+        min-width: 180px;
+      }
+
+      .demo-row code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(124, 106, 247, 0.12);
+        color: var(--accent);
+        padding: 3px 10px;
+        border-radius: 6px;
+      }
+
+      .demo-btn {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 6px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .demo-btn:hover {
+        background: var(--accent);
+        color: white;
+      }
+
+      .demo-output {
+        font-size: 13px;
+        color: var(--green);
+        min-width: 200px;
+        font-family: monospace;
+      }
+
+      /* TASK BOX */
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+        letter-spacing: 1px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p {
+        font-size: 14px;
+        color: var(--muted);
+        margin-bottom: 0;
+      }
+
+      .task-box ol,
+      .task-box ul {
+        padding-left: 20px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      /* CODE AREA */
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 16px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+        white-space: pre;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .num {
+        color: #f6c557;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      /* HINT */
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      /* RESULT AREA */
+      .result-area {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 18px 22px;
+        margin-top: 10px;
+        min-height: 60px;
+      }
+
+      .result-area p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      /* SANDBOX ELEMENTS */
+      #sandbox {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        margin-bottom: 24px;
+      }
+
+      #sandbox h3 {
+        color: var(--accent3);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        font-family: monospace;
+      }
+
+      .box {
+        background: #1a1c25;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .box.special {
+        border-color: rgba(78, 205, 196, 0.3);
+      }
+
+      /* NAV */
+      .nav-bottom {
+        display: flex;
+        justify-content: flex-end;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .badge-done {
+        display: inline-block;
+        background: rgba(61, 220, 151, 0.1);
+        border: 1px solid rgba(61, 220, 151, 0.3);
+        color: var(--green);
+        font-size: 11px;
+        padding: 2px 8px;
+        border-radius: 10px;
+        margin-left: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 01 / 08</div>
+        <h1>DOM <span>Selectors</span></h1>
+      </div>
+      <div class="progress">Topic: getElementById · querySelector · querySelectorAll</div>
+    </header>
+
+    <div class="container">
+      <!-- OBSERVE -->
+      <div class="section">
+        <h2>👀 Pehle Dekho — Kaise Kaam Karta Hai</h2>
+        <div class="observe-box">
+          <p>
+            Ye buttons click karo aur dekho kaunsa selector kya return karta hai. Console bhi open
+            karo (F12)!
+          </p>
+          <div class="demo-grid">
+            <div class="demo-row">
+              <label><code>getElementById</code></label>
+              <button class="demo-btn" onclick="demoGetById()">Try it</button>
+              <span class="demo-output" id="out1"></span>
+            </div>
+            <div class="demo-row">
+              <label><code>querySelector</code></label>
+              <button class="demo-btn" onclick="demoQS()">Try it</button>
+              <span class="demo-output" id="out2"></span>
+            </div>
+            <div class="demo-row">
+              <label><code>querySelectorAll</code></label>
+              <button class="demo-btn" onclick="demoQSA()">Try it</button>
+              <span class="demo-output" id="out3"></span>
+            </div>
+            <div class="demo-row">
+              <label><code>getElementsByClassName</code></label>
+              <button class="demo-btn" onclick="demoGBCN()">Try it</button>
+              <span class="demo-output" id="out4"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SANDBOX -->
+      <div class="section">
+        <h2>🧪 Sandbox — Yahan Practice Karoge</h2>
+        <div id="sandbox">
+          <h3>// Ye elements page par hain — inhe select karo apne tasks mein</h3>
+          <div id="hero-box" class="box">Main Box — id="hero-box"</div>
+          <div class="box item">Item 1 — class="item"</div>
+          <div class="box item special">Item 2 — class="item special"</div>
+          <div class="box item">Item 3 — class="item"</div>
+          <p id="intro-text" class="box" style="border-color: rgba(124, 106, 247, 0.3)">
+            Ye ek paragraph hai — id="intro-text"
+          </p>
+          <input
+            type="text"
+            id="name-input"
+            placeholder='input — id="name-input"'
+            style="
+              width: 100%;
+              padding: 10px 14px;
+              background: #0e0f12;
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              border-radius: 8px;
+              color: var(--text);
+              font-size: 14px;
+              margin-top: 8px;
+            "
+          />
+        </div>
+      </div>
+
+      <!-- TASK 1 -->
+      <div class="section">
+        <h2>✏️ Tasks — Ye Code Likhna Hai Tumhe</h2>
+
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>getElementById se select karo</h3>
+          <p>
+            Neeche diye gaye code mein <strong>3 blank lines</strong> fill karo. Sirf comments padho
+            aur wahan code likho.
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 script tag mein likho — ya is file ke &lt;script&gt; mein</span>
+            <span>JavaScript</span>
+          </div>
+          <pre><span class="cmt">// ── TASK 1: getElementById ──────────────────────────</span>
+
+<span class="cmt">// 1. "hero-box" id wala element select karo</span>
+<span class="kw">const</span> heroBox = <span class="task-arrow">/* tumhara code yahan */</span>;
+
+<span class="cmt">// 2. "intro-text" id wala paragraph select karo</span>
+<span class="kw">const</span> introPara = <span class="task-arrow">/* tumhara code yahan */</span>;
+
+<span class="cmt">// 3. "name-input" id wala input select karo</span>
+<span class="kw">const</span> nameInput = <span class="task-arrow">/* tumhara code yahan */</span>;
+
+<span class="cmt">// 4. Console mein print karo — sahi select hua ya nahi check karo</span>
+console.<span class="fn">log</span>(heroBox);
+console.<span class="fn">log</span>(introPara);
+console.<span class="fn">log</span>(nameInput);</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h1')">💡 Hint chahiye?</button>
+        <div class="hint-box" id="h1">
+          getElementById ka syntax: <code>document.getElementById('id-ka-naam')</code><br />
+          Example: <code>document.getElementById('hero-box')</code><br />
+          Dhyan rakho — quotes ke andar exactly wahi likhna hai jo HTML mein id="..." mein hai!
+        </div>
+      </div>
+
+      <!-- TASK 2 -->
+      <div class="task-box">
+        <span class="task-num">TASK 2</span>
+        <h3>querySelector se select karo</h3>
+        <p>
+          querySelector mein CSS selector ka use hota hai. Ek dot (.) class ke liye, hash (#) id ke
+          liye.
+        </p>
+      </div>
+
+      <div class="code-file">
+        <div class="code-header"><span>📄 JavaScript</span></div>
+        <pre><span class="cmt">// ── TASK 2: querySelector ───────────────────────────</span>
+
+<span class="cmt">// 1. class "special" wala pehla element select karo</span>
+<span class="kw">const</span> specialEl = <span class="task-arrow">/* tumhara code */</span>;
+
+<span class="cmt">// 2. id "hero-box" select karo (# use karo)</span>
+<span class="kw">const</span> hero2 = <span class="task-arrow">/* tumhara code */</span>;
+
+<span class="cmt">// 3. input element select karo (tag name se)</span>
+<span class="kw">const</span> inp = <span class="task-arrow">/* tumhara code */</span>;
+
+<span class="cmt">// 4. nested: sandbox ke andar ka pehla .item</span>
+<span class="kw">const</span> firstItem = <span class="task-arrow">/* tumhara code: '#sandbox .item' */</span>;
+
+console.<span class="fn">log</span>(specialEl, hero2, inp, firstItem);</pre>
+      </div>
+
+      <button class="hint-toggle" onclick="toggleHint('h2')">💡 Hint chahiye?</button>
+      <div class="hint-box" id="h2">
+        querySelector CSS selector leta hai:<br />
+        Class: <code>document.querySelector('.item')</code><br />
+        ID: <code>document.querySelector('#hero-box')</code><br />
+        Tag: <code>document.querySelector('input')</code><br />
+        Nested: <code>document.querySelector('#sandbox .item')</code>
+      </div>
+
+      <!-- TASK 3 -->
+      <div class="task-box" style="margin-top: 24px">
+        <span class="task-num">TASK 3</span>
+        <h3>querySelectorAll — Multiple Elements</h3>
+        <p>
+          querySelectorAll se <strong>saare .item class</strong> wale elements select karo aur har
+          ek ka textContent console mein print karo.
+        </p>
+      </div>
+
+      <div class="code-file">
+        <div class="code-header"><span>📄 JavaScript</span></div>
+        <pre><span class="cmt">// ── TASK 3: querySelectorAll ─────────────────────────</span>
+
+<span class="cmt">// 1. Saare .item elements select karo</span>
+<span class="kw">const</span> allItems = <span class="task-arrow">/* tumhara code */</span>;
+
+<span class="cmt">// 2. Kitne elements mile? Print karo</span>
+console.<span class="fn">log</span>(<span class="str">'Total items:'</span>, <span class="task-arrow">/* allItems.??? */</span>);
+
+<span class="cmt">// 3. Har ek item ka text console mein print karo</span>
+allItems.<span class="fn">forEach</span>(<span class="kw">function</span>(item) {
+  console.<span class="fn">log</span>(<span class="task-arrow">/* item ka textContent */</span>);
+});
+
+<span class="cmt">// 4. BONUS: allItems ko real Array mein convert karo</span>
+<span class="kw">const</span> itemsArray = <span class="task-arrow">/* Array.from(?) */</span>;
+console.<span class="fn">log</span>(<span class="str">'Is it array?'</span>, <span class="fn">Array</span>.isArray(itemsArray)); <span class="cmt">// true aana chahiye</span></pre>
+      </div>
+
+      <button class="hint-toggle" onclick="toggleHint('h3')">💡 Hint chahiye?</button>
+      <div class="hint-box" id="h3">
+        <code>querySelectorAll('.item')</code> — returns NodeList<br />
+        Length ke liye: <code>allItems.length</code><br />
+        forEach: <code>allItems.forEach(function(item) { console.log(item.textContent) })</code
+        ><br />
+        Array conversion: <code>Array.from(allItems)</code>
+      </div>
+
+      <!-- TASK 4 — CHALLENGE -->
+      <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+        <span
+          class="task-num"
+          style="
+            background: rgba(255, 107, 107, 0.1);
+            color: var(--red);
+            border-color: rgba(255, 107, 107, 0.3);
+          "
+          >CHALLENGE 🔥</span
+        >
+        <h3>Sab kuch khud likho</h3>
+        <ol>
+          <li>
+            Select karo
+            <strong>sandbox ke andar sirf wo items jo "special" class bhi rakhte hain</strong>
+          </li>
+          <li>
+            Select karo <strong>pehla element jo .item class ka ho lekin .special na ho</strong> —
+            use <code>:not()</code> selector
+          </li>
+          <li>
+            Check karo: <strong>kya hero-box exist karta hai page par?</strong> — null check karo
+          </li>
+        </ol>
+      </div>
+
+      <div class="code-file">
+        <div class="code-header"><span>📄 JavaScript — Challenge</span></div>
+        <pre><span class="cmt">// CHALLENGE — Khud socho!</span>
+
+<span class="cmt">// 1. .item jo .special bhi ho</span>
+<span class="kw">const</span> specialItems = document.<span class="fn">querySelectorAll</span>(<span class="task-arrow">/* CSS selector: '.item.special' */</span>);
+
+<span class="cmt">// 2. .item jo .special na ho (:not selector)</span>
+<span class="kw">const</span> nonSpecial = document.<span class="fn">querySelectorAll</span>(<span class="task-arrow">/* '.item:not(.special)' */</span>);
+
+<span class="cmt">// 3. Null check</span>
+<span class="kw">const</span> maybeEl = document.<span class="fn">getElementById</span>(<span class="str">'hero-box'</span>);
+<span class="kw">if</span> (maybeEl <span class="task-arrow">!== null</span>) {
+  console.<span class="fn">log</span>(<span class="str">'Element mila!'</span>, maybeEl);
+} <span class="kw">else</span> {
+  console.<span class="fn">log</span>(<span class="str">'Element nahi mila!'</span>);
+}</pre>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 28px 0 16px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check — Karo Practice Ke Baad
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>
+            Bina hint ke
+            <code
+              style="
+                background: rgba(61, 220, 151, 0.08);
+                color: var(--green);
+                font-size: 12px;
+                padding: 1px 5px;
+                border-radius: 4px;
+              "
+              >getElementById</code
+            >
+            likh sakte ho? ✓
+          </li>
+          <li>
+            <code
+              style="
+                background: rgba(61, 220, 151, 0.08);
+                color: var(--green);
+                font-size: 12px;
+                padding: 1px 5px;
+                border-radius: 4px;
+              "
+              >querySelector</code
+            >
+            mein class aur id ka fark (#, .) yaad hai? ✓
+          </li>
+          <li>
+            <code
+              style="
+                background: rgba(61, 220, 151, 0.08);
+                color: var(--green);
+                font-size: 12px;
+                padding: 1px 5px;
+                border-radius: 4px;
+              "
+              >querySelectorAll</code
+            >
+            forEach ke saath use kar sakte ho? ✓
+          </li>
+          <li>NodeList ko Array mein convert karna aata hai? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="02-content.html" class="nav-btn">Next: Content Change karna →</a>
+      </div>
+    </div>
+
+    <script>
+      // Demo functions for observe section
+      function demoGetById() {
+        const el = document.getElementById('hero-box');
+        document.getElementById('out1').textContent = '→ ' + el.tagName + '#' + el.id;
+      }
+      function demoQS() {
+        const el = document.querySelector('.special');
+        document.getElementById('out2').textContent =
+          '→ ' + el.tagName + ' .' + el.className.split(' ').join('.');
+      }
+      function demoQSA() {
+        const els = document.querySelectorAll('.item');
+        document.getElementById('out3').textContent = '→ NodeList(' + els.length + ' items)';
+      }
+      function demoGBCN() {
+        const els = document.getElementsByClassName('item');
+        document.getElementById('out4').textContent =
+          '→ HTMLCollection(' + els.length + ') — LIVE!';
+      }
+      function toggleHint(id) {
+        const box = document.getElementById(id);
+        box.classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

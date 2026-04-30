@@ -1,0 +1,744 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 03 — Styles & Classes</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* ── SANDBOX SPECIFIC STYLES ── */
+      .card-el {
+        background: #1e2029;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-bottom: 12px;
+        font-size: 15px;
+        transition: all 0.3s;
+      }
+
+      .card-el.highlighted {
+        background: rgba(124, 106, 247, 0.15);
+        border-color: var(--accent);
+      }
+
+      .card-el.active {
+        background: rgba(61, 220, 151, 0.1);
+        border-color: var(--green);
+      }
+
+      .card-el.danger {
+        background: rgba(255, 107, 107, 0.1);
+        border-color: var(--red);
+      }
+
+      /* DEMO BOX */
+      .demo-container {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .demo-container h3 {
+        font-size: 14px;
+        color: var(--accent2);
+        font-weight: 600;
+        margin-bottom: 16px;
+      }
+
+      #style-box {
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        font-size: 16px;
+        font-weight: 600;
+        background: #1e2029;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+        margin-bottom: 16px;
+        transition: all 0.4s;
+      }
+
+      .ctrl-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 10px;
+      }
+
+      .ctrl-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .ctrl-btn:hover {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      .class-badges {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        min-height: 30px;
+      }
+
+      .badge {
+        display: inline-block;
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.3);
+        color: var(--accent);
+        font-size: 12px;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-family: monospace;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 03 / 08</div>
+        <h1>Styles &amp; <span>Classes</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: style · classList.add/remove/toggle/contains
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- OBSERVE -->
+      <div class="section">
+        <h2>👀 Live Demo — Style aur Class Change</h2>
+        <div class="demo-container">
+          <h3>Box ka style aur class buttons se change karo — code console mein dekho</h3>
+          <div id="style-box">Main Ek Box Hoon</div>
+          <div class="ctrl-row">
+            <button class="ctrl-btn" onclick="addRed()">background red karo</button>
+            <button class="ctrl-btn" onclick="addPurple()">color purple karo</button>
+            <button class="ctrl-btn" onclick="bigText()">font size badhao</button>
+            <button class="ctrl-btn" onclick="addActive()">active class add</button>
+            <button class="ctrl-btn" onclick="toggleHighlight()">highlighted toggle</button>
+            <button class="ctrl-btn" onclick="resetBox()">Reset</button>
+          </div>
+          <div style="margin-top: 14px; font-size: 13px; color: var(--muted)">Current classes:</div>
+          <div class="class-badges" id="class-display" style="margin-top: 8px"></div>
+        </div>
+      </div>
+
+      <!-- SANDBOX -->
+      <div class="section">
+        <h2>🧪 Sandbox Elements</h2>
+        <div id="sandbox" style="margin-bottom: 24px">
+          <div id="card1" class="card-el">Card 1 — id="card1"</div>
+          <div id="card2" class="card-el">Card 2 — id="card2" (highlighted banana hai)</div>
+          <div id="card3" class="card-el">Card 3 — id="card3" (danger class deni hai)</div>
+          <button
+            id="toggle-btn"
+            style="
+              margin-top: 8px;
+              background: var(--accent);
+              color: white;
+              border: none;
+              padding: 10px 22px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 14px;
+            "
+          >
+            Toggle Button
+          </button>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="section">
+        <h2>✏️ Tasks</h2>
+
+        <!-- TASK 1 -->
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>element.style — Directly Style Change Karo</h3>
+          <ol>
+            <li>card1 ka <strong>background color</strong> <code>#2d1b4e</code> karo</li>
+            <li>card1 ka <strong>color</strong> white karo</li>
+            <li>card1 ka <strong>border radius</strong> 20px karo</li>
+            <li>
+              card2 ka <strong>font size</strong> 20px karo — CSS property name camelCase mein
+              likho!
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 1</span></div>
+          <pre><span class="cmt">// ── TASK 1: element.style ───────────────────────────</span>
+<span class="kw">const</span> card1 = document.<span class="fn">getElementById</span>(<span class="str">'card1'</span>);
+<span class="kw">const</span> card2 = document.<span class="fn">getElementById</span>(<span class="str">'card2'</span>);
+
+<span class="cmt">// 1. Background color</span>
+card1.style.<span class="task-arrow">backgroundColor</span> = <span class="str">'#2d1b4e'</span>;   <span class="cmt">// background-color → camelCase!</span>
+
+<span class="cmt">// 2. Text color</span>
+card1.style.<span class="task-arrow">/* color */</span> = <span class="str">'white'</span>;
+
+<span class="cmt">// 3. Border radius</span>
+card1.style.<span class="task-arrow">/* borderRadius */</span> = <span class="str">'20px'</span>;  <span class="cmt">// border-radius → camelCase!</span>
+
+<span class="cmt">// 4. Font size (camelCase mein likhna)
+</span>card2.style.<span class="task-arrow">/* fontSize */</span> = <span class="str">'20px'</span>;         <span class="cmt">// font-size → fontSize</span>
+
+<span class="cmt">// Verify: console mein dekho</span>
+console.<span class="fn">log</span>(card1.style.<span class="fn">backgroundColor</span>);</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h1')">💡 Hint</button>
+        <div class="hint-box" id="h1">
+          CSS properties camelCase mein likhte hain JS mein:<br />
+          <code>background-color</code> → <code>backgroundColor</code><br />
+          <code>border-radius</code> → <code>borderRadius</code><br />
+          <code>font-size</code> → <code>fontSize</code><br />
+          <code>margin-top</code> → <code>marginTop</code>
+        </div>
+
+        <!-- TASK 2 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>classList — Best Practice Way</h3>
+          <ol>
+            <li>card2 mein <strong>highlighted</strong> class add karo</li>
+            <li>card3 mein <strong>danger</strong> class add karo</li>
+            <li>Check karo — card1 mein "active" class hai ya nahi? (<code>contains</code>)</li>
+            <li>
+              card1 mein "active" class <strong>toggle</strong> karo — 2 baar run karo, kya hota hai
+              dekho
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: classList ───────────────────────────────</span>
+<span class="kw">const</span> card1 = document.<span class="fn">getElementById</span>(<span class="str">'card1'</span>);
+<span class="kw">const</span> card2 = document.<span class="fn">getElementById</span>(<span class="str">'card2'</span>);
+<span class="kw">const</span> card3 = document.<span class="fn">getElementById</span>(<span class="str">'card3'</span>);
+
+<span class="cmt">// 1. Add class</span>
+card2.classList.<span class="task-arrow">add</span>(<span class="str">'highlighted'</span>);
+
+<span class="cmt">// 2. Add danger class</span>
+card3.classList.<span class="task-arrow">/* add */</span>(<span class="str">'danger'</span>);
+
+<span class="cmt">// 3. Check karo — contains boolean deta hai</span>
+<span class="kw">const</span> hasActive = card1.classList.<span class="task-arrow">/* contains */</span>(<span class="str">'active'</span>);
+console.<span class="fn">log</span>(<span class="str">'card1 mein active class hai?'</span>, hasActive); <span class="cmt">// false aana chahiye</span>
+
+<span class="cmt">// 4. Toggle — 1st call: add karta hai, 2nd call: remove karta hai</span>
+card1.classList.<span class="task-arrow">/* toggle */</span>(<span class="str">'active'</span>);
+console.<span class="fn">log</span>(<span class="str">'After toggle:'</span>, card1.classList.<span class="fn">contains</span>(<span class="str">'active'</span>)); <span class="cmt">// true</span>
+card1.classList.<span class="task-arrow">/* toggle */</span>(<span class="str">'active'</span>);
+console.<span class="fn">log</span>(<span class="str">'After 2nd toggle:'</span>, card1.classList.<span class="fn">contains</span>(<span class="str">'active'</span>)); <span class="cmt">// false</span></pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h2')">💡 Hint</button>
+        <div class="hint-box" id="h2">
+          <code>el.classList.add('class-name')</code> — class add karo<br />
+          <code>el.classList.remove('class-name')</code> — class hatao<br />
+          <code>el.classList.toggle('class-name')</code> — agar hai toh hata do, nahi hai toh add
+          karo<br />
+          <code>el.classList.contains('class-name')</code> — true/false batata hai
+        </div>
+
+        <!-- TASK 3 — BUTTON TOGGLE -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Dark Mode Toggle Banana — Real Use Case!</h3>
+          <p>
+            Toggle Button pe click karo toh card1 ka background alternate karo — light aur dark ke
+            beech. <strong>classList.toggle</strong> use karo.
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 3</span></div>
+          <pre><span class="cmt">// ── TASK 3: Toggle Button ───────────────────────────</span>
+<span class="kw">const</span> toggleBtn = document.<span class="fn">getElementById</span>(<span class="str">'toggle-btn'</span>);
+<span class="kw">const</span> card1 = document.<span class="fn">getElementById</span>(<span class="str">'card1'</span>);
+
+toggleBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="cmt">// 1. card1 mein 'highlighted' class toggle karo</span>
+  card1.classList.<span class="task-arrow">/* toggle */</span>(<span class="str">'highlighted'</span>);
+
+  <span class="cmt">// 2. Button ka text bhi change karo based on current state</span>
+  <span class="kw">if</span> (card1.classList.<span class="fn">contains</span>(<span class="str">'highlighted'</span>)) {
+    toggleBtn.<span class="task-arrow">textContent</span> = <span class="str">'Normal Karo'</span>;
+  } <span class="kw">else</span> {
+    toggleBtn.<span class="task-arrow">textContent</span> = <span class="str">'Highlight Karo'</span>;
+  }
+});</pre>
+        </div>
+
+        <!-- CHALLENGE -->
+        <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+          <span
+            class="task-num"
+            style="
+              background: rgba(255, 107, 107, 0.1);
+              color: var(--red);
+              border-color: rgba(255, 107, 107, 0.3);
+            "
+            >CHALLENGE 🔥</span
+          >
+          <h3>Style Inspector Banana</h3>
+          <p>
+            Teen buttons banao: <strong>Red</strong>, <strong>Green</strong>, <strong>Blue</strong>.
+            Jo button click ho, card1 ka background us color ka ho jaaye. Pehle wala color hat
+            jaaye. Sirf ek color active rahe ek waqt mein.
+          </p>
+        </div>
+
+        <div
+          style="
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 12px;
+          "
+        >
+          <div
+            id="color-card"
+            style="
+              padding: 20px;
+              border-radius: 10px;
+              background: #1e2029;
+              border: 2px solid rgba(255, 255, 255, 0.1);
+              text-align: center;
+              font-size: 15px;
+              margin-bottom: 16px;
+              transition: all 0.3s;
+            "
+          >
+            Color Card — buttons se change karo
+          </div>
+          <div style="display: flex; gap: 10px">
+            <button
+              id="red-btn"
+              style="
+                flex: 1;
+                padding: 10px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                background: #ff6b6b;
+                color: white;
+                font-weight: 600;
+              "
+            >
+              Red
+            </button>
+            <button
+              id="green-btn"
+              style="
+                flex: 1;
+                padding: 10px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                background: #3ddc97;
+                color: #0e0f12;
+                font-weight: 600;
+              "
+            >
+              Green
+            </button>
+            <button
+              id="blue-btn"
+              style="
+                flex: 1;
+                padding: 10px;
+                border-radius: 8px;
+                border: none;
+                cursor: pointer;
+                background: #7c6af7;
+                color: white;
+                font-weight: 600;
+              "
+            >
+              Blue
+            </button>
+          </div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>CHALLENGE</span></div>
+          <pre><span class="cmt">// ── CHALLENGE: Color Switcher ────────────────────────</span>
+<span class="kw">const</span> colorCard = document.<span class="fn">getElementById</span>(<span class="str">'color-card'</span>);
+
+<span class="cmt">// Ek function banao jo color change kare</span>
+<span class="kw">function</span> <span class="fn">setColor</span>(color) {
+  colorCard.style.<span class="task-arrow">backgroundColor</span> = color;
+  colorCard.style.<span class="task-arrow">color</span> = color === <span class="str">'#3ddc97'</span> ? <span class="str">'#0e0f12'</span> : <span class="str">'white'</span>;
+}
+
+document.<span class="fn">getElementById</span>(<span class="str">'red-btn'</span>).<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="task-arrow">/* setColor call karo */</span>
+});
+
+document.<span class="fn">getElementById</span>(<span class="str">'green-btn'</span>).<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="task-arrow">/* setColor call karo */</span>
+});
+
+document.<span class="fn">getElementById</span>(<span class="str">'blue-btn'</span>).<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="task-arrow">/* setColor call karo */</span>
+});</pre>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>
+            CSS property ka camelCase naam likhna aata hai?
+            <code style="font-size: 12px; font-family: monospace">background-color → ?</code> ✓
+          </li>
+          <li>classList.add, remove, toggle, contains — sab ka use aata hai? ✓</li>
+          <li>Toggle pattern samajh aaya — ek class baar baar add/remove karna? ✓</li>
+          <li>element.style se sirf inline styles kyu likhne chahiye — pata hai? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="02-content.html" class="nav-btn back">← Back</a>
+        <a href="04-create-insert.html" class="nav-btn">Next: Elements Banana →</a>
+      </div>
+    </div>
+
+    <script>
+      const styleBox = document.getElementById('style-box');
+      function updateClassDisplay() {
+        const display = document.getElementById('class-display');
+        display.innerHTML = '';
+        styleBox.classList.forEach(c => {
+          const b = document.createElement('span');
+          b.className = 'badge';
+          b.textContent = '.' + c;
+          display.appendChild(b);
+        });
+        if (styleBox.classList.length === 0)
+          display.innerHTML = '<span style="color:var(--muted);font-size:13px">no classes</span>';
+      }
+      function addRed() {
+        styleBox.style.backgroundColor = '#ff6b6b';
+        styleBox.style.color = 'white';
+        updateClassDisplay();
+      }
+      function addPurple() {
+        styleBox.style.color = '#c792ea';
+        updateClassDisplay();
+      }
+      function bigText() {
+        styleBox.style.fontSize = '22px';
+        updateClassDisplay();
+      }
+      function addActive() {
+        styleBox.classList.add('active');
+        updateClassDisplay();
+      }
+      function toggleHighlight() {
+        styleBox.classList.toggle('highlighted');
+        updateClassDisplay();
+      }
+      function resetBox() {
+        styleBox.removeAttribute('style');
+        styleBox.className = '';
+        updateClassDisplay();
+      }
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+      updateClassDisplay();
+    </script>
+  </body>
+</html>

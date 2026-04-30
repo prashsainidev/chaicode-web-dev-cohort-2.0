@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 07 — DOM Traversal</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* TREE */
+      .tree-explorer {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .tree-node {
+        font-family: monospace;
+        font-size: 13px;
+        padding: 4px 0;
+      }
+
+      .tree-indent {
+        padding-left: 24px;
+        border-left: 1px dashed rgba(124, 106, 247, 0.2);
+        margin-left: 8px;
+      }
+
+      .tag-name {
+        color: var(--accent);
+        font-weight: 600;
+        cursor: pointer;
+        padding: 2px 6px;
+        border-radius: 4px;
+        transition: background 0.15s;
+      }
+
+      .tag-name:hover {
+        background: rgba(124, 106, 247, 0.1);
+      }
+
+      .tag-name.highlighted {
+        background: rgba(78, 205, 196, 0.15);
+        color: var(--accent2);
+        outline: 2px solid var(--accent2);
+      }
+
+      .attr-val {
+        color: var(--accent3);
+      }
+
+      .text-content {
+        color: var(--muted);
+        font-style: italic;
+      }
+
+      .connector {
+        color: rgba(124, 106, 247, 0.4);
+      }
+
+      #traversal-output {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-top: 12px;
+        font-family: monospace;
+        font-size: 12px;
+        min-height: 42px;
+        color: var(--accent2);
+      }
+
+      /* SANDBOX STRUCTURE */
+      #tree-sandbox {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .parent-box {
+        background: #13151a;
+        border: 2px solid rgba(124, 106, 247, 0.3);
+        border-radius: 10px;
+        padding: 16px;
+      }
+
+      .parent-box > .label {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--accent);
+        font-family: monospace;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .child-box {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 14px;
+        margin-bottom: 6px;
+        font-size: 14px;
+      }
+
+      .child-box:last-child {
+        margin-bottom: 0;
+      }
+
+      .child-box.first-style {
+        border-color: rgba(61, 220, 151, 0.3);
+      }
+
+      .child-box.last-style {
+        border-color: rgba(255, 107, 107, 0.3);
+      }
+
+      .child-box.middle {
+        border-color: rgba(246, 197, 87, 0.2);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 07 / 08</div>
+        <h1>DOM <span>Traversal</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: parentElement · children · siblings · closest()
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- TREE EXPLORER -->
+      <div class="section">
+        <h2>👀 Interactive Tree — Elements Click Karo</h2>
+        <div class="tree-explorer">
+          <div
+            style="font-size: 14px; color: var(--accent2); font-weight: 600; margin-bottom: 16px"
+          >
+            Tree structure — kisi bhi element pe click karo, uske relations console mein dekhna
+          </div>
+          <div class="tree-node">
+            <span class="tag-name" onclick="explore('tree-sandbox')"
+              >div<span class="attr-val">#tree-sandbox</span></span
+            >
+          </div>
+          <div class="tree-indent">
+            <div class="tree-node">
+              <span class="connector">└─ </span
+              ><span class="tag-name" onclick="explore('parent-el')"
+                >div<span class="attr-val">.parent-box</span></span
+              >
+            </div>
+            <div class="tree-indent">
+              <div class="tree-node">
+                <span class="connector">├─ </span
+                ><span class="tag-name" onclick="explore('child-1')"
+                  >div<span class="attr-val">#child-1 .first-style</span></span
+                >
+                <span class="text-content">"Child 1"</span>
+              </div>
+              <div class="tree-node">
+                <span class="connector">├─ </span
+                ><span class="tag-name" onclick="explore('child-2')"
+                  >div<span class="attr-val">#child-2 .middle</span></span
+                >
+                <span class="text-content">"Child 2"</span>
+              </div>
+              <div class="tree-node">
+                <span class="connector">└─ </span
+                ><span class="tag-name" onclick="explore('child-3')"
+                  >div<span class="attr-val">#child-3 .last-style</span></span
+                >
+                <span class="text-content">"Child 3"</span>
+              </div>
+            </div>
+          </div>
+          <div id="traversal-output">
+            👆 Koi element click karo — uske relations console mein dekhna
+          </div>
+        </div>
+      </div>
+
+      <!-- SANDBOX -->
+      <div id="tree-sandbox">
+        <div id="parent-el" class="parent-box">
+          <div class="label">id="parent-el" — .parent-box</div>
+          <div id="child-1" class="child-box first-style">
+            Child 1 — id="child-1", class="child-box first-style"
+          </div>
+          <div id="child-2" class="child-box middle">
+            Child 2 — id="child-2", class="child-box middle"
+          </div>
+          <div id="child-3" class="child-box last-style">
+            Child 3 — id="child-3", class="child-box last-style"
+          </div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="section" style="margin-top: 32px">
+        <h2>✏️ Tasks</h2>
+
+        <!-- TASK 1 -->
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>Parent Navigate Karo</h3>
+          <ol>
+            <li>child-2 ka <strong>parentElement</strong> console mein print karo</li>
+            <li>child-2 ke parent ka <strong>id</strong> print karo</li>
+            <li>child-2 se upar upar — <strong>2 levels upar</strong> ka element lo</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 1</span></div>
+          <pre><span class="cmt">// ── TASK 1: Parent Navigation ────────────────────────</span>
+<span class="kw">const</span> child2 = document.<span class="fn">getElementById</span>(<span class="str">'child-2'</span>);
+
+<span class="cmt">// 1. Direct parent</span>
+<span class="kw">const</span> parent = child2.<span class="task-arrow">parentElement</span>;
+console.<span class="fn">log</span>(<span class="str">'Parent:'</span>, parent);
+
+<span class="cmt">// 2. Parent ka id</span>
+console.<span class="fn">log</span>(<span class="str">'Parent id:'</span>, parent.<span class="task-arrow">id</span>); <span class="cmt">// "parent-el"</span>
+
+<span class="cmt">// 3. 2 levels upar</span>
+<span class="kw">const</span> grandParent = child2.<span class="task-arrow">parentElement</span>.<span class="task-arrow">parentElement</span>;
+console.<span class="fn">log</span>(<span class="str">'Grandparent id:'</span>, grandParent.<span class="task-arrow">id</span>); <span class="cmt">// "tree-sandbox"</span></pre>
+        </div>
+
+        <!-- TASK 2 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>Children Navigate Karo</h3>
+          <ol>
+            <li>
+              parent-el ke <strong>saare children</strong> print karo — <code>children</code> use
+              karo
+            </li>
+            <li>
+              parent-el ka <strong>pehla child</strong> aur <strong>aakhri child</strong> print karo
+            </li>
+            <li>Kitne children hain? <code>children.length</code></li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: Children Navigation ──────────────────────</span>
+<span class="kw">const</span> parent = document.<span class="fn">getElementById</span>(<span class="str">'parent-el'</span>);
+
+<span class="cmt">// 1. Saare children (sirf element nodes — text/whitespace nahi)</span>
+console.<span class="fn">log</span>(<span class="str">'Children:'</span>, parent.<span class="task-arrow">children</span>); <span class="cmt">// HTMLCollection</span>
+
+<span class="cmt">// 2. First aur Last child</span>
+console.<span class="fn">log</span>(<span class="str">'First:'</span>, parent.<span class="task-arrow">firstElementChild</span>);
+console.<span class="fn">log</span>(<span class="str">'Last:'</span>,  parent.<span class="task-arrow">lastElementChild</span>);
+
+<span class="cmt">// 3. Count</span>
+console.<span class="fn">log</span>(<span class="str">'Total children:'</span>, parent.children.<span class="task-arrow">length</span>);
+
+<span class="cmt">// 4. Sab children pe loop karo</span>
+<span class="fn">Array</span>.<span class="fn">from</span>(parent.<span class="task-arrow">children</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(child) {
+  console.<span class="fn">log</span>(<span class="str">'Child id:'</span>, child.<span class="task-arrow">id</span>);
+});</pre>
+        </div>
+
+        <!-- TASK 3 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Siblings Navigate Karo</h3>
+          <ol>
+            <li>child-2 ka <strong>next sibling</strong> kya hai?</li>
+            <li>child-2 ka <strong>previous sibling</strong> kya hai?</li>
+            <li>child-1 ka next sibling — phir next sibling — chain karo</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 3</span></div>
+          <pre><span class="cmt">// ── TASK 3: Siblings ─────────────────────────────────</span>
+<span class="kw">const</span> child2 = document.<span class="fn">getElementById</span>(<span class="str">'child-2'</span>);
+
+<span class="cmt">// Next sibling (Element wala — text nodes skip)</span>
+<span class="kw">const</span> nextEl = child2.<span class="task-arrow">nextElementSibling</span>;
+console.<span class="fn">log</span>(<span class="str">'Next sibling:'</span>, nextEl.<span class="fn">id</span>);  <span class="cmt">// child-3</span>
+
+<span class="cmt">// Previous sibling</span>
+<span class="kw">const</span> prevEl = child2.<span class="task-arrow">previousElementSibling</span>;
+console.<span class="fn">log</span>(<span class="str">'Prev sibling:'</span>, prevEl.<span class="fn">id</span>);  <span class="cmt">// child-1</span>
+
+<span class="cmt">// Chain — child1 se sab siblings traverse karo</span>
+<span class="kw">const</span> child1 = document.<span class="fn">getElementById</span>(<span class="str">'child-1'</span>);
+<span class="kw">let</span> current = child1;
+<span class="kw">while</span> (current <span class="task-arrow">!== null</span>) {
+  console.<span class="fn">log</span>(<span class="str">'Traversing:'</span>, current.<span class="fn">id</span>);
+  current = current.<span class="task-arrow">nextElementSibling</span>; <span class="cmt">// agle pe jao</span>
+}
+<span class="cmt">// null milega jab koi sibling nahi bachta</span></pre>
+        </div>
+
+        <!-- TASK 4 — closest -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 4</span>
+          <h3>closest() — Ancestor Search</h3>
+          <p>
+            <code>closest()</code> ek element se upar jaata hai aur pehla ancestor dhundh deta hai
+            jo selector se match kare. Event delegation mein bahut kaam aata hai!
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 4</span></div>
+          <pre><span class="cmt">// ── TASK 4: closest() ───────────────────────────────</span>
+<span class="kw">const</span> child2 = document.<span class="fn">getElementById</span>(<span class="str">'child-2'</span>);
+
+<span class="cmt">// Nearest ancestor jo .parent-box ho</span>
+<span class="kw">const</span> nearestParent = child2.<span class="task-arrow">closest</span>(<span class="str">'.parent-box'</span>);
+console.<span class="fn">log</span>(<span class="str">'Nearest .parent-box:'</span>, nearestParent.<span class="fn">id</span>); <span class="cmt">// parent-el</span>
+
+<span class="cmt">// Khud bhi match hota hai agar selector suit kare</span>
+<span class="kw">const</span> itselfCheck = child2.<span class="task-arrow">closest</span>(<span class="str">'.child-box'</span>);
+console.<span class="fn">log</span>(<span class="str">'closest self:'</span>, itselfCheck.<span class="fn">id</span>); <span class="cmt">// child-2 khud!</span>
+
+<span class="cmt">// Agar nahi milta toh null milta hai</span>
+<span class="kw">const</span> noMatch = child2.<span class="task-arrow">closest</span>(<span class="str">'.does-not-exist'</span>);
+console.<span class="fn">log</span>(<span class="str">'No match:'</span>, noMatch); <span class="cmt">// null</span></pre>
+        </div>
+
+        <!-- CHALLENGE -->
+        <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+          <span
+            class="task-num"
+            style="
+              background: rgba(255, 107, 107, 0.1);
+              color: var(--red);
+              border-color: rgba(255, 107, 107, 0.3);
+            "
+            >CHALLENGE 🔥</span
+          >
+          <h3>Traversal se Highlight Karo</h3>
+          <p>
+            child-2 click hone par — <strong>uske dono siblings</strong> ko highlight karo (border
+            color change karo), lekin child-2 ko mat karo. Sirf traversal use karo — getElementById
+            nahi!
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>CHALLENGE</span></div>
+          <pre><span class="cmt">// ── CHALLENGE: Traversal + Highlight ────────────────</span>
+<span class="kw">const</span> child2 = document.<span class="fn">getElementById</span>(<span class="str">'child-2'</span>);
+
+child2.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="cmt">// Get siblings via traversal — getElementById nahi use karna!</span>
+  <span class="kw">const</span> prev = child2.<span class="task-arrow">previousElementSibling</span>;
+  <span class="kw">const</span> next = child2.<span class="task-arrow">nextElementSibling</span>;
+
+  <span class="cmt">// Pehle reset karo</span>
+  child2.<span class="fn">parentElement</span>.<span class="fn">querySelectorAll</span>(<span class="str">'.child-box'</span>).<span class="fn">forEach</span>(el => {
+    el.<span class="task-arrow">style</span>.<span class="task-arrow">outline</span> = <span class="str">'none'</span>;
+  });
+
+  <span class="cmt">// Siblings highlight karo</span>
+  <span class="kw">if</span> (prev) prev.<span class="task-arrow">style</span>.<span class="task-arrow">outline</span> = <span class="str">'2px solid #3ddc97'</span>;
+  <span class="kw">if</span> (next) next.<span class="task-arrow">style</span>.<span class="task-arrow">outline</span> = <span class="str">'2px solid #3ddc97'</span>;
+
+  console.<span class="fn">log</span>(<span class="str">'Highlighted siblings of child-2!'</span>);
+});</pre>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>parentElement, children, firstElementChild, lastElementChild yaad hain? ✓</li>
+          <li>nextElementSibling aur previousElementSibling ka fark — Element wale use karo! ✓</li>
+          <li>closest() kab useful hai — samajh aaya? ✓</li>
+          <li>childNodes vs children ka fark — whitespace ka issue? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="06-event-delegation.html" class="nav-btn back">← Back</a>
+        <a href="08-todo-project.html" class="nav-btn">Next: Final Project — Todo App →</a>
+      </div>
+    </div>
+
+    <script>
+      function explore(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        document.querySelectorAll('.tag-name').forEach(t => t.classList.remove('highlighted'));
+        event.target.classList.add('highlighted');
+        const out = document.getElementById('traversal-output');
+        const info = [
+          `id: "${el.id}"`,
+          `tagName: ${el.tagName}`,
+          `parentElement: #${el.parentElement?.id || el.parentElement?.tagName}`,
+          `children.length: ${el.children.length}`,
+          `firstElementChild: ${el.firstElementChild?.id || 'none'}`,
+          `nextElementSibling: ${el.nextElementSibling?.id || 'none'}`,
+          `previousElementSibling: ${el.previousElementSibling?.id || 'none'}`,
+        ].join(' | ');
+        out.textContent = info;
+        console.group(`Exploring: #${el.id}`);
+        console.log('Element:', el);
+        console.log('parentElement:', el.parentElement);
+        console.log('children:', el.children);
+        console.log('firstElementChild:', el.firstElementChild);
+        console.log('lastElementChild:', el.lastElementChild);
+        console.log('nextElementSibling:', el.nextElementSibling);
+        console.log('previousElementSibling:', el.previousElementSibling);
+        console.groupEnd();
+      }
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

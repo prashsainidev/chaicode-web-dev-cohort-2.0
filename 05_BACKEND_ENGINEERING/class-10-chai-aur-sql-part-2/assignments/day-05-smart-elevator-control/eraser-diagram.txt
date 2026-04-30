@@ -1,0 +1,105 @@
+title Smart_Elevator_Control_ER_Diagram
+notation chen
+colorMode bold
+styleMode shadow
+typeface mono
+
+building [color: teal] {
+  building_id number pk
+  building_name string
+  building_type string
+  city_name string
+}
+
+floor [color: blue] {
+  floor_id number pk
+  building_id number fk
+  floor_number number
+  floor_label string
+}
+
+elevator_shaft [color: orange] {
+  elevator_shaft_id number pk
+  building_id number fk
+  shaft_code string
+  service_zone string
+}
+
+elevator [color: green] {
+  elevator_id number pk
+  building_id number fk
+  elevator_shaft_id number fk unique
+  elevator_code string
+  max_capacity number
+}
+
+elevator_floor_service [color: yellow] {
+  elevator_floor_service_id number pk
+  elevator_id number fk
+  floor_id number fk
+  is_primary_stop boolean
+}
+
+floor_request [color: pink] {
+  floor_request_id number pk
+  request_floor_id number fk
+  destination_floor_id number fk
+  request_direction string
+  requested_at datetime
+  request_status string
+}
+
+ride_assignment [color: purple] {
+  ride_assignment_id number pk
+  floor_request_id number fk unique
+  elevator_id number fk
+  assigned_at datetime
+  assignment_status string
+}
+
+ride_log [color: red] {
+  ride_log_id number pk
+  ride_assignment_id number fk unique
+  elevator_id number fk
+  start_floor_id number fk
+  end_floor_id number fk
+  trip_started_at datetime
+  trip_completed_at datetime
+  trip_status string
+}
+
+elevator_status_log [color: gray] {
+  elevator_status_log_id number pk
+  elevator_id number fk
+  current_floor_id number fk
+  status_label string
+  recorded_at datetime
+}
+
+maintenance_record [color: gray] {
+  maintenance_record_id number pk
+  elevator_id number fk
+  maintenance_type string
+  started_at datetime
+  completed_at datetime
+  maintenance_status string
+  notes string
+}
+
+floor.building_id > building.building_id: [color: blue]
+elevator_shaft.building_id > building.building_id: [color: orange]
+elevator.building_id > building.building_id: [color: green]
+elevator.elevator_shaft_id > elevator_shaft.elevator_shaft_id: [color: orange]
+elevator_floor_service.elevator_id > elevator.elevator_id: [color: green]
+elevator_floor_service.floor_id > floor.floor_id: [color: blue]
+floor_request.request_floor_id > floor.floor_id: [color: blue]
+floor_request.destination_floor_id > floor.floor_id: [color: "#4f83ff"]
+ride_assignment.floor_request_id > floor_request.floor_request_id: [color: "#f43456"]
+ride_assignment.elevator_id > elevator.elevator_id: [color: green]
+ride_log.ride_assignment_id > ride_assignment.ride_assignment_id: [color: purple]
+ride_log.elevator_id > elevator.elevator_id: [color: green]
+ride_log.start_floor_id > floor.floor_id: [color: blue]
+ride_log.end_floor_id > floor.floor_id: [color: "#4f83ff"]
+elevator_status_log.elevator_id > elevator.elevator_id: [color: green]
+elevator_status_log.current_floor_id > floor.floor_id: [color: blue]
+maintenance_record.elevator_id > elevator.elevator_id: [color: gray]

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DOM Practice Kit — Index</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        min-height: 100vh;
+      }
+
+      .hero {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e, #0a2e1a);
+        padding: 60px 40px 48px;
+        text-align: center;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .hero-badge {
+        display: inline-block;
+        background: rgba(61, 220, 151, 0.1);
+        border: 1px solid rgba(61, 220, 151, 0.3);
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 16px;
+        border-radius: 20px;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+      }
+
+      .hero h1 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 12px;
+      }
+
+      .hero h1 span {
+        color: var(--accent);
+      }
+
+      .hero p {
+        color: var(--muted);
+        font-size: 15px;
+        max-width: 500px;
+        margin: 0 auto 28px;
+        line-height: 1.7;
+      }
+
+      .hero-stats {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+
+      .stat {
+        text-align: center;
+      }
+
+      .stat-num {
+        font-size: 1.8rem;
+        font-weight: 800;
+        color: var(--accent);
+      }
+
+      .stat-label {
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 48px 24px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .file-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .file-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 18px 22px;
+        text-decoration: none;
+        color: var(--text);
+        transition: all 0.2s;
+      }
+
+      .file-card:hover {
+        border-color: rgba(124, 106, 247, 0.4);
+        background: #23253a;
+        transform: translateX(4px);
+      }
+
+      .file-card.final {
+        border-color: rgba(61, 220, 151, 0.2);
+      }
+
+      .file-card.final:hover {
+        border-color: rgba(61, 220, 151, 0.5);
+      }
+
+      .file-num {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--muted);
+        font-family: monospace;
+        min-width: 28px;
+      }
+
+      .file-icon {
+        font-size: 22px;
+        min-width: 32px;
+        text-align: center;
+      }
+
+      .file-info {
+        flex: 1;
+      }
+
+      .file-info h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+
+      .file-info p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+
+      .file-topics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .topic-tag {
+        font-size: 11px;
+        background: rgba(124, 106, 247, 0.1);
+        border: 1px solid rgba(124, 106, 247, 0.2);
+        color: var(--accent);
+        padding: 2px 8px;
+        border-radius: 10px;
+        font-family: monospace;
+      }
+
+      .topic-tag.green {
+        background: rgba(61, 220, 151, 0.08);
+        border-color: rgba(61, 220, 151, 0.2);
+        color: var(--green);
+      }
+
+      .arrow {
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .tip-box {
+        background: rgba(246, 197, 87, 0.06);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 20px 24px;
+        margin-bottom: 28px;
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .tip-box strong {
+        color: var(--accent3);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="hero">
+      <div class="hero-badge">CHAICODE WEBDEV COHORT 2.0</div>
+      <h1>DOM <span>Practice Kit</span></h1>
+      <p>
+        8 practice files — beginner se advanced tak. VS Code mein kholo, browser mein run karo,
+        haath se code likho.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Practice Files</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Tasks</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1</div>
+          <div class="stat-label">Final Project</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="tip-box">
+        <strong>📌 Kaise Use Karo:</strong> Sab files ek folder mein rakhna. Browser mein
+        double-click karke kholo. VS Code mein script tag mein ya browser console mein code likho.
+        Har file mein <strong>yellow placeholder</strong> (<code
+          style="
+            font-family: monospace;
+            font-size: 12px;
+            background: rgba(246, 197, 87, 0.1);
+            padding: 1px 5px;
+            border-radius: 4px;
+          "
+          >/* tumhara code */</code
+        >) fill karna hai — copy mat karna, samjhke likhna!
+      </div>
+
+      <h2>📁 Files — Order Mein Karo</h2>
+      <div class="file-grid">
+        <a href="01-selectors.html" class="file-card">
+          <span class="file-num">01</span>
+          <span class="file-icon">🎯</span>
+          <div class="file-info">
+            <h3>DOM Selectors</h3>
+            <p>Pehla step — elements ko kaise dhundhte hain</p>
+            <div class="file-topics">
+              <span class="topic-tag">getElementById</span>
+              <span class="topic-tag">querySelector</span>
+              <span class="topic-tag">querySelectorAll</span>
+              <span class="topic-tag">NodeList</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="02-content.html" class="file-card">
+          <span class="file-num">02</span>
+          <span class="file-icon">✏️</span>
+          <div class="file-info">
+            <h3>Content Change Karna</h3>
+            <p>Text aur HTML update karna — 3 properties ka fark</p>
+            <div class="file-topics">
+              <span class="topic-tag">textContent</span>
+              <span class="topic-tag">innerHTML</span>
+              <span class="topic-tag">innerText</span>
+              <span class="topic-tag">attributes</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="03-styles-classes.html" class="file-card">
+          <span class="file-num">03</span>
+          <span class="file-icon">🎨</span>
+          <div class="file-info">
+            <h3>Styles &amp; Classes</h3>
+            <p>CSS ko JavaScript se control karna</p>
+            <div class="file-topics">
+              <span class="topic-tag">element.style</span>
+              <span class="topic-tag">classList.add</span>
+              <span class="topic-tag">classList.toggle</span>
+              <span class="topic-tag">classList.contains</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="04-create-insert.html" class="file-card">
+          <span class="file-num">04</span>
+          <span class="file-icon">🏗️</span>
+          <div class="file-info">
+            <h3>Elements Banana &amp; Insert Karna</h3>
+            <p>Naye elements dynamically create karo</p>
+            <div class="file-topics">
+              <span class="topic-tag">createElement</span>
+              <span class="topic-tag">append</span>
+              <span class="topic-tag">prepend</span>
+              <span class="topic-tag">remove</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="05-events.html" class="file-card">
+          <span class="file-num">05</span>
+          <span class="file-icon">⚡</span>
+          <div class="file-info">
+            <h3>Events — User Actions Pakdna</h3>
+            <p>Click, hover, keyboard, form — sab events handle karo</p>
+            <div class="file-topics">
+              <span class="topic-tag">addEventListener</span>
+              <span class="topic-tag">event object</span>
+              <span class="topic-tag">e.target</span>
+              <span class="topic-tag">preventDefault</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="06-event-delegation.html" class="file-card">
+          <span class="file-num">06</span>
+          <span class="file-icon">🏛️</span>
+          <div class="file-info">
+            <h3>Event Delegation</h3>
+            <p>Ek listener se sab handle karo — bubbling ka fayda</p>
+            <div class="file-topics">
+              <span class="topic-tag">bubbling</span>
+              <span class="topic-tag">e.target</span>
+              <span class="topic-tag">closest()</span>
+              <span class="topic-tag">dataset</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="07-traversal.html" class="file-card">
+          <span class="file-num">07</span>
+          <span class="file-icon">🧭</span>
+          <div class="file-info">
+            <h3>DOM Traversal</h3>
+            <p>Tree mein navigate karo — parent, children, siblings</p>
+            <div class="file-topics">
+              <span class="topic-tag">parentElement</span>
+              <span class="topic-tag">children</span>
+              <span class="topic-tag">nextElementSibling</span>
+              <span class="topic-tag">closest()</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a href="08-todo-project.html" class="file-card final">
+          <span class="file-num">08</span>
+          <span class="file-icon">🏆</span>
+          <div class="file-info">
+            <h3>Final Project — Todo App</h3>
+            <p>Sab concepts ek saath — real working project!</p>
+            <div class="file-topics">
+              <span class="topic-tag green">All DOM concepts</span>
+              <span class="topic-tag green">Event Delegation</span>
+              <span class="topic-tag green">Filter logic</span>
+              <span class="topic-tag green">Full App</span>
+            </div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

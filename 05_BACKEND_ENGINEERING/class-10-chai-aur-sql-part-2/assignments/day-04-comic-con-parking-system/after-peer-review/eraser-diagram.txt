@@ -1,0 +1,109 @@
+title Comic_Con_Parking_System_After_Peer_Review_ER_Diagram
+notation crows-foot
+colorMode pastel
+styleMode shadow
+typeface mono
+
+vehicle_category [color: teal] {
+  vehicle_category_id number pk
+  category_name string
+  size_type string
+  category_description string
+}
+
+vehicle [color: green] {
+  vehicle_id number pk
+  vehicle_category_id number fk
+  registration_number string
+  owner_name string
+  owner_phone string
+}
+
+access_category [color: orange] {
+  access_category_id number pk
+  category_name string
+  priority_rank number
+  category_description string
+}
+
+event_day [color: gray] {
+  event_day_id number pk
+  event_date date
+  day_label string
+}
+
+parking_zone [color: purple] {
+  parking_zone_id number pk
+  zone_name string
+  zone_type string
+  level_count number
+}
+
+parking_spot_category [color: blue] {
+  parking_spot_category_id number pk
+  category_name string
+  supported_size_type string
+  has_ev_charging boolean
+}
+
+parking_spot [color: yellow] {
+  parking_spot_id number pk
+  parking_zone_id number fk
+  parking_spot_category_id number fk
+  reserved_for_access_category_id number fk
+  is_reserved boolean
+  spot_code string
+  level_number number
+  is_available boolean
+}
+
+parking_pricing_rule [color: red] {
+  parking_pricing_rule_id number pk
+  vehicle_category_id number fk
+  base_fee number
+  hourly_rate number
+  daily_cap number
+}
+
+parking_session [color: pink] {
+  parking_session_id number pk
+  vehicle_id number fk
+  parking_spot_id number fk
+  access_category_id number fk
+  parking_pricing_rule_id number fk
+  event_day_id number fk
+  entry_time datetime
+  exit_time datetime
+  session_status string
+  calculated_fee number
+}
+
+parking_ticket [color: pink] {
+  parking_ticket_id number pk
+  parking_session_id number fk unique
+  ticket_number string unique
+  issued_at datetime
+}
+
+payment_record [color: gray] {
+  payment_record_id number pk
+  parking_session_id number fk unique
+  amount_paid number
+  payment_method string
+  payment_status string
+  transaction_reference string
+  paid_at datetime
+}
+
+vehicle.vehicle_category_id > vehicle_category.vehicle_category_id: [color: teal]
+parking_spot.parking_zone_id > parking_zone.parking_zone_id: [color: purple]
+parking_spot.parking_spot_category_id > parking_spot_category.parking_spot_category_id: [color: blue]
+parking_spot.reserved_for_access_category_id > access_category.access_category_id: [color: orange]
+parking_pricing_rule.vehicle_category_id > vehicle_category.vehicle_category_id: [color: red]
+parking_session.vehicle_id > vehicle.vehicle_id: [color: green]
+parking_session.parking_spot_id > parking_spot.parking_spot_id: [color: yellow]
+parking_session.access_category_id > access_category.access_category_id: [color: orange]
+parking_session.parking_pricing_rule_id > parking_pricing_rule.parking_pricing_rule_id: [color: red]
+parking_session.event_day_id > event_day.event_day_id: [color: gray]
+payment_record.parking_session_id > parking_session.parking_session_id: [color: gray]
+parking_ticket.parking_session_id > parking_session.parking_session_id: [color: pink]

@@ -1,0 +1,135 @@
+title IPL_Management_System_ER_Diagram
+notation chen
+colorMode bold
+styleMode shadow
+typeface mono
+
+team [color: teal] {
+  team_id number pk
+  team_name string unique
+  short_code string unique
+  home_city string
+  founded_year number
+}
+
+owner [color: orange] {
+  owner_id number pk
+  owner_name string
+  owner_type string
+  country_name string
+}
+
+team_owner [color: yellow] {
+  team_owner_id number pk
+  team_id number fk
+  owner_id number fk
+  ownership_percentage number
+  ownership_start_date date
+  ownership_end_date date
+}
+
+player [color: green] {
+  player_id number pk
+  player_name string
+  date_of_birth date
+  nationality string
+  primary_role string
+  batting_style string
+  bowling_style string
+}
+
+season [color: blue] {
+  season_id number pk
+  season_year number unique
+  season_start_date date
+  season_end_date date
+  season_status string
+}
+
+player_team_contract [color: lime] {
+  player_team_contract_id number pk
+  player_id number fk
+  team_id number fk
+  season_id number fk
+  jersey_number number
+  base_price number
+  auction_price number
+  contract_status string
+}
+
+sponsor [color: pink] {
+  sponsor_id number pk
+  sponsor_name string
+  industry_type string
+  sponsor_level string
+}
+
+team_sponsorship [color: red] {
+  team_sponsorship_id number pk
+  team_id number fk
+  sponsor_id number fk
+  season_id number fk
+  sponsorship_type string
+  contract_value number
+  contract_status string
+}
+
+broadcaster [color: purple] {
+  broadcaster_id number pk
+  broadcaster_name string
+  platform_type string
+  country_name string
+}
+
+broadcast_rights [color: violet] {
+  broadcast_rights_id number pk
+  broadcaster_id number fk
+  season_id number fk
+  rights_type string
+  contract_value number
+  contract_start_date date
+  contract_end_date date
+}
+
+venue [color: gray] {
+  venue_id number pk
+  venue_name string
+  city_name string
+  capacity number
+}
+
+match [color: brown] {
+  match_id number pk
+  season_id number fk
+  venue_id number fk
+  match_number number
+  match_type string
+  match_date datetime
+  toss_winner_team_id number fk
+  winner_team_id number fk
+}
+
+match_team [color: gold] {
+  match_team_id number pk
+  match_id number fk
+  team_id number fk
+  team_role string
+  is_winner boolean
+}
+
+team_owner.team_id > team.team_id: [color: teal]
+team_owner.owner_id > owner.owner_id: [color: orange]
+player_team_contract.player_id > player.player_id: [color: green]
+player_team_contract.team_id > team.team_id: [color: teal]
+player_team_contract.season_id > season.season_id: [color: blue]
+team_sponsorship.team_id > team.team_id: [color: teal]
+team_sponsorship.sponsor_id > sponsor.sponsor_id: [color: pink]
+team_sponsorship.season_id > season.season_id: [color: blue]
+broadcast_rights.broadcaster_id > broadcaster.broadcaster_id: [color: purple]
+broadcast_rights.season_id > season.season_id: [color: blue]
+match.season_id > season.season_id: [color: blue]
+match.venue_id > venue.venue_id: [color: gray]
+match.toss_winner_team_id > team.team_id: [color: teal]
+match.winner_team_id > team.team_id: [color: "#0f8f8f"]
+match_team.match_id > match.match_id: [color: brown]
+match_team.team_id > team.team_id: [color: teal]

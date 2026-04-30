@@ -1,0 +1,57 @@
+# Peer Reviews
+
+This section tracks cohort peer-review assignments.
+
+This page should stay lightweight and submission-focused.
+
+So this section should mainly keep:
+
+- which assignment came when
+- deadline and evaluation window
+- submission status
+- marks or review result
+- GitHub, deploy, or published links after they are ready
+
+---
+
+## Peer Reviews Index
+
+| Assignment                                  | Format                     | Start                    | Due                     | Evaluation Window                  | Submission Status | Result           | GitHub Repo                                                                                                                                                                          | Live / Published Link                                                                                                                                                                                                                          |
+| ------------------------------------------- | -------------------------- | ------------------------ | ----------------------- | ---------------------------------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HTML Resume Page Assignment                 | HTML assignment            | `27 Jan 2026, 1:30 PM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Not reviewed yet | [GitHub Repo](https://github.com/prashsainidev/html_resume)                                                                                                                          | [Live Demo](https://html-resume-tau-orcin.vercel.app/)                                                                                                                                                                                         |
+| Git, Networking, HTML/CSS Blogs Review      | Blog collection submission | `27 Jan 2026, 1:30 PM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Not reviewed yet | [View Drafts](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/43_BLOGS/drafts)                                                                                | [Networking Series](https://prashsainidev.hashnode.dev/series/networking-and-internet)<br>[Git Series](https://prashsainidev.hashnode.dev/series/git-and-version-control)<br>[HTML/CSS Series](https://prashsainidev.hashnode.dev/series/html-and-css-basics)          |
+| Dev Tool Landing Page - Cursor              | HTML and CSS recreation    | `1 Feb 2026, 8:00 PM`    | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Not reviewed yet | [GitHub Repo](https://github.com/prashsainidev/dev-tool-landing-page-cursor)                                                                                                         | [Live Demo](https://dev-tool-landing-page-cursor-iota.vercel.app/)                                                                                                                                                                             |
+| Documentation Website - Mintlify            | HTML and CSS recreation    | `1 Feb 2026, 8:00 PM`    | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Not reviewed yet | [GitHub Repo](https://github.com/prashsainidev/mintlify)                                                                                                                             | [Live Demo](https://mintlify-peach.vercel.app/)                                                                                                                                                                                                |
+| Instagram Thrift Creator Store              | Database ER diagram        | `6 Apr 2026, 10:30 AM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Pending review   | [Open Repo](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-01-instagram-thrift-creator-store)  | [View ER Diagram](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-01-instagram-thrift-creator-store/er_diagram.png)                                         |
+| Fitness Influencer Coaching Platform        | Database ER diagram        | `7 Apr 2026, 11:00 AM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Pending review   | [Open Repo](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-02-fitness-influencer-coaching-platform) | [View ER Diagram](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-02-fitness-influencer-coaching-platform/er_diagram.png)                                         |
+| Clinic Appointment and Diagnostics Platform | Database ER diagram        | `8 Apr 2026, 11:00 AM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Submitted         | Pending review   | [Open Repo](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-03-clinic-appointment-and-diagnostics-platform) | [View ER Diagram](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-03-clinic-appointment-and-diagnostics-platform/er_daigram.png)                                         |
+| Comic-Con Parking System                    | Database ER diagram        | `9 Apr 2026, 9:30 AM`    | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Reviewed          | `86/100`         | [Open Repo](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-04-comic-con-parking-system)          | [View ER Diagram](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-04-comic-con-parking-system/er_diagram.png)                                         |
+| Smart Elevator Control                      | Database ER diagram        | `10 Apr 2026, 9:45 AM`   | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Reviewed          | `82/100`         | [Open Repo](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/tree/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-05-smart-elevator-control)            | [View ER Diagram](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-10-chai-aur-sql-part-2/assignments/day-05-smart-elevator-control/er_diagram.png)                                         |
+| Linux File System Hunting                   | Technical blog submission  | `20 Apr 2026, 12:00 PM`  | `10 May 2026, 11:59 PM` | `11 May 2026, 12:00 AM - 12:30 AM` | Reviewed          | `100/100`        | [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/peer-review/linux-file-system-hunting-what-i-found-under-the-hood.md)                    | [Read Published Blog](https://prashsainidev.hashnode.dev/linux-file-system-hunting-what-i-found-under-the-hood)                                                                                                                                |
+| 1 Million Checkboxes                        | Full Stack Project         | `29 Apr 2026, 11:00 AM`  | `3 May 2026, 11:59 PM`  | `4 May 2026, 12:30 AM - 6 May 2026, 11:59 PM`      | Pending submission| Not reviewed yet | [Open Assignment](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-15-sockets-redis-rate-limiting/assignments/1-million-checkboxes.md)    | [Add Live Demo Link](#)                                                                                                                                                                                                                        |
+| Live Location Tracker                       | Full Stack Project         | `29 Apr 2026, 11:00 AM`  | `3 May 2026, 11:59 PM`  | `4 May 2026, 12:30 AM - 6 May 2026, 11:59 PM`      | Pending submission| Not reviewed yet | [Open Assignment](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/05_BACKEND_ENGINEERING/class-16-high-throughput-systems-kafka/assignments/live-location-tracker.md) | [Add Live Demo Link](#)                                                                                                                                                                                                                        |
+
+---
+
+## What Goes Here
+
+- assignment name and format
+- timeline and evaluation window
+- submission status and result
+- GitHub repo, hosted, published, or board links
+
+---
+
+## What Does Not Go Here
+
+- full heavy implementation code
+- large assets or generated files
+- local-only working notes that are not ready for public tracking
+
+---
+
+## Notes
+
+- code-heavy peer reviews can live in separate repositories
+- lightweight peer reviews can stay documented directly in this repo
+- add actual public links only after they are ready

@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 02 — Content Change</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .observe-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 28px;
+        margin-bottom: 12px;
+      }
+
+      .demo-col {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .demo-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+
+      .demo-label {
+        font-size: 12px;
+        color: var(--muted);
+        min-width: 120px;
+        font-family: monospace;
+      }
+
+      .demo-btn {
+        background: transparent;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        padding: 6px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .demo-btn:hover {
+        background: var(--accent);
+        color: white;
+      }
+
+      .demo-btn.teal {
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      .demo-btn.teal:hover {
+        background: var(--accent2);
+        color: #0e0f12;
+      }
+
+      .demo-btn.yellow {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .demo-btn.yellow:hover {
+        background: var(--accent3);
+        color: #0e0f12;
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .num {
+        color: #f6c557;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+        margin-bottom: 4px;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      /* SANDBOX */
+      #sandbox {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      #sandbox h3 {
+        color: var(--accent3);
+        font-size: 14px;
+        font-weight: 700;
+        margin-bottom: 16px;
+        font-family: monospace;
+      }
+
+      .sbox {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 14px 18px;
+        margin-bottom: 8px;
+      }
+
+      /* LIVE DEMO */
+      .live-demo {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .live-demo h3 {
+        font-size: 14px;
+        font-weight: 600;
+        color: var(--accent2);
+        margin-bottom: 16px;
+      }
+
+      .live-display {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 16px;
+        min-height: 48px;
+        font-size: 14px;
+        margin-bottom: 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .live-display .label {
+        font-size: 11px;
+        color: var(--muted);
+        font-family: monospace;
+        min-width: 120px;
+      }
+
+      .prop-label {
+        font-size: 11px;
+        font-family: monospace;
+        color: var(--muted);
+        padding: 2px 6px;
+        background: rgba(124, 106, 247, 0.1);
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      .warn-box {
+        background: rgba(255, 107, 107, 0.07);
+        border: 1px solid rgba(255, 107, 107, 0.2);
+        border-left: 3px solid var(--red);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-bottom: 16px;
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .warn-box strong {
+        color: var(--red);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 02 / 08</div>
+        <h1>Content <span>Change Karna</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: textContent · innerHTML · innerText · attributes
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- LIVE OBSERVE -->
+      <div class="section">
+        <h2>👀 Live Demo — Teen Properties Ka Fark Dekho</h2>
+        <div class="live-demo">
+          <h3>Ek element hai — teen alag properties se change karo aur result dekho</h3>
+
+          <div class="live-display" id="live-el">Yahan result dikhega — koi bhi button dabaao</div>
+
+          <div style="display: flex; gap: 10px; flex-wrap: wrap">
+            <button class="demo-btn" onclick="setTC()">textContent set karo</button>
+            <button class="demo-btn teal" onclick="setIH()">innerHTML set karo</button>
+            <button class="demo-btn yellow" onclick="setIT()">innerText set karo</button>
+            <button
+              class="demo-btn"
+              style="border-color: var(--muted); color: var(--muted)"
+              onclick="resetEl()"
+            >
+              Reset
+            </button>
+          </div>
+
+          <div
+            style="
+              margin-top: 18px;
+              display: grid;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 12px;
+              font-size: 13px;
+            "
+          >
+            <div
+              style="
+                background: #090a0d;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px;
+              "
+            >
+              <div
+                style="
+                  color: var(--accent);
+                  font-family: monospace;
+                  font-size: 11px;
+                  margin-bottom: 6px;
+                "
+              >
+                textContent
+              </div>
+              <div id="tc-show" style="color: var(--muted)">—</div>
+            </div>
+            <div
+              style="
+                background: #090a0d;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px;
+              "
+            >
+              <div
+                style="
+                  color: var(--accent2);
+                  font-family: monospace;
+                  font-size: 11px;
+                  margin-bottom: 6px;
+                "
+              >
+                innerHTML
+              </div>
+              <div id="ih-show" style="color: var(--muted)">—</div>
+            </div>
+            <div
+              style="
+                background: #090a0d;
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                padding: 12px;
+              "
+            >
+              <div
+                style="
+                  color: var(--accent3);
+                  font-family: monospace;
+                  font-size: 11px;
+                  margin-bottom: 6px;
+                "
+              >
+                innerText
+              </div>
+              <div id="it-show" style="color: var(--muted)">—</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SANDBOX -->
+      <div class="section">
+        <h2>🧪 Sandbox Elements</h2>
+        <div id="sandbox">
+          <h3>// Yahan practice karoge</h3>
+          <div id="title-el" class="sbox">Yeh ek heading hai</div>
+          <div id="desc-el" class="sbox">
+            Yeh description hai — <strong>bold part</strong> bhi hai isme
+          </div>
+          <div id="hidden-el" class="sbox" style="display: none">
+            Yeh hidden element hai (display:none)
+          </div>
+          <img
+            id="img-el"
+            src="https://via.placeholder.com/100x50/7c6af7/ffffff?text=Image"
+            alt="placeholder"
+            style="border-radius: 8px; margin-top: 8px"
+          />
+          <a
+            id="link-el"
+            href="https://google.com"
+            class="sbox"
+            style="display: block; margin-top: 8px; color: var(--accent2); text-decoration: none"
+            >Yeh ek link hai → google.com</a
+          >
+        </div>
+      </div>
+
+      <!-- TASK 1 -->
+      <div class="section">
+        <h2>✏️ Tasks</h2>
+
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>textContent — Safe Text Change</h3>
+          <ol>
+            <li><strong>title-el</strong> ka text <strong>"Mera Naya Title"</strong> kar do</li>
+            <li>
+              <strong>desc-el</strong> ka text change karo — isme HTML tags likho aur dekho kya hota
+              hai (textContent HTML ko parse nahi karta!)
+            </li>
+            <li><strong>title-el</strong> ka current text console mein print karo</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 1</span></div>
+          <pre><span class="cmt">// ── TASK 1: textContent ─────────────────────────────</span>
+
+<span class="cmt">// 1. title-el ka text change karo</span>
+<span class="kw">const</span> title = document.<span class="fn">getElementById</span>(<span class="str">'title-el'</span>);
+title.<span class="task-arrow">/* property */</span> = <span class="str">'Mera Naya Title'</span>;
+
+<span class="cmt">// 2. desc-el mein HTML tags wala text set karo — dekho kya hoga</span>
+<span class="kw">const</span> desc = document.<span class="fn">getElementById</span>(<span class="str">'desc-el'</span>);
+desc.<span class="task-arrow">textContent</span> = <span class="str">'&lt;strong&gt;Yeh bold nahi hoga!&lt;/strong&gt; Tags as text show honge'</span>;
+
+<span class="cmt">// 3. Current text read karo</span>
+console.<span class="fn">log</span>(<span class="str">'Title ka text:'</span>, title.<span class="task-arrow">/* textContent */</span>);</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h1')">💡 Hint</button>
+        <div class="hint-box" id="h1">
+          <code>element.textContent = 'naya text'</code> — setter hai<br />
+          <code>element.textContent</code> — getter hai (current value milti hai)<br />
+          textContent HTML parse nahi karta — <code>&lt;strong&gt;</code> literally as text show
+          hoga
+        </div>
+
+        <!-- TASK 2 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>innerHTML — HTML Parse Karta Hai</h3>
+          <ol>
+            <li>
+              <strong>desc-el</strong> mein actual bold text aur ek link insert karo —
+              <code>&lt;strong&gt;</code> tag use karo
+            </li>
+            <li>Ek naya list <code>&lt;ul&gt;&lt;li&gt;</code> insert karo title-el ke andar</li>
+            <li>
+              <strong>Console mein dekho:</strong> innerHTML aur textContent ka fark kya aata hai
+              same element pe?
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: innerHTML ───────────────────────────────</span>
+
+<span class="cmt">// 1. innerHTML se actual bold text insert karo</span>
+<span class="kw">const</span> desc = document.<span class="fn">getElementById</span>(<span class="str">'desc-el'</span>);
+desc.<span class="task-arrow">innerHTML</span> = <span class="str">'&lt;strong&gt;Yeh actually bold hoga!&lt;/strong&gt; Aur yeh normal text.'</span>;
+
+<span class="cmt">// 2. List insert karo</span>
+<span class="kw">const</span> title = document.<span class="fn">getElementById</span>(<span class="str">'title-el'</span>);
+title.<span class="task-arrow">innerHTML</span> = <span class="task-arrow">/* '&lt;ul&gt;&lt;li&gt;Item 1&lt;/li&gt;&lt;li&gt;Item 2&lt;/li&gt;&lt;/ul&gt;' */</span>;
+
+<span class="cmt">// 3. Fark dekho console mein</span>
+console.<span class="fn">log</span>(<span class="str">'innerHTML:'</span>, desc.<span class="fn">innerHTML</span>);    <span class="cmt">// HTML tags bhi dikhenge</span>
+console.<span class="fn">log</span>(<span class="str">'textContent:'</span>, desc.<span class="fn">textContent</span>); <span class="cmt">// sirf text milega</span></pre>
+        </div>
+
+        <!-- TASK 3 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Attributes — getAttribute / setAttribute</h3>
+          <ol>
+            <li>Link ka <strong>href attribute</strong> read karo console mein</li>
+            <li>Link ka href <strong>https://youtube.com</strong> kar do</li>
+            <li>
+              Image ka <strong>alt attribute</strong> change karo <strong>"Meri Image"</strong> kar
+              do
+            </li>
+            <li>Image pe ek naya attribute add karo: <strong>data-id="42"</strong></li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 3</span></div>
+          <pre><span class="cmt">// ── TASK 3: Attributes ──────────────────────────────</span>
+
+<span class="kw">const</span> link = document.<span class="fn">getElementById</span>(<span class="str">'link-el'</span>);
+<span class="kw">const</span> img  = document.<span class="fn">getElementById</span>(<span class="str">'img-el'</span>);
+
+<span class="cmt">// 1. href read karo</span>
+console.<span class="fn">log</span>(<span class="str">'Current href:'</span>, link.<span class="task-arrow">/* getAttribute('href') */</span>);
+
+<span class="cmt">// 2. href change karo</span>
+link.<span class="task-arrow">/* setAttribute */</span>(<span class="str">'href'</span>, <span class="str">'https://youtube.com'</span>);
+
+<span class="cmt">// 3. alt change karo</span>
+img.<span class="task-arrow">/* tumhara code */</span>(<span class="str">'alt'</span>, <span class="str">'Meri Image'</span>);
+
+<span class="cmt">// 4. Custom attribute add karo</span>
+img.<span class="task-arrow">/* tumhara code */</span>(<span class="str">'data-id'</span>, <span class="str">'42'</span>);
+
+<span class="cmt">// 5. Verify karo</span>
+console.<span class="fn">log</span>(<span class="str">'New href:'</span>, link.<span class="fn">getAttribute</span>(<span class="str">'href'</span>));
+console.<span class="fn">log</span>(<span class="str">'data-id:'</span>,  img.<span class="fn">getAttribute</span>(<span class="str">'data-id'</span>));</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h3')">💡 Hint</button>
+        <div class="hint-box" id="h3">
+          Read: <code>element.getAttribute('href')</code><br />
+          Write: <code>element.setAttribute('href', 'new-value')</code><br />
+          Same method: setAttribute kisi bhi attribute ke liye kaam karta hai — built-in ya custom
+          (data-*)
+        </div>
+
+        <!-- TASK 4 — innerText -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 4</span>
+          <h3>innerText vs textContent — Fark Pakdo</h3>
+          <p>
+            hidden-el ka style <code>display:none</code> hai. Dekho
+            <strong>textContent</strong> uska text deta hai ya nahi — aur
+            <strong>innerText</strong> deta hai ya nahi.
+          </p>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 4</span></div>
+          <pre><span class="cmt">// ── TASK 4: innerText vs textContent ────────────────</span>
+<span class="kw">const</span> hidden = document.<span class="fn">getElementById</span>(<span class="str">'hidden-el'</span>);
+
+<span class="cmt">// Dono se text read karo — kya fark aata hai?</span>
+console.<span class="fn">log</span>(<span class="str">'textContent:'</span>, hidden.<span class="task-arrow">textContent</span>);  <span class="cmt">// text milega? ya ''?</span>
+console.<span class="fn">log</span>(<span class="str">'innerText:'</span>,   hidden.<span class="task-arrow">innerText</span>);    <span class="cmt">// text milega? ya ''?</span>
+
+<span class="cmt">// Answer: textContent = text milega (CSS ignore karta hai)</span>
+<span class="cmt">//         innerText   = '' milega (display:none respect karta hai)</span></pre>
+        </div>
+
+        <!-- WARN -->
+        <div class="warn-box" style="margin-top: 20px">
+          <strong>⚠️ XSS Warning — Kabhi Mat Karo:</strong><br />
+          <code style="font-family: monospace; font-size: 12px">element.innerHTML = userInput</code>
+          — agar userInput user ne type kiya ho toh ye dangerous hai. User kuch bhi inject kar sakta
+          hai. User data ke liye hamesha
+          <code style="font-family: monospace; font-size: 12px">textContent</code> use karo.
+        </div>
+
+        <!-- CHALLENGE -->
+        <div class="task-box" style="margin-top: 24px; border-left-color: var(--red)">
+          <span
+            class="task-num"
+            style="
+              background: rgba(255, 107, 107, 0.1);
+              color: var(--red);
+              border-color: rgba(255, 107, 107, 0.3);
+            "
+            >CHALLENGE 🔥</span
+          >
+          <h3>Input se text lo aur page par show karo</h3>
+          <ol>
+            <li>Neeche ek input aur button hai</li>
+            <li>
+              Button click hone par — input ka value lo aur <strong>#output-box</strong> mein safe
+              tarike se dikhao
+            </li>
+            <li>Hint: textContent use karo — innerHTML mat karo</li>
+          </ol>
+        </div>
+
+        <div
+          style="
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 12px;
+          "
+        >
+          <input
+            type="text"
+            id="user-input"
+            placeholder="Kuch bhi likho..."
+            style="
+              width: 100%;
+              padding: 10px 14px;
+              background: #090a0d;
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              color: var(--text);
+              font-size: 14px;
+              margin-bottom: 12px;
+            "
+          />
+          <button
+            id="show-btn"
+            style="
+              background: var(--accent);
+              color: white;
+              border: none;
+              padding: 8px 20px;
+              border-radius: 8px;
+              cursor: pointer;
+              font-size: 14px;
+            "
+          >
+            Page par dikhao
+          </button>
+          <div
+            id="output-box"
+            style="
+              margin-top: 16px;
+              padding: 14px;
+              background: #090a0d;
+              border: 1px solid var(--border);
+              border-radius: 8px;
+              min-height: 42px;
+              font-size: 14px;
+              color: var(--muted);
+            "
+          >
+            Output yahan aayega...
+          </div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>CHALLENGE</span></div>
+          <pre><span class="cmt">// ── CHALLENGE: Input → Output ────────────────────────</span>
+
+<span class="kw">const</span> btn    = document.<span class="fn">getElementById</span>(<span class="str">'show-btn'</span>);
+<span class="kw">const</span> input  = document.<span class="fn">getElementById</span>(<span class="str">'user-input'</span>);
+<span class="kw">const</span> output = document.<span class="fn">getElementById</span>(<span class="str">'output-box'</span>);
+
+btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  <span class="cmt">// 1. input ka current value lo</span>
+  <span class="kw">const</span> userText = input.<span class="task-arrow">/* input ka value kaise milega? */</span>;
+
+  <span class="cmt">// 2. output box mein safely dikhao</span>
+  output.<span class="task-arrow">/* textContent ya innerHTML? */</span> = userText;
+});</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('hc')">💡 Hint</button>
+        <div class="hint-box" id="hc">
+          Input ka value: <code>input.value</code> (textContent nahi, value property hai input
+          elements mein)<br />
+          Safe display: <code>output.textContent = userText</code>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>textContent aur innerHTML mein fark bata sakte ho? ✓</li>
+          <li>Kab textContent use karna chahiye, kab innerHTML? ✓</li>
+          <li>getAttribute aur setAttribute ka syntax yaad hai? ✓</li>
+          <li>input.value aur el.textContent ka fark samajh aaya? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="01-selectors.html" class="nav-btn back">← Back</a>
+        <a href="03-styles-classes.html" class="nav-btn">Next: Styles & Classes →</a>
+      </div>
+    </div>
+
+    <script>
+      function setTC() {
+        const el = document.getElementById('live-el');
+        el.textContent = '<strong>Yeh bold nahi hoga</strong> — tags as text!';
+        updateShows(el);
+      }
+      function setIH() {
+        const el = document.getElementById('live-el');
+        el.innerHTML =
+          '<strong style="color:#4ecdc4">Yeh actually bold hai!</strong> innerHTML ne parse kiya.';
+        updateShows(el);
+      }
+      function setIT() {
+        const el = document.getElementById('live-el');
+        el.innerText = 'innerText — plain text set kiya. Same as textContent mostly.';
+        updateShows(el);
+      }
+      function resetEl() {
+        const el = document.getElementById('live-el');
+        el.textContent = 'Yahan result dikhega — koi bhi button dabaao';
+        document.getElementById('tc-show').textContent = '—';
+        document.getElementById('ih-show').textContent = '—';
+        document.getElementById('it-show').textContent = '—';
+      }
+      function updateShows(el) {
+        document.getElementById('tc-show').textContent = el.textContent.substring(0, 40) + '...';
+        document.getElementById('ih-show').textContent = el.innerHTML.substring(0, 40) + '...';
+        document.getElementById('it-show').textContent = el.innerText.substring(0, 40) + '...';
+      }
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

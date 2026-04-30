@@ -1,0 +1,89 @@
+title Clinic_Appointment_And_Diagnostics_Platform_ER_Diagram
+notation crows-foot
+colorMode pastel
+styleMode shadow
+typeface mono
+
+specialty [color: teal] {
+  specialty_id number pk
+  specialty_name string
+}
+
+doctor [color: blue] {
+  doctor_id number pk
+  specialty_id number fk
+  full_name string
+  consultation_fee number
+  room_label string
+}
+
+patient [color: green] {
+  patient_id number pk
+  full_name string
+  phone_number string
+  gender string
+  date_of_birth date
+}
+
+appointment [color: orange] {
+  appointment_id number pk
+  patient_id number fk
+  doctor_id number fk
+  scheduled_at datetime
+  appointment_status string
+  visit_reason string
+  booked_at datetime
+}
+
+consultation [color: pink] {
+  consultation_id number pk
+  appointment_id number fk unique
+  consulted_at datetime
+  consultation_status string
+  diagnosis_notes string
+  follow_up_advice string
+}
+
+diagnostic_test [color: yellow] {
+  diagnostic_test_id number pk
+  test_name string
+  sample_type string
+  test_fee number
+}
+
+prescribed_test [color: yellow] {
+  prescribed_test_id number pk
+  consultation_id number fk
+  diagnostic_test_id number fk
+  scheduled_test_at datetime
+  test_status string
+  instruction_notes string
+}
+
+diagnostic_report [color: purple] {
+  diagnostic_report_id number pk
+  prescribed_test_id number fk unique
+  report_summary string
+  report_status string
+  generated_at datetime
+}
+
+payment_record [color: gray] {
+  payment_record_id number pk
+  appointment_id number fk
+  consultation_id number fk
+  amount_paid number
+  payment_for string
+  payment_status string
+  paid_at datetime
+}
+
+doctor.specialty_id > specialty.specialty_id: [color: teal]
+appointment.patient_id > patient.patient_id: [color: green]
+appointment.doctor_id > doctor.doctor_id: [color: blue]
+consultation.appointment_id > appointment.appointment_id: [color: orange]
+prescribed_test.consultation_id > consultation.consultation_id: [color: pink]
+prescribed_test.diagnostic_test_id > diagnostic_test.diagnostic_test_id: [color: yellow]
+diagnostic_report.prescribed_test_id > prescribed_test.prescribed_test_id: [color: purple]
+payment_record.appointment_id > appointment.appointment_id: [color: orange]
+payment_record.consultation_id > consultation.consultation_id: [color: pink]

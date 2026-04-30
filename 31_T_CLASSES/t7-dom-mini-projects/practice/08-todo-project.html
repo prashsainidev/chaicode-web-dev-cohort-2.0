@@ -1,0 +1,897 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 08 — Todo App Project</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(61, 220, 151, 0.15);
+        border: 1px solid rgba(61, 220, 151, 0.35);
+        color: var(--green);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--green);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* SKILLS USED */
+      .skill-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 28px;
+      }
+
+      .skill-tag {
+        background: rgba(124, 106, 247, 0.1);
+        border: 1px solid rgba(124, 106, 247, 0.25);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 600;
+        padding: 4px 14px;
+        border-radius: 20px;
+      }
+
+      /* STEPS */
+      .step-list {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+
+      .step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+
+      .step-n {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.3);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .step p {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .step strong {
+        color: var(--text);
+      }
+
+      /* ── TODO APP STYLES ── */
+      .todo-app {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 28px;
+        margin-bottom: 28px;
+      }
+
+      .todo-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+
+      .todo-header h3 {
+        font-size: 1.1rem;
+        font-weight: 700;
+      }
+
+      .todo-stats {
+        display: flex;
+        gap: 12px;
+      }
+
+      .stat {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-family: monospace;
+      }
+
+      .stat span {
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .todo-input-row {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      #todo-input {
+        flex: 1;
+        padding: 10px 14px;
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 14px;
+        transition: border-color 0.2s;
+      }
+
+      #todo-input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      #todo-add-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        white-space: nowrap;
+        transition: opacity 0.2s;
+      }
+
+      #todo-add-btn:hover {
+        opacity: 0.85;
+      }
+
+      .filter-row {
+        display: flex;
+        gap: 8px;
+        margin-bottom: 16px;
+      }
+
+      .filter-btn {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 5px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .filter-btn.active,
+      .filter-btn:hover {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: white;
+      }
+
+      #todo-list {
+        list-style: none;
+        min-height: 60px;
+      }
+
+      .todo-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 12px 16px;
+        margin-bottom: 8px;
+        animation: slideDown 0.2s ease;
+        transition: opacity 0.2s;
+      }
+
+      @keyframes slideDown {
+        from {
+          opacity: 0;
+          transform: translateY(-6px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .todo-item.done {
+        opacity: 0.5;
+      }
+
+      .todo-item.done .todo-text {
+        text-decoration: line-through;
+        color: var(--muted);
+      }
+
+      .todo-check {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid var(--border);
+        cursor: pointer;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        transition: all 0.2s;
+      }
+
+      .todo-check:hover {
+        border-color: var(--green);
+      }
+
+      .todo-item.done .todo-check {
+        background: var(--green);
+        border-color: var(--green);
+        color: #0e0f12;
+      }
+
+      .todo-text {
+        flex: 1;
+        font-size: 14px;
+      }
+
+      .todo-del {
+        background: rgba(255, 107, 107, 0.08);
+        border: 1px solid rgba(255, 107, 107, 0.2);
+        color: var(--red);
+        padding: 4px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        transition: all 0.2s;
+      }
+
+      .todo-del:hover {
+        background: rgba(255, 107, 107, 0.18);
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 30px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .clear-btn {
+        background: transparent;
+        border: 1px solid rgba(255, 107, 107, 0.25);
+        color: var(--red);
+        padding: 6px 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        margin-top: 12px;
+        transition: all 0.2s;
+      }
+
+      .clear-btn:hover {
+        background: rgba(255, 107, 107, 0.1);
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 08 / 08 — FINAL PROJECT</div>
+        <h1>Todo App — <span>Sab Kuch Mila Ke Banao</span></h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Selectors + Content + Styles + Events + Delegation
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- INTRO -->
+      <div class="section">
+        <h2>🎯 Project Brief</h2>
+        <p style="color: var(--muted); font-size: 14px; margin-bottom: 20px">
+          Yeh ek complete Todo App hai. Sab features already kaam kar rahe hain —
+          <strong style="color: var(--text)">neeche working demo dekho</strong>, phir neeche code
+          hai jo tumhe khud likhna hai. Pehle demo se samjho, phir apni file mein banao!
+        </p>
+
+        <div class="skill-grid">
+          <span class="skill-tag">✅ createElement</span>
+          <span class="skill-tag">✅ textContent</span>
+          <span class="skill-tag">✅ classList.toggle</span>
+          <span class="skill-tag">✅ addEventListener</span>
+          <span class="skill-tag">✅ Event Delegation</span>
+          <span class="skill-tag">✅ e.target.closest()</span>
+          <span class="skill-tag">✅ dataset</span>
+          <span class="skill-tag">✅ forEach</span>
+          <span class="skill-tag">✅ Array.filter</span>
+        </div>
+      </div>
+
+      <!-- LIVE DEMO -->
+      <div class="section">
+        <h2>👀 Working Demo — Pehle Khelo</h2>
+        <div class="todo-app">
+          <div class="todo-header">
+            <h3>My Tasks</h3>
+            <div class="todo-stats">
+              <div class="stat">Total: <span id="stat-total">0</span></div>
+              <div class="stat">Done: <span id="stat-done">0</span></div>
+            </div>
+          </div>
+          <div class="todo-input-row">
+            <input type="text" id="todo-input" placeholder="Kya karna hai aaj? (Enter ya button)" />
+            <button id="todo-add-btn">+ Add</button>
+          </div>
+          <div class="filter-row">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="pending">Pending</button>
+            <button class="filter-btn" data-filter="done">Done</button>
+          </div>
+          <ul id="todo-list"></ul>
+          <div style="display: flex; justify-content: flex-end">
+            <button class="clear-btn" id="clear-done">Clear Done Items</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- HOW IT WORKS -->
+      <div class="section">
+        <h2>🧩 Kaise Kaam Karta Hai — Samjho</h2>
+        <div class="step-list">
+          <div class="step">
+            <div class="step-n">1</div>
+            <p>
+              <strong>Add:</strong> Input se text lo → <code>createElement('li')</code> → todo-item
+              structure banao → <code>append</code> karo list mein
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">2</div>
+            <p>
+              <strong>Complete:</strong> Checkmark click → <code>classList.toggle('done')</code> →
+              stats update karo
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">3</div>
+            <p>
+              <strong>Delete:</strong> Del button click → <code>li.remove()</code> → stats update
+              karo
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">4</div>
+            <p>
+              <strong>Filter:</strong> Filter button click → saare items pe
+              <code>display:none/block</code> toggle karo class ke basis pe
+            </p>
+          </div>
+          <div class="step">
+            <div class="step-n">5</div>
+            <p>
+              <strong>Event Delegation:</strong> Sirf <strong>ek listener</strong> — list pe.
+              <code>closest()</code> se check karo checkmark ya delete click hua
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CODE TO WRITE -->
+      <div class="section">
+        <h2>✏️ Ab Khud Likho — Yeh Code Copy Mat Karna, Samjhke Likhna</h2>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 JavaScript — Poora Todo App Logic</span><span>Step by step</span>
+          </div>
+          <pre><span class="cmt">// ════════════════════════════════════════════════════
+// TODO APP — DOM Practice Project
+// Har line samjhke likho — copy mat karo!
+// ════════════════════════════════════════════════════</span>
+
+<span class="cmt">// ── 1. Elements select karo ─────────────────────────</span>
+<span class="kw">const</span> input     = document.<span class="fn">getElementById</span>(<span class="str">'todo-input'</span>);
+<span class="kw">const</span> addBtn    = document.<span class="fn">getElementById</span>(<span class="str">'todo-add-btn'</span>);
+<span class="kw">const</span> list      = document.<span class="fn">getElementById</span>(<span class="str">'todo-list'</span>);
+<span class="kw">const</span> statTotal = document.<span class="fn">getElementById</span>(<span class="str">'stat-total'</span>);
+<span class="kw">const</span> statDone  = document.<span class="fn">getElementById</span>(<span class="str">'stat-done'</span>);
+<span class="kw">const</span> clearBtn  = document.<span class="fn">getElementById</span>(<span class="str">'clear-done'</span>);
+
+<span class="cmt">// ── 2. Stats update function ────────────────────────</span>
+<span class="kw">function</span> <span class="fn">updateStats</span>() {
+  <span class="kw">const</span> all  = list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item'</span>);
+  <span class="kw">const</span> done = list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item.done'</span>);
+  statTotal.<span class="task-arrow">textContent</span> = all.<span class="fn">length</span>;
+  statDone.<span class="task-arrow">textContent</span>  = done.<span class="fn">length</span>;
+}
+
+<span class="cmt">// ── 3. Empty state dikhao ────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">renderEmpty</span>() {
+  <span class="kw">const</span> existing = list.<span class="fn">querySelector</span>(<span class="str">'.empty-state'</span>);
+  <span class="kw">if</span> (list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item'</span>).<span class="fn">length</span> === <span class="task-arrow">0</span> && !existing) {
+    <span class="kw">const</span> empty = document.<span class="fn">createElement</span>(<span class="str">'li'</span>);
+    empty.className = <span class="str">'empty-state'</span>;
+    empty.<span class="task-arrow">textContent</span> = <span class="str">'Koi task nahi — add karo upar se! 🎉'</span>;
+    list.<span class="fn">append</span>(empty);
+  } <span class="kw">else if</span> (list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item'</span>).<span class="fn">length</span> > <span class="task-arrow">0</span> && existing) {
+    existing.<span class="fn">remove</span>();
+  }
+}
+
+<span class="cmt">// ── 4. New todo item banana ───────────────────────────</span>
+<span class="kw">function</span> <span class="fn">createTodoItem</span>(text) {
+  <span class="kw">const</span> li = document.<span class="fn">createElement</span>(<span class="str">'li'</span>);
+  li.className = <span class="str">'todo-item'</span>;
+
+  <span class="cmt">// Checkmark button</span>
+  <span class="kw">const</span> check = document.<span class="fn">createElement</span>(<span class="str">'button'</span>);
+  check.className = <span class="str">'todo-check'</span>;
+  check.dataset.<span class="task-arrow">action</span> = <span class="str">'toggle'</span>;   <span class="cmt">// delegation ke liye</span>
+
+  <span class="cmt">// Text span</span>
+  <span class="kw">const</span> span = document.<span class="fn">createElement</span>(<span class="str">'span'</span>);
+  span.className = <span class="str">'todo-text'</span>;
+  span.<span class="task-arrow">textContent</span> = text;             <span class="cmt">// safe textContent!</span>
+
+  <span class="cmt">// Delete button</span>
+  <span class="kw">const</span> del = document.<span class="fn">createElement</span>(<span class="str">'button'</span>);
+  del.className = <span class="str">'todo-del'</span>;
+  del.<span class="task-arrow">textContent</span> = <span class="str">'Delete'</span>;
+  del.dataset.<span class="task-arrow">action</span> = <span class="str">'delete'</span>;    <span class="cmt">// delegation ke liye</span>
+
+  <span class="cmt">// Sab li mein daalo</span>
+  li.<span class="fn">append</span>(check, span, del);
+  <span class="kw">return</span> li;
+}
+
+<span class="cmt">// ── 5. Add task ──────────────────────────────────────</span>
+<span class="kw">function</span> <span class="fn">addTask</span>() {
+  <span class="kw">const</span> text = input.<span class="task-arrow">value</span>.<span class="fn">trim</span>();
+  <span class="kw">if</span> (text === <span class="str">''</span>) <span class="kw">return</span>;
+
+  <span class="kw">const</span> item = <span class="fn">createTodoItem</span>(text);
+  list.<span class="fn">append</span>(item);
+  input.<span class="task-arrow">value</span> = <span class="str">''</span>;
+  input.<span class="fn">focus</span>();
+  <span class="fn">updateStats</span>();
+  <span class="fn">renderEmpty</span>();
+}
+
+<span class="cmt">// ── 6. Add button + Enter key ────────────────────────</span>
+addBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, addTask);
+input.<span class="fn">addEventListener</span>(<span class="str">'keydown'</span>, <span class="kw">function</span>(e) {
+  <span class="kw">if</span> (e.<span class="task-arrow">key</span> === <span class="str">'Enter'</span>) <span class="fn">addTask</span>();
+});
+
+<span class="cmt">// ── 7. Event Delegation — list pe ek listener ────────</span>
+list.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+  <span class="kw">const</span> btn = e.target.<span class="task-arrow">closest</span>(<span class="str">'[data-action]'</span>); <span class="cmt">// koi bhi data-action wala</span>
+  <span class="kw">if</span> (!btn) <span class="kw">return</span>;
+
+  <span class="kw">const</span> action = btn.dataset.<span class="task-arrow">action</span>;
+  <span class="kw">const</span> li     = btn.<span class="task-arrow">closest</span>(<span class="str">'.todo-item'</span>);
+
+  <span class="kw">if</span> (action === <span class="str">'toggle'</span>) {
+    li.classList.<span class="task-arrow">toggle</span>(<span class="str">'done'</span>);
+    btn.<span class="task-arrow">textContent</span> = li.classList.<span class="fn">contains</span>(<span class="str">'done'</span>) ? <span class="str">'✓'</span> : <span class="str">''</span>;
+  }
+
+  <span class="kw">if</span> (action === <span class="str">'delete'</span>) {
+    li.<span class="fn">remove</span>();
+    <span class="fn">renderEmpty</span>();
+  }
+
+  <span class="fn">updateStats</span>();
+});
+
+<span class="cmt">// ── 8. Filter buttons ────────────────────────────────</span>
+document.<span class="fn">querySelectorAll</span>(<span class="str">'.filter-btn'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(btn) {
+  btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+    <span class="cmt">// Active class update</span>
+    document.<span class="fn">querySelectorAll</span>(<span class="str">'.filter-btn'</span>).<span class="fn">forEach</span>(b => b.classList.<span class="fn">remove</span>(<span class="str">'active'</span>));
+    btn.classList.<span class="fn">add</span>(<span class="str">'active'</span>);
+
+    <span class="kw">const</span> filter = btn.dataset.<span class="task-arrow">filter</span>;
+
+    list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item'</span>).<span class="fn">forEach</span>(<span class="kw">function</span>(item) {
+      <span class="kw">if</span> (filter === <span class="str">'all'</span>) {
+        item.<span class="task-arrow">style</span>.<span class="task-arrow">display</span> = <span class="str">''</span>;
+      } <span class="kw">else if</span> (filter === <span class="str">'done'</span>) {
+        item.<span class="task-arrow">style</span>.<span class="task-arrow">display</span> = item.classList.<span class="fn">contains</span>(<span class="str">'done'</span>) ? <span class="str">''</span> : <span class="str">'none'</span>;
+      } <span class="kw">else if</span> (filter === <span class="str">'pending'</span>) {
+        item.<span class="task-arrow">style</span>.<span class="task-arrow">display</span> = !item.classList.<span class="fn">contains</span>(<span class="str">'done'</span>) ? <span class="str">''</span> : <span class="str">'none'</span>;
+      }
+    });
+  });
+});
+
+<span class="cmt">// ── 9. Clear done items ──────────────────────────────</span>
+clearBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  list.<span class="fn">querySelectorAll</span>(<span class="str">'.todo-item.done'</span>).<span class="fn">forEach</span>(item => item.<span class="fn">remove</span>());
+  <span class="fn">updateStats</span>();
+  <span class="fn">renderEmpty</span>();
+});
+
+<span class="cmt">// ── Initial state ────────────────────────────────────</span>
+<span class="fn">renderEmpty</span>();
+<span class="fn">updateStats</span>();</pre>
+        </div>
+      </div>
+
+      <!-- COMPLETE BADGE -->
+      <div
+        style="
+          background: linear-gradient(135deg, rgba(61, 220, 151, 0.1), rgba(78, 205, 196, 0.05));
+          border: 1px solid rgba(61, 220, 151, 0.25);
+          border-radius: 16px;
+          padding: 32px;
+          text-align: center;
+          margin-bottom: 28px;
+        "
+      >
+        <div style="font-size: 48px; margin-bottom: 12px">🏆</div>
+        <h3 style="font-size: 1.3rem; margin-bottom: 8px">DOM Practice Complete!</h3>
+        <p style="color: var(--muted); font-size: 14px; max-width: 440px; margin: 0 auto 20px">
+          Tu ab DOM ke saath comfortable hai — selecting, manipulating, events, delegation,
+          traversal — sab cover ho gaya. Ab real projects mein apply karo!
+        </p>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center">
+          <a
+            href="01-selectors.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >01 Selectors</a
+          >
+          <a
+            href="02-content.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >02 Content</a
+          >
+          <a
+            href="03-styles-classes.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >03 Styles</a
+          >
+          <a
+            href="04-create-insert.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >04 Create</a
+          >
+          <a
+            href="05-events.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >05 Events</a
+          >
+          <a
+            href="06-event-delegation.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >06 Delegation</a
+          >
+          <a
+            href="07-traversal.html"
+            style="
+              background: rgba(124, 106, 247, 0.15);
+              border: 1px solid rgba(124, 106, 247, 0.3);
+              color: var(--accent);
+              padding: 6px 16px;
+              border-radius: 20px;
+              text-decoration: none;
+              font-size: 13px;
+            "
+            >07 Traversal</a
+          >
+        </div>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="07-traversal.html" class="nav-btn back">← Back</a>
+        <a href="index.html" class="nav-btn" style="background: var(--green); color: #0e0f12"
+          >🏠 Home</a
+        >
+      </div>
+    </div>
+
+    <script>
+      // Working todo demo
+      const input = document.getElementById('todo-input');
+      const addBtn = document.getElementById('todo-add-btn');
+      const list = document.getElementById('todo-list');
+      const statTotal = document.getElementById('stat-total');
+      const statDone = document.getElementById('stat-done');
+      const clearBtn = document.getElementById('clear-done');
+
+      function updateStats() {
+        statTotal.textContent = list.querySelectorAll('.todo-item').length;
+        statDone.textContent = list.querySelectorAll('.todo-item.done').length;
+      }
+      function renderEmpty() {
+        const existing = list.querySelector('.empty-state');
+        if (list.querySelectorAll('.todo-item').length === 0 && !existing) {
+          const e = document.createElement('li');
+          e.className = 'empty-state';
+          e.textContent = 'Koi task nahi — add karo upar se! 🎉';
+          list.append(e);
+        } else if (list.querySelectorAll('.todo-item').length > 0 && existing) {
+          existing.remove();
+        }
+      }
+      function createTodoItem(text) {
+        const li = document.createElement('li');
+        li.className = 'todo-item';
+        const check = document.createElement('button');
+        check.className = 'todo-check';
+        check.dataset.action = 'toggle';
+        const span = document.createElement('span');
+        span.className = 'todo-text';
+        span.textContent = text;
+        const del = document.createElement('button');
+        del.className = 'todo-del';
+        del.textContent = 'Delete';
+        del.dataset.action = 'delete';
+        li.append(check, span, del);
+        return li;
+      }
+      function addTask() {
+        const text = input.value.trim();
+        if (!text) return;
+        list.append(createTodoItem(text));
+        input.value = '';
+        input.focus();
+        updateStats();
+        renderEmpty();
+      }
+      addBtn.addEventListener('click', addTask);
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') addTask();
+      });
+      list.addEventListener('click', function (e) {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const li = btn.closest('.todo-item');
+        if (btn.dataset.action === 'toggle') {
+          li.classList.toggle('done');
+          btn.textContent = li.classList.contains('done') ? '✓' : '';
+        }
+        if (btn.dataset.action === 'delete') {
+          li.remove();
+          renderEmpty();
+        }
+        updateStats();
+      });
+      document.querySelectorAll('.filter-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.dataset.filter;
+          list.querySelectorAll('.todo-item').forEach(function (item) {
+            if (filter === 'all') item.style.display = '';
+            else if (filter === 'done')
+              item.style.display = item.classList.contains('done') ? '' : 'none';
+            else if (filter === 'pending')
+              item.style.display = !item.classList.contains('done') ? '' : 'none';
+          });
+        });
+      });
+      clearBtn.addEventListener('click', function () {
+        list.querySelectorAll('.todo-item.done').forEach(i => i.remove());
+        updateStats();
+        renderEmpty();
+      });
+      renderEmpty();
+      updateStats();
+    </script>
+  </body>
+</html>

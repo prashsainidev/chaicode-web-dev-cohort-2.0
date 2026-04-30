@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOM Notes — Prashant</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Fraunces:wght@600;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0f12;
+    --bg2: #13151a;
+    --bg3: #1a1c23;
+    --card: #1e2029;
+    --border: rgba(255,255,255,0.07);
+    --accent: #7c6af7;
+    --accent2: #4ecdc4;
+    --accent3: #f6c557;
+    --accent4: #ff6b6b;
+    --accent5: #a8e6cf;
+    --text: #e8e9f0;
+    --muted: #8b8fa8;
+    --code-bg: #0a0b0e;
+    --green: #3ddc97;
+    --orange: #f4a261;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  .hero {
+    background: linear-gradient(135deg, #0e0f12 0%, #1a0a2e 50%, #0a1a2e 100%);
+    padding: 60px 40px 50px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(124,106,247,0.15) 0%, transparent 60%);
+  }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(124,106,247,0.15);
+    border: 1px solid rgba(124,106,247,0.3);
+    color: var(--accent);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.15;
+    background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 14px;
+  }
+  .hero p {
+    color: var(--muted);
+    font-size: 16px;
+    max-width: 520px;
+    margin: 0 auto 28px;
+  }
+
+  /* NAV PILLS */
+  .nav-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: rgba(14,15,18,0.9);
+    backdrop-filter: blur(12px);
+    z-index: 100;
+  }
+  .nav-pill {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 6px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+  }
+  .nav-pill:hover, .nav-pill.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: white;
+  }
+
+  /* MAIN LAYOUT */
+  .container { max-width: 860px; margin: 0 auto; padding: 50px 32px; }
+  .section { margin-bottom: 64px; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+  .section-num {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: rgba(124,106,247,0.15);
+    border: 1px solid rgba(124,106,247,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent);
+    flex-shrink: 0;
+  }
+  .section h2 {
+    font-family: 'Fraunces', serif;
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  /* ANALOGY CARD */
+  .analogy {
+    background: linear-gradient(135deg, rgba(124,106,247,0.08), rgba(78,205,196,0.05));
+    border: 1px solid rgba(124,106,247,0.2);
+    border-left: 3px solid var(--accent);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+    font-size: 15px;
+    color: var(--muted);
+  }
+  .analogy strong { color: var(--text); }
+  .analogy .emoji { font-size: 22px; display: block; margin-bottom: 8px; }
+
+  /* CONCEPT CARDS */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .concept-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    transition: border-color 0.2s;
+  }
+  .concept-card:hover { border-color: rgba(124,106,247,0.3); }
+  .concept-card .icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .concept-card h4 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .concept-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* DOM TREE VISUAL */
+  .tree-visual {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    margin-bottom: 24px;
+    overflow-x: auto;
+  }
+  .tree-node {
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .tree-node:hover .tag { opacity: 0.75; }
+  .tag { color: var(--accent); font-weight: 600; }
+  .attr { color: var(--accent3); }
+  .val { color: var(--accent2); }
+  .text-node { color: var(--muted); font-style: italic; }
+  .tree-indent { padding-left: 24px; border-left: 1px dashed rgba(124,106,247,0.2); margin-left: 8px; }
+  .connector { color: rgba(124,106,247,0.4); margin-right: 6px; }
+
+  /* CODE BLOCKS */
+  .code-wrap { margin-bottom: 20px; }
+  .code-label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0a0b0e;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    border-radius: 10px 10px 0 0;
+    padding: 8px 16px;
+  }
+  .code-lang {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .copy-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--muted);
+    font-size: 11px;
+    padding: 3px 10px;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    transition: all 0.2s;
+  }
+  .copy-btn:hover { background: rgba(124,106,247,0.15); color: var(--accent); }
+  pre {
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+  }
+  .kw { color: #c792ea; }
+  .fn { color: #82aaff; }
+  .str { color: var(--accent2); }
+  .cmt { color: #546e7a; font-style: italic; }
+  .num { color: var(--accent3); }
+  .prop { color: #f07178; }
+  .method { color: #ffcb6b; }
+
+  /* METHOD TABLE */
+  .method-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 14px;
+  }
+  .method-table th {
+    background: var(--bg3);
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .method-table td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  .method-table tr:last-child td { border-bottom: none; }
+  .method-table tr:hover td { background: rgba(255,255,255,0.02); }
+  .method-table code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: rgba(124,106,247,0.1);
+    color: var(--accent);
+    padding: 2px 8px;
+    border-radius: 5px;
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-new { background: rgba(61,220,151,0.12); color: var(--green); border: 1px solid rgba(61,220,151,0.25); }
+  .badge-old { background: rgba(244,162,97,0.1); color: var(--orange); border: 1px solid rgba(244,162,97,0.2); }
+
+  /* EVENT FLOW VISUAL */
+  .event-flow {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-bottom: 24px;
+  }
+  .event-phase {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .phase-capture { background: rgba(124,106,247,0.08); border: 1px solid rgba(124,106,247,0.2); }
+  .phase-target { background: rgba(246,197,87,0.08); border: 1px solid rgba(246,197,87,0.2); }
+  .phase-bubble { background: rgba(78,205,196,0.08); border: 1px solid rgba(78,205,196,0.2); }
+  .phase-icon { font-size: 20px; width: 32px; text-align: center; }
+  .phase-name { font-weight: 600; font-size: 14px; }
+  .phase-capture .phase-name { color: var(--accent); }
+  .phase-target .phase-name { color: var(--accent3); }
+  .phase-bubble .phase-name { color: var(--accent2); }
+  .phase-desc { font-size: 13px; color: var(--muted); }
+  .phase-arrow { font-size: 18px; color: var(--muted); margin-left: auto; }
+
+  /* INTERVIEW SECTION */
+  .interview-q {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 12px;
+  }
+  .q-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .q-header:hover { background: rgba(255,255,255,0.02); }
+  .q-num {
+    background: rgba(246,197,87,0.12);
+    border: 1px solid rgba(246,197,87,0.25);
+    color: var(--accent3);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 9px;
+    border-radius: 20px;
+    white-space: nowrap;
+    margin-top: 2px;
+  }
+  .q-text { font-size: 14px; font-weight: 500; flex: 1; }
+  .q-toggle { color: var(--muted); font-size: 18px; transition: transform 0.2s; }
+  .q-answer {
+    display: none;
+    padding: 0 20px 18px 52px;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    border-top: 1px solid var(--border);
+  }
+  .q-answer.open { display: block; }
+  .q-answer strong { color: var(--accent2); }
+  .q-toggle.rotated { transform: rotate(45deg); }
+
+  /* MEMORY TIP */
+  .memory-tip {
+    background: linear-gradient(135deg, rgba(61,220,151,0.06), rgba(78,205,196,0.04));
+    border: 1px solid rgba(61,220,151,0.2);
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+  .memory-tip .tip-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* CHEATSHEET */
+  .cheat-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 14px;
+    margin-bottom: 24px;
+  }
+  .cheat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .cheat-card h5 {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .cheat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 12px;
+  }
+  .cheat-row code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: rgba(124,106,247,0.1);
+    color: var(--accent);
+    padding: 2px 7px;
+    border-radius: 5px;
+    white-space: nowrap;
+  }
+  .cheat-row span { color: var(--muted); }
+  .divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+  .warn-box {
+    background: rgba(255,107,107,0.07);
+    border: 1px solid rgba(255,107,107,0.2);
+    border-left: 3px solid var(--accent4);
+    border-radius: 10px;
+    padding: 16px 20px;
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+  .warn-box strong { color: var(--accent4); }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">WebDev Cohort 2.0</div>
+  <h1>DOM — Complete Notes</h1>
+  <p>Document Object Model — samjho, yaad rakho, interview crack karo 🚀</p>
+  <div style="display:inline-flex;gap:16px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--muted)">
+    <span>🌳 DOM Tree</span>
+    <span>🎯 Selectors</span>
+    <span>✏️ Manipulation</span>
+    <span>⚡ Events</span>
+    <span>🎤 Interview Q&A</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<div class="nav-pills">
+  <a href="#what-is-dom" class="nav-pill">What is DOM?</a>
+  <a href="#node-types" class="nav-pill">Node Types</a>
+  <a href="#selectors" class="nav-pill">Selectors</a>
+  <a href="#collections" class="nav-pill">NodeList & HTMLCollection</a>
+  <a href="#manipulation" class="nav-pill">Manipulation</a>
+  <a href="#events" class="nav-pill">Events</a>
+  <a href="#traversal" class="nav-pill">Traversal</a>
+  <a href="#interview" class="nav-pill">Interview Q&A 🎤</a>
+  <a href="#cheatsheet" class="nav-pill">Cheatsheet</a>
+</div>
+
+<!-- MAIN -->
+<div class="container">
+
+  <!-- ─── SECTION 1: What is DOM ─── -->
+  <div class="section" id="what-is-dom">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>What is the DOM?</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">🏗️</span>
+      <strong>Real-life analogy:</strong> Socho tumhara HTML ek blueprint hai aur DOM wo actual building hai jo browser us blueprint se banaata hai. Blueprint change karo toh building nahi badlegi — lekin DOM ko JavaScript se manipulate karo toh page turant update ho jaata hai. <strong>DOM = Browser ki living, breathing memory of your page.</strong>
+    </div>
+
+    <div class="concept-grid">
+      <div class="concept-card">
+        <span class="icon">📄</span>
+        <h4>HTML vs DOM</h4>
+        <p>HTML is raw text. DOM is the object that browser creates from that text in memory. They start same but diverge.</p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">🌳</span>
+        <h4>Tree Structure</h4>
+        <p>DOM is a tree of nodes. Every tag is a node. Text inside tags is also a node. Everything has a parent-child relationship.</p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">🔗</span>
+        <h4>Live Object</h4>
+        <p>DOM is live. Change it with JS and the browser re-renders instantly — no page reload needed.</p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">🌐</span>
+        <h4>Browser API</h4>
+        <p>DOM is a browser API — not part of JavaScript itself! JS uses it, but DOM lives in the browser (C++ under the hood via WebIDL).</p>
+      </div>
+    </div>
+
+    <div class="tree-visual">
+      <div class="tree-node">
+        <span class="tag">document</span>
+      </div>
+      <div class="tree-indent">
+        <div class="tree-node">
+          <span class="connector">└─</span><span class="tag">&lt;html&gt;</span>
+        </div>
+        <div class="tree-indent">
+          <div class="tree-node">
+            <span class="connector">├─</span><span class="tag">&lt;head&gt;</span>
+          </div>
+          <div class="tree-indent">
+            <div class="tree-node"><span class="connector">└─</span><span class="tag">&lt;title&gt;</span> <span class="text-node">"My Page"</span> <span class="tag">&lt;/title&gt;</span></div>
+          </div>
+          <div class="tree-node">
+            <span class="connector">└─</span><span class="tag">&lt;body&gt;</span>
+          </div>
+          <div class="tree-indent">
+            <div class="tree-node"><span class="connector">├─</span><span class="tag">&lt;h1</span> <span class="attr">id=</span><span class="val">"title"</span><span class="tag">&gt;</span> <span class="text-node">"Hello"</span> <span class="tag">&lt;/h1&gt;</span></div>
+            <div class="tree-node"><span class="connector">└─</span><span class="tag">&lt;div</span> <span class="attr">class=</span><span class="val">"box"</span><span class="tag">&gt;</span></div>
+            <div class="tree-indent">
+              <div class="tree-node"><span class="connector">├─</span><span class="tag">&lt;p&gt;</span> <span class="text-node">"Paragraph"</span> <span class="tag">&lt;/p&gt;</span></div>
+              <div class="tree-node"><span class="connector">└─</span><span class="tag">&lt;button&gt;</span> <span class="text-node">"Click Me"</span> <span class="tag">&lt;/button&gt;</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="memory-tip">
+      <div class="tip-label">💡 Memory Trick</div>
+      DOM ko yaad rakho: <strong style="color:var(--green)">D</strong>ocument <strong style="color:var(--green)">O</strong>bject <strong style="color:var(--green)">M</strong>odel = Browser ka ek JavaScript object hai jisme poora page stored hai as a tree. <code style="background:rgba(61,220,151,0.1);color:var(--green);padding:2px 8px;border-radius:5px;font-family:'JetBrains Mono',monospace;font-size:12px">typeof document === 'object'</code> ✅
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 1.5: NODE TYPES ─── -->
+  <div class="section" id="node-types">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Types of Nodes</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">🧱</span>
+      <strong>Analogy:</strong> DOM tree mein sirf HTML tags nahi hote — bohot types ke "bricks" hote hain. Element nodes toh buildings hain, lekin unke beech text bhi hai, comments bhi, aur document khud ek special root node hai. Har node ka ek <strong>nodeType number</strong> hota hai — browser isi se identify karta hai.
+    </div>
+
+    <!-- NODE TYPE TABLE -->
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th>nodeType</th>
+          <th>Name</th>
+          <th>Example</th>
+          <th>Kitna Common?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>1</code></td>
+          <td style="color:var(--accent);font-weight:600">Element Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>&lt;div&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;h1&gt;</code></td>
+          <td style="color:var(--green)">⭐⭐⭐ Most common</td>
+        </tr>
+        <tr>
+          <td><code>2</code></td>
+          <td style="color:var(--muted)">Attribute Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>class="box"</code>, <code>id="btn"</code></td>
+          <td style="color:var(--muted)">Deprecated — use getAttribute()</td>
+        </tr>
+        <tr>
+          <td><code>3</code></td>
+          <td style="color:var(--accent3);font-weight:600">Text Node</td>
+          <td style="color:var(--muted);font-size:13px">Text inside any tag, whitespace bhi!</td>
+          <td style="color:var(--green)">⭐⭐⭐ Very common</td>
+        </tr>
+        <tr>
+          <td><code>4</code></td>
+          <td style="color:var(--muted)">CDATASection Node</td>
+          <td style="color:var(--muted);font-size:13px">XML mein hota hai, HTML mein nahi</td>
+          <td style="color:var(--muted)">Rare (XML only)</td>
+        </tr>
+        <tr>
+          <td><code>7</code></td>
+          <td style="color:var(--muted)">ProcessingInstruction</td>
+          <td style="color:var(--muted);font-size:13px"><code>&lt;?xml version="1.0"?&gt;</code></td>
+          <td style="color:var(--muted)">Rare</td>
+        </tr>
+        <tr>
+          <td><code>8</code></td>
+          <td style="color:var(--accent2);font-weight:600">Comment Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>&lt;!-- ye comment hai --&gt;</code></td>
+          <td style="color:var(--accent3)">⭐⭐ Moderate</td>
+        </tr>
+        <tr>
+          <td><code>9</code></td>
+          <td style="color:var(--accent);font-weight:600">Document Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>document</code> object itself</td>
+          <td style="color:var(--green)">⭐⭐⭐ Root of everything</td>
+        </tr>
+        <tr>
+          <td><code>10</code></td>
+          <td style="color:var(--muted)">DocumentType Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>&lt;!DOCTYPE html&gt;</code></td>
+          <td style="color:var(--accent3)">⭐ Seen in interviews</td>
+        </tr>
+        <tr>
+          <td><code>11</code></td>
+          <td style="color:var(--accent5);font-weight:600">DocumentFragment Node</td>
+          <td style="color:var(--muted);font-size:13px"><code>document.createDocumentFragment()</code></td>
+          <td style="color:var(--accent3)">⭐⭐ Performance use</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="memory-tip">
+      <div class="tip-label">💡 Sirf ye 4 yaad rakho (interview ke liye)</div>
+      <strong style="color:var(--green)">1</strong> = Element &nbsp;|&nbsp;
+      <strong style="color:var(--accent3)">3</strong> = Text &nbsp;|&nbsp;
+      <strong style="color:var(--accent2)">8</strong> = Comment &nbsp;|&nbsp;
+      <strong style="color:var(--accent)">9</strong> = Document<br>
+      <span style="margin-top:6px;display:block">Trick: <strong style="color:var(--green)">"Every Tree Contains Documents"</strong> → 1, 3, 8, 9 (rough pattern but helps recall!)</span>
+    </div>
+
+    <!-- VISUAL: DOM with node types labelled -->
+    <div class="tree-visual">
+      <div style="margin-bottom:6px;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase">Live example — nodeTypes visible karo</div>
+      <div class="tree-node">
+        <span class="tag">document</span> <span style="background:rgba(124,106,247,0.15);color:var(--accent);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 9</span>
+      </div>
+      <div class="tree-indent">
+        <div class="tree-node">
+          <span class="connector">├─</span><span class="tag">&lt;!DOCTYPE html&gt;</span> <span style="background:rgba(246,197,87,0.1);color:var(--accent3);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 10</span>
+        </div>
+        <div class="tree-node">
+          <span class="connector">└─</span><span class="tag">&lt;html&gt;</span> <span style="background:rgba(124,106,247,0.15);color:var(--accent);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 1 (Element)</span>
+        </div>
+        <div class="tree-indent">
+          <div class="tree-node">
+            <span class="connector">└─</span><span class="tag">&lt;body&gt;</span> <span style="background:rgba(124,106,247,0.15);color:var(--accent);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 1 (Element)</span>
+          </div>
+          <div class="tree-indent">
+            <div class="tree-node">
+              <span class="connector">├─</span><span class="tag">&lt;h1&gt;</span> <span style="background:rgba(124,106,247,0.15);color:var(--accent);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 1</span>
+            </div>
+            <div class="tree-indent">
+              <div class="tree-node">
+                <span class="connector">└─</span><span class="text-node">"Hello World"</span> <span style="background:rgba(246,197,87,0.1);color:var(--accent3);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 3 (Text)</span>
+              </div>
+            </div>
+            <div class="tree-node">
+              <span class="connector">├─</span><span class="tag">&lt;!-- navbar here --&gt;</span> <span style="background:rgba(78,205,196,0.1);color:var(--accent2);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 8 (Comment)</span>
+            </div>
+            <div class="tree-node">
+              <span class="connector">└─</span><span class="text-node">"\n  " (whitespace)</span> <span style="background:rgba(246,197,87,0.1);color:var(--accent3);font-size:11px;padding:2px 7px;border-radius:10px;margin-left:8px">nodeType: 3 (Text!)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODE: checking nodeType -->
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">nodeType in action</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="cmt">// ── nodeType check karna ────────────────────────────</span>
+<span class="kw">const</span> el = <span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'h1'</span>);
+<span class="fn">console</span>.<span class="method">log</span>(el.<span class="prop">nodeType</span>);    <span class="cmt">// 1  → Element</span>
+<span class="fn">console</span>.<span class="method">log</span>(el.<span class="prop">nodeName</span>);    <span class="cmt">// "H1" (uppercase tag name)</span>
+<span class="fn">console</span>.<span class="method">log</span>(el.<span class="prop">nodeValue</span>);   <span class="cmt">// null (elements ka nodeValue null hota hai)</span>
+
+<span class="cmt">// ── Text node ────────────────────────────────────────</span>
+<span class="kw">const</span> textNode = el.<span class="prop">firstChild</span>;  <span class="cmt">// whitespace bhi text node ho sakta hai!</span>
+<span class="fn">console</span>.<span class="method">log</span>(textNode.<span class="prop">nodeType</span>);  <span class="cmt">// 3</span>
+<span class="fn">console</span>.<span class="method">log</span>(textNode.<span class="prop">nodeValue</span>); <span class="cmt">// "Hello World" (actual text content)</span>
+
+<span class="cmt">// ── Comment node ─────────────────────────────────────</span>
+<span class="kw">const</span> comment = <span class="fn">document</span>.<span class="method">createComment</span>(<span class="str">'My comment'</span>);
+<span class="fn">console</span>.<span class="method">log</span>(comment.<span class="prop">nodeType</span>);  <span class="cmt">// 8</span>
+<span class="fn">console</span>.<span class="method">log</span>(comment.<span class="prop">nodeValue</span>); <span class="cmt">// "My comment"</span>
+
+<span class="cmt">// ── Document node ────────────────────────────────────</span>
+<span class="fn">console</span>.<span class="method">log</span>(<span class="fn">document</span>.<span class="prop">nodeType</span>); <span class="cmt">// 9</span>
+<span class="fn">console</span>.<span class="method">log</span>(<span class="fn">document</span>.<span class="prop">nodeName</span>); <span class="cmt">// "#document"</span>
+
+<span class="cmt">// ── Real use: childNodes iterate karte waqt filter karna</span>
+<span class="kw">const</span> body = <span class="fn">document</span>.<span class="prop">body</span>;
+body.<span class="prop">childNodes</span>.<span class="method">forEach</span>(node => {
+  <span class="kw">if</span> (node.<span class="prop">nodeType</span> === <span class="num">1</span>) {          <span class="cmt">// sirf Elements</span>
+    <span class="fn">console</span>.<span class="method">log</span>(<span class="str">'Element:'</span>, node.<span class="prop">tagName</span>);
+  } <span class="kw">else if</span> (node.<span class="prop">nodeType</span> === <span class="num">3</span>) {   <span class="cmt">// Text nodes (whitespace!)</span>
+    <span class="fn">console</span>.<span class="method">log</span>(<span class="str">'Text:'</span>, node.<span class="prop">nodeValue</span>.<span class="method">trim</span>());
+  }
+});</pre>
+    </div>
+
+    <!-- Node properties comparison -->
+    <div class="concept-grid">
+      <div class="concept-card">
+        <span class="icon">🏷️</span>
+        <h4>nodeName</h4>
+        <p>Element → uppercase tag name (<code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">"DIV"</code>)<br>Text → <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">"#text"</code><br>Comment → <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">"#comment"</code><br>Document → <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">"#document"</code></p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">💾</span>
+        <h4>nodeValue</h4>
+        <p>Element → <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">null</code> (elements ki value nahi hoti)<br>Text → actual text content<br>Comment → comment text<br>Document → <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">null</code></p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">🔢</span>
+        <h4>nodeType</h4>
+        <p>Integer constant. Use the <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">Node.ELEMENT_NODE</code> constants for readable code:<br><code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">Node.TEXT_NODE === 3</code> ✅</p>
+      </div>
+      <div class="concept-card">
+        <span class="icon">⚠️</span>
+        <h4>Whitespace Trap!</h4>
+        <p>Newlines aur spaces between tags bhi <strong>Text Nodes</strong> create karte hain (nodeType 3). Isliye <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">childNodes</code> surprising results de sakta hai!</p>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ Common Interview Trap — childNodes vs children:</strong><br>
+      <code style="background:rgba(255,107,107,0.1);color:var(--accent4);font-family:monospace;font-size:12px;padding:2px 6px;border-radius:4px">childNodes</code> returns ALL node types including Text (3) and Comment (8) nodes.<br>
+      <code style="background:rgba(255,107,107,0.1);color:var(--accent4);font-family:monospace;font-size:12px;padding:2px 6px;border-radius:4px">children</code> returns ONLY Element nodes (nodeType 1).<br>
+      Agar tumhare paas <code style="font-family:monospace;font-size:12px">&lt;ul&gt;\n  &lt;li&gt;...&lt;/li&gt;\n&lt;/ul&gt;</code> hai toh <code style="font-family:monospace;font-size:12px">childNodes.length</code> will be 3 (text + li + text), but <code style="font-family:monospace;font-size:12px">children.length</code> will be 1!
+    </div>
+
+    <!-- Interview Q for node types -->
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Bonus Q</span>
+        <span class="q-text">How many types of nodes does the DOM have? Name the important ones.</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        DOM has <strong>12 node types</strong> total (defined in the Node interface), but in practice only a few matter:<br><br>
+        — <strong>nodeType 1 (Element Node):</strong> Every HTML tag — <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-family:monospace;font-size:12px;padding:1px 5px;border-radius:4px">&lt;div&gt;, &lt;p&gt;</code> etc.<br>
+        — <strong>nodeType 3 (Text Node):</strong> Text content inside elements, including whitespace and newlines.<br>
+        — <strong>nodeType 8 (Comment Node):</strong> HTML comments <code style="font-family:monospace;font-size:12px">&lt;!-- --&gt;</code><br>
+        — <strong>nodeType 9 (Document Node):</strong> The <code style="font-family:monospace;font-size:12px">document</code> object itself, root of the tree.<br>
+        — <strong>nodeType 11 (DocumentFragment):</strong> In-memory container used for performance optimization.<br><br>
+        You can check with <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-family:monospace;font-size:12px;padding:1px 5px;border-radius:4px">node.nodeType</code> or use readable constants like <code style="font-family:monospace;font-size:12px">Node.ELEMENT_NODE</code>.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 3: SELECTORS ─── -->
+  <div class="section" id="selectors">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Selecting Elements</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">🎯</span>
+      <strong>Real-life analogy:</strong> Selectors are like calling someone by their name, nickname, or job role. <code style="background:rgba(124,106,247,0.15);color:var(--accent);padding:2px 7px;border-radius:4px;font-family:monospace;font-size:12px">getElementById</code> = calling by exact name. <code style="background:rgba(124,106,247,0.15);color:var(--accent);padding:2px 7px;border-radius:4px;font-family:monospace;font-size:12px">querySelector</code> = calling by any identifier (CSS magic!).
+    </div>
+
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>Returns</th>
+          <th>Use When</th>
+          <th>Speed</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>getElementById('id')</code></td>
+          <td>Single Element / null</td>
+          <td>You know the exact id</td>
+          <td style="color:var(--green)">⚡ Fastest</td>
+        </tr>
+        <tr>
+          <td><code>getElementsByClassName('cls')</code></td>
+          <td>HTMLCollection (live)</td>
+          <td>Multiple elements by class</td>
+          <td style="color:var(--accent3)">🔥 Fast</td>
+        </tr>
+        <tr>
+          <td><code>getElementsByTagName('div')</code></td>
+          <td>HTMLCollection (live)</td>
+          <td>All elements of a tag type</td>
+          <td style="color:var(--accent3)">🔥 Fast</td>
+        </tr>
+        <tr>
+          <td><code>querySelector('css')</code></td>
+          <td>First match / null</td>
+          <td>Complex CSS selectors</td>
+          <td style="color:var(--orange)">🚶 Moderate</td>
+        </tr>
+        <tr>
+          <td><code>querySelectorAll('css')</code></td>
+          <td>NodeList (static)</td>
+          <td>All matches with CSS selector</td>
+          <td style="color:var(--orange)">🚶 Moderate</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">JavaScript</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="cmt">// ── getElementById ──────────────────────────────────</span>
+<span class="kw">const</span> title = <span class="fn">document</span>.<span class="method">getElementById</span>(<span class="str">'main-title'</span>);
+<span class="cmt">// Returns: element or null (agar id exist nahi karta)</span>
+
+<span class="cmt">// ── querySelector (Most Flexible!) ───────────────────</span>
+<span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'.btn'</span>);        <span class="cmt">// class</span>
+<span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'#hero'</span>);       <span class="cmt">// id</span>
+<span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'div > p'</span>);    <span class="cmt">// nested</span>
+<span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'input[type="text"]'</span>); <span class="cmt">// attribute</span>
+
+<span class="cmt">// ── querySelectorAll (Returns NodeList) ──────────────</span>
+<span class="kw">const</span> cards = <span class="fn">document</span>.<span class="method">querySelectorAll</span>(<span class="str">'.card'</span>);
+cards.<span class="method">forEach</span>(card => <span class="fn">console</span>.<span class="method">log</span>(card)); <span class="cmt">// forEach works directly!</span>
+
+<span class="cmt">// ── INTERVIEW TRAP: HTMLCollection vs NodeList ───────</span>
+<span class="kw">const</span> live = <span class="fn">document</span>.<span class="method">getElementsByClassName</span>(<span class="str">'item'</span>); <span class="cmt">// LIVE</span>
+<span class="kw">const</span> snap = <span class="fn">document</span>.<span class="method">querySelectorAll</span>(<span class="str">'.item'</span>);    <span class="cmt">// STATIC snapshot</span></pre>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ Common Interview Trap:</strong> <code style="background:rgba(255,107,107,0.1);color:var(--accent4);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:12px">HTMLCollection</code> is <strong>live</strong> — DOM update ho toh automatically update ho jaata hai. <code style="background:rgba(255,107,107,0.1);color:var(--accent4);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:12px">NodeList</code> from <code style="background:rgba(255,107,107,0.1);color:var(--accent4);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:12px">querySelectorAll</code> is <strong>static</strong> — ek snapshot hai. And NodeList has <code style="font-family:monospace;font-size:12px">forEach()</code> but <em>not</em> <code style="font-family:monospace;font-size:12px">map()/filter()</code> directly!
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 4: NODELIST & HTMLCOLLECTION ─── -->
+  <div class="section" id="collections">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>NodeList &amp; HTMLCollection</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">📦</span>
+      <strong>Analogy:</strong> Socho tumne ek class ke sab students ki list banayi. <strong>HTMLCollection</strong> ek <em>live attendance register</em> hai — naya student join kare toh automatically update ho jaata hai. <strong>NodeList</strong> ek <em>printed snapshot</em> hai — print ke waqt jo tha wahi rahega, baad mein kuch bhi badlo, list nahi badlegi. Dono list hain, par behavior alag hai!
+    </div>
+
+    <!-- Side-by-side comparison cards -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
+      <div style="background:rgba(124,106,247,0.07);border:1px solid rgba(124,106,247,0.25);border-top:3px solid var(--accent);border-radius:12px;padding:20px;">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:14px;">HTMLCollection</div>
+        <div style="font-size:13px;color:var(--muted);line-height:2;">
+          <div>🔴 <strong style="color:var(--text)">Live</strong> — auto-updates</div>
+          <div>📌 Returns from <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">getElementsBy*</code></div>
+          <div>🏷️ Only <strong style="color:var(--text)">Element nodes</strong> (nodeType 1)</div>
+          <div>🔢 Access by index or name: <code style="background:rgba(124,106,247,0.12);color:var(--accent);font-size:11px;padding:1px 5px;border-radius:4px">col[0]</code></div>
+          <div>❌ No <code style="font-size:11px;font-family:monospace">forEach</code> natively</div>
+          <div>❌ No <code style="font-size:11px;font-family:monospace">map / filter / reduce</code></div>
+          <div>✅ Has <code style="font-size:11px;font-family:monospace">.length</code></div>
+          <div>✅ Array mein convert kar sakte ho</div>
+        </div>
+      </div>
+      <div style="background:rgba(78,205,196,0.07);border:1px solid rgba(78,205,196,0.25);border-top:3px solid var(--accent2);border-radius:12px;padding:20px;">
+        <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--accent2);margin-bottom:14px;">NodeList</div>
+        <div style="font-size:13px;color:var(--muted);line-height:2;">
+          <div>📸 <strong style="color:var(--text)">Static</strong> — frozen snapshot <span style="font-size:11px">(usually)</span></div>
+          <div>📌 Returns from <code style="background:rgba(78,205,196,0.12);color:var(--accent2);font-size:11px;padding:1px 5px;border-radius:4px">querySelectorAll</code></div>
+          <div>🏷️ <strong style="color:var(--text)">All node types</strong> (elements, text, comments)</div>
+          <div>🔢 Access by index only: <code style="background:rgba(78,205,196,0.12);color:var(--accent2);font-size:11px;padding:1px 5px;border-radius:4px">list[0]</code></div>
+          <div>✅ Has <code style="font-size:11px;font-family:monospace">forEach</code> natively</div>
+          <div>❌ No <code style="font-size:11px;font-family:monospace">map / filter / reduce</code> directly</div>
+          <div>✅ Has <code style="font-size:11px;font-family:monospace">.length</code></div>
+          <div>✅ Array mein convert kar sakte ho</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIVE vs STATIC explained visually -->
+    <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px 24px;margin-bottom:24px;">
+      <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-bottom:14px;">⚡ Live vs Static — Visually Samjho</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:13px;">
+        <div>
+          <div style="color:var(--accent);font-weight:600;margin-bottom:8px;">HTMLCollection (Live)</div>
+          <div style="background:var(--code-bg);border-radius:8px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;color:var(--muted)">
+            <span style="color:#c792ea">const</span> items = <span style="color:#82aaff">document</span>
+            <br>&nbsp;&nbsp;.<span style="color:#ffcb6b">getElementsByClassName</span>(<span style="color:var(--accent2)">'item'</span>);
+            <br><span style="color:#546e7a">// Abhi 3 .item hain</span>
+            <br><span style="color:#82aaff">console</span>.<span style="color:#ffcb6b">log</span>(items.<span style="color:#f07178">length</span>); <span style="color:#546e7a">// 3</span>
+            <br><br><span style="color:#546e7a">// Naya element add karo</span>
+            <br><span style="color:#82aaff">document</span>.<span style="color:#82aaff">body</span>.<span style="color:#ffcb6b">appendChild</span>(newItem);
+            <br><span style="color:#82aaff">console</span>.<span style="color:#ffcb6b">log</span>(items.<span style="color:#f07178">length</span>); <span style="color:#546e7a">// 4 ✅ auto!</span>
+          </div>
+        </div>
+        <div>
+          <div style="color:var(--accent2);font-weight:600;margin-bottom:8px;">NodeList (Static)</div>
+          <div style="background:var(--code-bg);border-radius:8px;padding:12px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:1.9;color:var(--muted)">
+            <span style="color:#c792ea">const</span> items = <span style="color:#82aaff">document</span>
+            <br>&nbsp;&nbsp;.<span style="color:#ffcb6b">querySelectorAll</span>(<span style="color:var(--accent2)">'.item'</span>);
+            <br><span style="color:#546e7a">// Abhi 3 .item hain</span>
+            <br><span style="color:#82aaff">console</span>.<span style="color:#ffcb6b">log</span>(items.<span style="color:#f07178">length</span>); <span style="color:#546e7a">// 3</span>
+            <br><br><span style="color:#546e7a">// Naya element add karo</span>
+            <br><span style="color:#82aaff">document</span>.<span style="color:#82aaff">body</span>.<span style="color:#ffcb6b">appendChild</span>(newItem);
+            <br><span style="color:#82aaff">console</span>.<span style="color:#ffcb6b">log</span>(items.<span style="color:#f07178">length</span>); <span style="color:#546e7a">// 3 ❌ stale!</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Array methods trap + conversion -->
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">Array mein convert karna — Must Know!</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="cmt">// ── Problem: dono par map/filter direct kaam nahi karta</span>
+<span class="kw">const</span> col = <span class="fn">document</span>.<span class="method">getElementsByClassName</span>(<span class="str">'card'</span>); <span class="cmt">// HTMLCollection</span>
+<span class="kw">const</span> nl  = <span class="fn">document</span>.<span class="method">querySelectorAll</span>(<span class="str">'.card'</span>);      <span class="cmt">// NodeList</span>
+
+col.<span class="method">map</span>(el => el);    <span class="cmt">// ❌ TypeError: col.map is not a function</span>
+nl.<span class="method">map</span>(el => el);     <span class="cmt">// ❌ TypeError: nl.map is not a function</span>
+
+<span class="cmt">// ── Solution 1: Array.from() — Most Readable ─────────</span>
+<span class="kw">const</span> arr1 = <span class="fn">Array</span>.<span class="method">from</span>(col);
+<span class="kw">const</span> arr2 = <span class="fn">Array</span>.<span class="method">from</span>(nl);
+arr1.<span class="method">map</span>(el => el.<span class="prop">textContent</span>); <span class="cmt">// ✅ works now!</span>
+
+<span class="cmt">// ── Solution 2: Spread operator — Short & Clean ───────</span>
+<span class="kw">const</span> arr3 = [...col];
+<span class="kw">const</span> arr4 = [...nl];
+
+<span class="cmt">// ── NodeList mein forEach directly milta hai ──────────</span>
+nl.<span class="method">forEach</span>(el => <span class="fn">console</span>.<span class="method">log</span>(el));  <span class="cmt">// ✅ NodeList ka forEach kaam karta hai</span>
+<span class="cmt">// col.forEach(...)  ❌ HTMLCollection mein nahi hota</span>
+
+<span class="cmt">// ── Access by index (dono mein) ───────────────────────</span>
+col[<span class="num">0</span>];  <span class="cmt">// ✅</span>
+nl[<span class="num">0</span>];   <span class="cmt">// ✅</span>
+col.<span class="method">item</span>(<span class="num">0</span>);  <span class="cmt">// ✅ .item() method dono mein hai</span>
+
+<span class="cmt">// ── HTMLCollection: name se bhi access kar sakte ho ──</span>
+<span class="cmt">// &lt;input name="username"&gt; ho toh:</span>
+<span class="fn">document</span>.<span class="prop">forms</span>[<span class="num">0</span>].<span class="method">namedItem</span>(<span class="str">'username'</span>); <span class="cmt">// HTMLCollection feature</span></pre>
+    </div>
+
+    <!-- Full comparison table -->
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          <th>HTMLCollection</th>
+          <th>NodeList</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Live / Static</td>
+          <td style="color:var(--accent)">🔴 Live (auto-updates)</td>
+          <td style="color:var(--accent2)">📸 Static <span style="color:var(--muted);font-size:12px">(usually)</span></td>
+        </tr>
+        <tr>
+          <td>Returns from</td>
+          <td style="font-size:13px"><code>getElementsByClassName</code>, <code>getElementsByTagName</code>, <code>children</code></td>
+          <td style="font-size:13px"><code>querySelectorAll</code>, <code>childNodes</code></td>
+        </tr>
+        <tr>
+          <td>Node types included</td>
+          <td>Element nodes only (type 1)</td>
+          <td>All node types (1, 3, 8...)</td>
+        </tr>
+        <tr>
+          <td><code>forEach()</code></td>
+          <td style="color:var(--accent4)">❌ Not available</td>
+          <td style="color:var(--green)">✅ Available</td>
+        </tr>
+        <tr>
+          <td><code>map / filter / reduce</code></td>
+          <td style="color:var(--accent4)">❌ Not available</td>
+          <td style="color:var(--accent4)">❌ Not available</td>
+        </tr>
+        <tr>
+          <td>Access by index</td>
+          <td style="color:var(--green)">✅ <code>col[0]</code></td>
+          <td style="color:var(--green)">✅ <code>nl[0]</code></td>
+        </tr>
+        <tr>
+          <td>Access by name</td>
+          <td style="color:var(--green)">✅ <code>namedItem('x')</code></td>
+          <td style="color:var(--accent4)">❌ No</td>
+        </tr>
+        <tr>
+          <td>Convert to Array</td>
+          <td><code>Array.from(col)</code> or <code>[...col]</code></td>
+          <td><code>Array.from(nl)</code> or <code>[...nl]</code></td>
+        </tr>
+        <tr>
+          <td>Is Array?</td>
+          <td style="color:var(--accent4)">❌ Array-like object</td>
+          <td style="color:var(--accent4)">❌ Array-like object</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="memory-tip">
+      <div class="tip-label">💡 Exception — Live NodeList bhi hoti hai!</div>
+      <strong style="color:var(--accent3)">Trick question alert 🎤:</strong> Zyaadatar NodeList static hoti hai, lekin <code style="background:rgba(61,220,151,0.1);color:var(--green);font-family:monospace;font-size:12px;padding:2px 6px;border-radius:4px">childNodes</code> se jo NodeList milti hai wo <strong style="color:var(--green)">LIVE</strong> hoti hai! Interviewer ye pooch sakta hai.<br>
+      <span style="margin-top:6px;display:block">
+        <strong style="color:var(--green)">Live NodeList:</strong> <code style="font-family:monospace;font-size:12px">element.childNodes</code><br>
+        <strong style="color:var(--accent2)">Static NodeList:</strong> <code style="font-family:monospace;font-size:12px">document.querySelectorAll()</code>
+      </span>
+    </div>
+
+    <!-- Interview Q -->
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Bonus Q</span>
+        <span class="q-text">HTMLCollection aur NodeList mein kya difference hai? Dono array kyun nahi hain?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>HTMLCollection:</strong> Live, auto-updates jab DOM change ho. Sirf Element nodes (nodeType 1). <code style="font-family:monospace;font-size:12px">getElementsByClassName</code> etc. se milti hai. forEach nahi.<br><br>
+        <strong>NodeList:</strong> Mostly static snapshot. Saare node types. <code style="font-family:monospace;font-size:12px">querySelectorAll</code> se milti hai. forEach available hai. Exception: <code style="font-family:monospace;font-size:12px">childNodes</code> live NodeList deta hai.<br><br>
+        <strong>Array kyun nahi hain?</strong> Ye DOM Web API ke objects hain, JS Array nahi. Unhe "array-like" kehte hain — indexed access aur <code style="font-family:monospace;font-size:12px">.length</code> hai, lekin Array prototype ke methods nahi. <code style="font-family:monospace;font-size:12px">Array.from()</code> ya spread <code style="font-family:monospace;font-size:12px">[...]</code> se real array banaao, phir saare methods milenge.
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 5: MANIPULATION ─── -->
+  <div class="section" id="manipulation">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>DOM Manipulation</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">✏️</span>
+      <strong>Analogy:</strong> DOM manipulation = living room ke furniture ko rearrange karna, naya furniture laana, ya kuch hata dena — sab kuch ghar (page) ke andar hi, bina nayi jagah shift kiye!
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">Content & Text</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="kw">const</span> el = <span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'.box'</span>);
+
+<span class="cmt">// ── Text content ─────────────────────────────────────</span>
+el.<span class="prop">textContent</span> = <span class="str">'Hello World'</span>;    <span class="cmt">// Safe: treats as plain text</span>
+el.<span class="prop">innerHTML</span>   = <span class="str">'&lt;b&gt;Bold!&lt;/b&gt;'</span>;  <span class="cmt">// Parses HTML (⚠️ XSS risk!)</span>
+el.<span class="prop">innerText</span>   = <span class="str">'Visible only'</span>;  <span class="cmt">// Respects CSS visibility</span>
+
+<span class="cmt">// ── Attributes ───────────────────────────────────────</span>
+el.<span class="method">getAttribute</span>(<span class="str">'href'</span>);           <span class="cmt">// get</span>
+el.<span class="method">setAttribute</span>(<span class="str">'href'</span>, <span class="str">'/'</span>);     <span class="cmt">// set</span>
+el.<span class="method">removeAttribute</span>(<span class="str">'disabled'</span>);   <span class="cmt">// remove</span>
+el.<span class="method">hasAttribute</span>(<span class="str">'class'</span>);        <span class="cmt">// check → boolean</span>
+
+<span class="cmt">// ── Classes (Modern Way — use classList!) ────────────</span>
+el.<span class="prop">classList</span>.<span class="method">add</span>(<span class="str">'active'</span>);
+el.<span class="prop">classList</span>.<span class="method">remove</span>(<span class="str">'active'</span>);
+el.<span class="prop">classList</span>.<span class="method">toggle</span>(<span class="str">'dark'</span>);       <span class="cmt">// add ↔ remove</span>
+el.<span class="prop">classList</span>.<span class="method">contains</span>(<span class="str">'btn'</span>);    <span class="cmt">// → boolean</span>
+el.<span class="prop">classList</span>.<span class="method">replace</span>(<span class="str">'old'</span>, <span class="str">'new'</span>);
+
+<span class="cmt">// ── Styles ───────────────────────────────────────────</span>
+el.<span class="prop">style</span>.<span class="prop">color</span> = <span class="str">'red'</span>;
+el.<span class="prop">style</span>.<span class="prop">backgroundColor</span> = <span class="str">'blue'</span>; <span class="cmt">// camelCase!!</span>
+el.<span class="prop">style</span>.<span class="method">setProperty</span>(<span class="str">'--my-var'</span>, <span class="str">'10px'</span>); <span class="cmt">// CSS custom vars</span></pre>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">Creating & Inserting Elements</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="cmt">// ── Create element ───────────────────────────────────</span>
+<span class="kw">const</span> newDiv = <span class="fn">document</span>.<span class="method">createElement</span>(<span class="str">'div'</span>);
+newDiv.<span class="prop">textContent</span> = <span class="str">'I am new!'</span>;
+newDiv.<span class="prop">className</span> = <span class="str">'card'</span>;
+
+<span class="cmt">// ── Append / Prepend (Modern — preferred!) ───────────</span>
+<span class="kw">const</span> parent = <span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'.container'</span>);
+parent.<span class="method">append</span>(newDiv);      <span class="cmt">// add at END (accepts strings too!)</span>
+parent.<span class="method">prepend</span>(newDiv);     <span class="cmt">// add at BEGINNING</span>
+parent.<span class="method">before</span>(newDiv);      <span class="cmt">// sibling BEFORE parent</span>
+parent.<span class="method">after</span>(newDiv);       <span class="cmt">// sibling AFTER parent</span>
+
+<span class="cmt">// ── Old Way (still in interviews!) ───────────────────</span>
+parent.<span class="method">appendChild</span>(newDiv);            <span class="cmt">// OLD — only nodes</span>
+parent.<span class="method">insertBefore</span>(newDiv, sibling);  <span class="cmt">// OLD</span>
+
+<span class="cmt">// ── Remove element ───────────────────────────────────</span>
+newDiv.<span class="method">remove</span>();                  <span class="cmt">// Modern — direct!</span>
+parent.<span class="method">removeChild</span>(newDiv);       <span class="cmt">// Old way</span>
+
+<span class="cmt">// ── Clone element ────────────────────────────────────</span>
+<span class="kw">const</span> clone = newDiv.<span class="method">cloneNode</span>(<span class="num">true</span>); <span class="cmt">// true = deep clone (children bhi)</span></pre>
+    </div>
+
+    <div class="memory-tip">
+      <div class="tip-label">💡 Memory Trick — textContent vs innerHTML vs innerText</div>
+      <strong style="color:var(--green)">textContent</strong> = exactly what's in the source, HTML tags as literal text, fast.<br>
+      <strong style="color:var(--accent3)">innerHTML</strong> = parses HTML, powerful but XSS danger with user input.<br>
+      <strong style="color:var(--accent2)">innerText</strong> = what user sees (respects CSS display:none), slow (triggers reflow).<br>
+      <strong>Yaad karo:</strong> For user data → always <code style="background:rgba(61,220,151,0.1);color:var(--green);padding:2px 6px;border-radius:4px;font-family:monospace;font-size:12px">textContent</code>. Never trust innerHTML with user input!
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 6: EVENTS ─── -->
+  <div class="section" id="events">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Events & Event Handling</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">⚡</span>
+      <strong>Analogy:</strong> Events are like doorbells 🔔. Aapne ek doorbell (listener) lagayi hai — jab bhi koi press kare (event happen ho), aapka code run ho jaata hai. EventListener = doorbell wire. Callback = aapka response (door kholna).
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">addEventListener — Sahi Tarika</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="kw">const</span> btn = <span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'#myBtn'</span>);
+
+<span class="cmt">// ── 3 Ways (only ONE is correct in 2024!) ────────────</span>
+<span class="cmt">// ❌ Old Way 1 — HTML attribute (don't use)</span>
+<span class="cmt">// &lt;button onclick="doSomething()"&gt;</span>
+
+<span class="cmt">// ❌ Old Way 2 — only one handler per event</span>
+btn.<span class="prop">onclick</span> = () => <span class="fn">console</span>.<span class="method">log</span>(<span class="str">'clicked'</span>);
+
+<span class="cmt">// ✅ Modern Way — multiple handlers, full control</span>
+btn.<span class="method">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(event) {
+  <span class="fn">console</span>.<span class="method">log</span>(event);          <span class="cmt">// full event object</span>
+  <span class="fn">console</span>.<span class="method">log</span>(event.<span class="prop">target</span>);  <span class="cmt">// element that was clicked</span>
+  <span class="fn">console</span>.<span class="method">log</span>(event.<span class="prop">type</span>);    <span class="cmt">// 'click'</span>
+  event.<span class="method">preventDefault</span>();     <span class="cmt">// default action rokta hai (form submit, link etc)</span>
+  event.<span class="method">stopPropagation</span>();    <span class="cmt">// bubbling rokta hai</span>
+});
+
+<span class="cmt">// ── Remove listener ──────────────────────────────────</span>
+<span class="kw">const</span> handler = (e) => <span class="fn">console</span>.<span class="method">log</span>(e);
+btn.<span class="method">addEventListener</span>(<span class="str">'click'</span>, handler);
+btn.<span class="method">removeEventListener</span>(<span class="str">'click'</span>, handler); <span class="cmt">// same reference chahiye!</span></pre>
+    </div>
+
+    <!-- EVENT PROPAGATION -->
+    <h3 style="font-size:1.1rem;font-weight:600;margin-bottom:16px;color:var(--text)">Event Propagation — Bohot Important!</h3>
+
+    <div class="event-flow">
+      <div class="event-phase phase-capture" onclick="togglePhaseInfo('c1')">
+        <div class="phase-icon">⬇️</div>
+        <div>
+          <div class="phase-name">1. Capture Phase (Trickling Down)</div>
+          <div class="phase-desc">Event starts from <code style="background:rgba(124,106,247,0.15);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11px">window</code> → goes DOWN to target element</div>
+          <div id="c1" style="display:none;margin-top:8px;font-size:13px;color:var(--muted)">Use <code style="background:rgba(124,106,247,0.15);color:var(--accent);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px">addEventListener('click', fn, true)</code> to listen in capture phase. Rarely needed in real code.</div>
+        </div>
+        <div class="phase-arrow">›</div>
+      </div>
+      <div class="event-phase phase-target" onclick="togglePhaseInfo('c2')">
+        <div class="phase-icon">🎯</div>
+        <div>
+          <div class="phase-name">2. Target Phase</div>
+          <div class="phase-desc">Event reaches the <strong style="color:var(--accent3)">actual element</strong> that was interacted with</div>
+          <div id="c2" style="display:none;margin-top:8px;font-size:13px;color:var(--muted)"><code style="background:rgba(246,197,87,0.1);color:var(--accent3);padding:1px 5px;border-radius:4px;font-family:monospace;font-size:11px">event.target</code> is this element. Both capture & bubble listeners fire here.</div>
+        </div>
+        <div class="phase-arrow">›</div>
+      </div>
+      <div class="event-phase phase-bubble" onclick="togglePhaseInfo('c3')">
+        <div class="phase-icon">⬆️</div>
+        <div>
+          <div class="phase-name">3. Bubble Phase (Bubbling Up)</div>
+          <div class="phase-desc">Event goes UP from target → back to <code style="background:rgba(78,205,196,0.15);color:var(--accent2);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:11px">window</code></div>
+          <div id="c3" style="display:none;margin-top:8px;font-size:13px;color:var(--muted)">This is the DEFAULT. Most events bubble. <code style="font-family:monospace;font-size:11px">focus</code>, <code style="font-family:monospace;font-size:11px">blur</code>, <code style="font-family:monospace;font-size:11px">scroll</code> do NOT bubble. Use <code style="font-family:monospace;font-size:11px">event.stopPropagation()</code> to stop bubbling.</div>
+        </div>
+        <div class="phase-arrow">›</div>
+      </div>
+    </div>
+
+    <div class="code-wrap">
+      <div class="code-label">
+        <span class="code-lang">Event Delegation — Performance Trick! 🔥</span>
+        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+      </div>
+      <pre><span class="cmt">// ❌ BAD — 1000 buttons = 1000 listeners = memory hog</span>
+<span class="fn">document</span>.<span class="method">querySelectorAll</span>(<span class="str">'.btn'</span>).<span class="method">forEach</span>(btn => {
+  btn.<span class="method">addEventListener</span>(<span class="str">'click'</span>, handleClick);
+});
+
+<span class="cmt">// ✅ GOOD — Event Delegation (bubbling ka fayda uthao!)</span>
+<span class="cmt">// Ek parent listener, all children handle karo</span>
+<span class="fn">document</span>.<span class="method">querySelector</span>(<span class="str">'.btn-container'</span>).<span class="method">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+  <span class="kw">if</span> (e.<span class="prop">target</span>.<span class="prop">classList</span>.<span class="method">contains</span>(<span class="str">'btn'</span>)) {
+    <span class="fn">console</span>.<span class="method">log</span>(<span class="str">'Button clicked:'</span>, e.<span class="prop">target</span>.<span class="prop">textContent</span>);
+  }
+});
+<span class="cmt">// Dynamic elements par bhi kaam karta hai! ✨</span></pre>
+    </div>
+
+    <div class="memory-tip">
+      <div class="tip-label">🎤 Interview Gold — Event Delegation</div>
+      <strong style="color:var(--green)">"Why use event delegation?"</strong><br>
+      1. <strong>Performance</strong> — ek listener, 1000 nahi<br>
+      2. <strong>Dynamic elements</strong> — baad mein add hone wale elements bhi automatically handle ho jaate hain<br>
+      3. <strong>Less memory</strong> — garbage collection friendly<br>
+      Example: Todo list mein har li par listener lagate ho ya ul par ek? → <strong>ul par ek!</strong>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 7: TRAVERSAL ─── -->
+  <div class="section" id="traversal">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>DOM Traversal</h2>
+    </div>
+
+    <div class="analogy">
+      <span class="emoji">🗺️</span>
+      <strong>Analogy:</strong> Traversal = family tree navigate karna. Parent kya hai? Siblings kaun hain? Children kaunse? Exact CSS selector na pata ho tab traversal se dhoondo!
+    </div>
+
+    <table class="method-table">
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Returns</th>
+          <th>Includes Text Nodes?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>el.parentNode</code></td>
+          <td>Parent (any node type)</td>
+          <td>Yes</td>
+        </tr>
+        <tr>
+          <td><code>el.parentElement</code></td>
+          <td>Parent element only</td>
+          <td>No (preferred!)</td>
+        </tr>
+        <tr>
+          <td><code>el.children</code></td>
+          <td>HTMLCollection of child elements</td>
+          <td>No ✅</td>
+        </tr>
+        <tr>
+          <td><code>el.childNodes</code></td>
+          <td>NodeList (all nodes)</td>
+          <td>Yes (text, comments)</td>
+        </tr>
+        <tr>
+          <td><code>el.firstElementChild</code></td>
+          <td>First child element</td>
+          <td>No ✅</td>
+        </tr>
+        <tr>
+          <td><code>el.lastElementChild</code></td>
+          <td>Last child element</td>
+          <td>No ✅</td>
+        </tr>
+        <tr>
+          <td><code>el.nextElementSibling</code></td>
+          <td>Next sibling element</td>
+          <td>No ✅</td>
+        </tr>
+        <tr>
+          <td><code>el.previousElementSibling</code></td>
+          <td>Previous sibling element</td>
+          <td>No ✅</td>
+        </tr>
+        <tr>
+          <td><code>el.closest('.class')</code></td>
+          <td>Nearest ancestor matching CSS</td>
+          <td>No ✅</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="memory-tip">
+      <div class="tip-label">💡 Rule of Thumb</div>
+      Jab bhi choice ho — use the <strong style="color:var(--green)">Element</strong> versions (parentElement, children, nextElementSibling) instead of Node versions. They skip text nodes and whitespace, giving you only actual HTML elements. Less surprises!
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 8: INTERVIEW Q&A ─── -->
+  <div class="section" id="interview">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>Interview Q&A 🎤</h2>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q1</span>
+        <span class="q-text">What is the DOM? Is it part of JavaScript?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>DOM is NOT part of JavaScript.</strong> It is a Web API provided by the browser. JavaScript uses the DOM API to interact with HTML. The DOM represents the page as a tree of nodes (objects). Even if you run JS in Node.js, you don't have a DOM — that's browser-specific. DOM is defined by W3C/WHATWG standards, not ECMAScript.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q2</span>
+        <span class="q-text">Difference between getElementById and querySelector?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>getElementById:</strong> only works with IDs, fastest (direct hash lookup), returns null if not found.<br><br>
+        <strong>querySelector:</strong> accepts any CSS selector, slightly slower (has to parse selector), more flexible. Returns first match or null.<br><br>
+        Prefer <strong>getElementById</strong> when you have an ID — it's the fastest. Use <strong>querySelector</strong> when you need complex selectors or class-based selection.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q3</span>
+        <span class="q-text">What is event bubbling and how does stopPropagation work?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>Event Bubbling:</strong> When an event fires on an element, it travels UP the DOM tree — first the target, then its parent, then grandparent, all the way to <code style="background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">window</code>.<br><br>
+        <strong>stopPropagation():</strong> Stops the event from bubbling up further. Parent elements won't receive the event.<br><br>
+        <strong>stopImmediatePropagation():</strong> Stops bubbling AND prevents other listeners on the SAME element from firing.<br><br>
+        Note: <code style="background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">focus</code>, <code style="font-family:monospace;font-size:12px;background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px">blur</code>, <code style="font-family:monospace;font-size:12px;background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px">scroll</code> events do NOT bubble.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q4</span>
+        <span class="q-text">What is event delegation? When and why use it?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        Event delegation = adding a <strong>single event listener on a parent</strong> to handle events from all its children, using event bubbling.<br><br>
+        <strong>Why:</strong><br>
+        — Better performance (one listener vs hundreds)<br>
+        — Works for dynamically added elements automatically<br>
+        — Less memory usage<br><br>
+        <strong>How:</strong> Use <code style="background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">event.target</code> inside the parent's listener to identify which child was actually clicked.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q5</span>
+        <span class="q-text">Difference between innerHTML, textContent, and innerText?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>textContent:</strong> Returns/sets the raw text content. HTML tags treated as literal text. Fast, doesn't trigger reflow, XSS safe.<br><br>
+        <strong>innerHTML:</strong> Parses HTML. Use for inserting actual HTML. XSS dangerous with user input — never do <code style="background:rgba(255,107,107,0.1);color:var(--accent4);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">el.innerHTML = userInput</code>.<br><br>
+        <strong>innerText:</strong> Aware of CSS styling. Hides text in <code style="font-family:monospace;font-size:12px">display:none</code> elements. Triggers reflow (slow). Not available in Node.js environments.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q6</span>
+        <span class="q-text">What is the difference between e.target and e.currentTarget?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <strong>e.target:</strong> The element that actually triggered the event (where you clicked/typed).<br><br>
+        <strong>e.currentTarget:</strong> The element where the event listener is attached.<br><br>
+        In event delegation, these are different! If you click a <code style="font-family:monospace;font-size:12px;background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px">&lt;li&gt;</code> inside a <code style="font-family:monospace;font-size:12px;background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px">&lt;ul&gt;</code> listener: <code style="font-family:monospace;font-size:12px">e.target = li</code>, <code style="font-family:monospace;font-size:12px">e.currentTarget = ul</code>.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q7</span>
+        <span class="q-text">What does preventDefault() do? Give an example.</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        <code style="background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">preventDefault()</code> stops the browser's default behavior for that event.<br><br>
+        Examples:<br>
+        — <strong>Form submit:</strong> Stops page reload<br>
+        — <strong>Link click:</strong> Stops navigation to href<br>
+        — <strong>Right click:</strong> Stops context menu<br>
+        — <strong>Keydown:</strong> Stops character from typing<br><br>
+        Important: It does NOT stop bubbling — that's <code style="font-family:monospace;font-size:12px">stopPropagation()</code>'s job.
+      </div>
+    </div>
+
+    <div class="interview-q">
+      <div class="q-header" onclick="toggleQ(this)">
+        <span class="q-num">Q8</span>
+        <span class="q-text">What is document fragment and why use it?</span>
+        <span class="q-toggle">+</span>
+      </div>
+      <div class="q-answer">
+        A <code style="background:rgba(124,106,247,0.12);color:var(--accent);padding:1px 6px;border-radius:4px;font-family:monospace;font-size:12px">DocumentFragment</code> is a lightweight container that exists in memory — NOT in the actual DOM.<br><br>
+        <strong>Why use it:</strong> When you're appending many elements, each <code style="font-family:monospace;font-size:12px">appendChild</code> triggers a reflow (expensive!). With DocumentFragment, you build your tree in memory, then append once — only ONE reflow.<br><br>
+        <code style="font-family:'JetBrains Mono',monospace;font-size:12px;background:rgba(0,0,0,0.3);display:block;padding:10px;border-radius:6px;margin-top:8px;color:var(--text)">const frag = document.createDocumentFragment();<br>items.forEach(item => frag.appendChild(createItem(item)));<br>list.appendChild(frag); // ONE reflow ✅</code>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ─── SECTION 9: CHEATSHEET ─── -->
+  <div class="section" id="cheatsheet">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>Quick Cheatsheet 📋</h2>
+    </div>
+
+    <div class="cheat-grid">
+      <div class="cheat-card">
+        <h5>Selecting</h5>
+        <div class="cheat-row"><code>getElementById</code> <span>→ fastest</span></div>
+        <div class="cheat-row"><code>querySelector</code> <span>→ first match</span></div>
+        <div class="cheat-row"><code>querySelectorAll</code> <span>→ NodeList</span></div>
+        <div class="cheat-row"><code>closest('sel')</code> <span>→ ancestor</span></div>
+        <div class="cheat-row"><code>matches('sel')</code> <span>→ boolean</span></div>
+      </div>
+      <div class="cheat-card">
+        <h5>Content</h5>
+        <div class="cheat-row"><code>textContent</code> <span>→ safe text</span></div>
+        <div class="cheat-row"><code>innerHTML</code> <span>→ parse HTML</span></div>
+        <div class="cheat-row"><code>innerText</code> <span>→ visible text</span></div>
+        <div class="cheat-row"><code>getAttribute()</code> <span>→ get attr</span></div>
+        <div class="cheat-row"><code>setAttribute()</code> <span>→ set attr</span></div>
+      </div>
+      <div class="cheat-card">
+        <h5>Classes</h5>
+        <div class="cheat-row"><code>classList.add()</code> <span>→ add class</span></div>
+        <div class="cheat-row"><code>classList.remove()</code> <span>→ remove</span></div>
+        <div class="cheat-row"><code>classList.toggle()</code> <span>→ add/rm</span></div>
+        <div class="cheat-row"><code>classList.contains()</code> <span>→ check</span></div>
+        <div class="cheat-row"><code>classList.replace()</code> <span>→ swap</span></div>
+      </div>
+      <div class="cheat-card">
+        <h5>Create/Insert</h5>
+        <div class="cheat-row"><code>createElement()</code> <span>→ make el</span></div>
+        <div class="cheat-row"><code>append()</code> <span>→ end</span></div>
+        <div class="cheat-row"><code>prepend()</code> <span>→ start</span></div>
+        <div class="cheat-row"><code>before() / after()</code> <span>→ sibling</span></div>
+        <div class="cheat-row"><code>remove()</code> <span>→ delete</span></div>
+      </div>
+      <div class="cheat-card">
+        <h5>Events</h5>
+        <div class="cheat-row"><code>addEventListener</code> <span>→ add</span></div>
+        <div class="cheat-row"><code>removeEventListener</code> <span>→ rm</span></div>
+        <div class="cheat-row"><code>e.target</code> <span>→ clicked el</span></div>
+        <div class="cheat-row"><code>e.currentTarget</code> <span>→ listener el</span></div>
+        <div class="cheat-row"><code>e.preventDefault()</code> <span>→ stop default</span></div>
+      </div>
+      <div class="cheat-card">
+        <h5>Collections</h5>
+        <div class="cheat-row"><code>HTMLCollection</code> <span>→ live, no forEach</span></div>
+        <div class="cheat-row"><code>NodeList</code> <span>→ static, has forEach</span></div>
+        <div class="cheat-row"><code>Array.from(col)</code> <span>→ convert</span></div>
+        <div class="cheat-row"><code>[...nl]</code> <span>→ spread convert</span></div>
+        <div class="cheat-row"><code>childNodes</code> <span>→ live NodeList ⚠️</span></div>
+      </div>
+        <div class="cheat-row"><code>parentElement</code> <span>→ parent</span></div>
+        <div class="cheat-row"><code>children</code> <span>→ child els</span></div>
+        <div class="cheat-row"><code>firstElementChild</code> <span>→ first</span></div>
+        <div class="cheat-row"><code>nextElementSibling</code> <span>→ next</span></div>
+        <div class="cheat-row"><code>cloneNode(true)</code> <span>→ deep copy</span></div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>🎤 Interview Must-Know List:</strong><br>
+      1. DOM is NOT JavaScript — it's a browser Web API<br>
+      2. HTMLCollection is LIVE, NodeList from querySelectorAll is STATIC<br>
+      3. Event delegation uses bubbling — one parent listener for many children<br>
+      4. e.target vs e.currentTarget distinction<br>
+      5. preventDefault ≠ stopPropagation — different purposes!<br>
+      6. textContent is safer than innerHTML for user data<br>
+      7. DocumentFragment for batch DOM insertions (performance)
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  Made with ❤️ for Prashant · ChaiCode WebDev Cohort 2.0 · DOM Notes
+</div>
+
+<script>
+  function toggleQ(header) {
+    const answer = header.nextElementSibling;
+    const toggle = header.querySelector('.q-toggle');
+    const isOpen = answer.classList.contains('open');
+    answer.classList.toggle('open', !isOpen);
+    toggle.textContent = isOpen ? '+' : '×';
+    toggle.classList.toggle('rotated', !isOpen);
+  }
+
+  function togglePhaseInfo(id) {
+    const el = document.getElementById(id);
+    el.style.display = el.style.display === 'none' ? 'block' : 'none';
+  }
+
+  function copyCode(btn) {
+    const pre = btn.closest('.code-wrap').querySelector('pre');
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 1800);
+    });
+  }
+
+  // Active nav pill on scroll
+  const sections = document.querySelectorAll('.section');
+  const pills = document.querySelectorAll('.nav-pill');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 120) current = sec.id;
+    });
+    pills.forEach(pill => {
+      pill.classList.toggle('active', pill.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+</body>
+</html>

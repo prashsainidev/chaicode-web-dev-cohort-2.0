@@ -1,0 +1,756 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Practice 05 — Events</title>
+    <style>
+      :root {
+        --bg: #0e0f12;
+        --card: #1e2029;
+        --border: rgba(255, 255, 255, 0.08);
+        --accent: #7c6af7;
+        --accent2: #4ecdc4;
+        --accent3: #f6c557;
+        --green: #3ddc97;
+        --red: #ff6b6b;
+        --text: #e8e9f0;
+        --muted: #8b8fa8;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: 'Segoe UI', sans-serif;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+
+      header {
+        background: linear-gradient(135deg, #1a0a2e, #0a1a2e);
+        padding: 28px 40px;
+        border-bottom: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .file-badge {
+        background: rgba(124, 106, 247, 0.15);
+        border: 1px solid rgba(124, 106, 247, 0.35);
+        color: var(--accent);
+        font-size: 12px;
+        font-weight: 700;
+        padding: 4px 14px;
+        border-radius: 20px;
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+
+      h1 span {
+        color: var(--accent);
+      }
+
+      .container {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 40px 24px;
+      }
+
+      .section {
+        margin-bottom: 40px;
+      }
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1.2px;
+        color: var(--muted);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      h2::after {
+        content: '';
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+      }
+
+      .task-box {
+        background: #13151a;
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--accent3);
+        border-radius: 12px;
+        padding: 24px 28px;
+        margin-bottom: 16px;
+      }
+
+      .task-num {
+        display: inline-block;
+        background: rgba(246, 197, 87, 0.12);
+        border: 1px solid rgba(246, 197, 87, 0.3);
+        color: var(--accent3);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 2px 10px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+      }
+
+      .task-box h3 {
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .task-box p,
+      .task-box ol,
+      .task-box li {
+        font-size: 14px;
+        color: var(--muted);
+      }
+
+      .task-box ol {
+        padding-left: 18px;
+      }
+
+      .task-box li {
+        margin-bottom: 4px;
+      }
+
+      .task-box strong {
+        color: var(--text);
+      }
+
+      .code-file {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        overflow: hidden;
+        margin-bottom: 12px;
+      }
+
+      .code-header {
+        background: #0f1015;
+        padding: 10px 18px;
+        font-size: 12px;
+        color: var(--muted);
+        font-family: monospace;
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .code-header span {
+        color: var(--accent2);
+      }
+
+      pre {
+        padding: 20px;
+        font-family: 'Courier New', monospace;
+        font-size: 13px;
+        line-height: 1.85;
+        overflow-x: auto;
+      }
+
+      .kw {
+        color: #c792ea;
+      }
+
+      .fn {
+        color: #82aaff;
+      }
+
+      .str {
+        color: #4ecdc4;
+      }
+
+      .cmt {
+        color: #4a5568;
+        font-style: italic;
+      }
+
+      .task-arrow {
+        color: #f6c557;
+        font-weight: 700;
+      }
+
+      .hint-toggle {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+        padding: 7px 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.2s;
+      }
+
+      .hint-toggle:hover {
+        border-color: var(--accent3);
+        color: var(--accent3);
+      }
+
+      .hint-box {
+        display: none;
+        background: rgba(246, 197, 87, 0.05);
+        border: 1px solid rgba(246, 197, 87, 0.2);
+        border-radius: 10px;
+        padding: 16px 20px;
+        margin-top: 10px;
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .hint-box.open {
+        display: block;
+      }
+
+      .hint-box code {
+        font-family: monospace;
+        font-size: 12px;
+        background: rgba(246, 197, 87, 0.1);
+        color: var(--accent3);
+        padding: 1px 6px;
+        border-radius: 4px;
+      }
+
+      .nav-bottom {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0 40px;
+      }
+
+      .nav-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-btn.back {
+        background: transparent;
+        border: 1px solid var(--border);
+        color: var(--muted);
+      }
+
+      /* EVENT LOG */
+      #event-log {
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 18px;
+        max-height: 160px;
+        overflow-y: auto;
+        font-family: monospace;
+        font-size: 12px;
+      }
+
+      .log-entry {
+        padding: 3px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      }
+
+      .log-entry:last-child {
+        border: none;
+      }
+
+      .log-type {
+        display: inline-block;
+        padding: 1px 8px;
+        border-radius: 10px;
+        font-size: 10px;
+        font-weight: 700;
+        margin-right: 8px;
+      }
+
+      .log-click {
+        background: rgba(124, 106, 247, 0.2);
+        color: var(--accent);
+      }
+
+      .log-input {
+        background: rgba(78, 205, 196, 0.2);
+        color: var(--accent2);
+      }
+
+      .log-key {
+        background: rgba(246, 197, 87, 0.2);
+        color: var(--accent3);
+      }
+
+      .log-mouse {
+        background: rgba(61, 220, 151, 0.2);
+        color: var(--green);
+      }
+
+      /* PLAYBOX */
+      .play-box {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      #demo-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 12px 28px;
+        border-radius: 10px;
+        cursor: pointer;
+        font-size: 15px;
+        font-weight: 600;
+        transition: all 0.15s;
+      }
+
+      #demo-btn:active {
+        transform: scale(0.96);
+      }
+
+      #demo-input {
+        width: 100%;
+        padding: 10px 14px;
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 14px;
+        margin-top: 12px;
+      }
+
+      #hover-box {
+        margin-top: 12px;
+        padding: 14px 18px;
+        background: #13151a;
+        border: 2px dashed rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        font-size: 14px;
+        color: var(--muted);
+        text-align: center;
+        transition: all 0.2s;
+        cursor: default;
+      }
+
+      #hover-box.hovered {
+        background: rgba(78, 205, 196, 0.08);
+        border-color: var(--accent2);
+        color: var(--accent2);
+      }
+
+      /* FORM DEMO */
+      #practice-form {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 24px;
+      }
+
+      .form-group {
+        margin-bottom: 16px;
+      }
+
+      .form-group label {
+        display: block;
+        font-size: 13px;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 10px 14px;
+        background: #090a0d;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text);
+        font-size: 14px;
+        transition: border-color 0.2s;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--accent);
+      }
+
+      .form-group input.error {
+        border-color: var(--red);
+      }
+
+      .form-group input.success {
+        border-color: var(--green);
+      }
+
+      .validation-msg {
+        font-size: 12px;
+        margin-top: 4px;
+        display: none;
+      }
+
+      .validation-msg.show {
+        display: block;
+      }
+
+      .validation-msg.err {
+        color: var(--red);
+      }
+
+      .validation-msg.ok {
+        color: var(--green);
+      }
+
+      #submit-btn {
+        background: var(--accent);
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 600;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <div>
+        <div class="file-badge">PRACTICE FILE 05 / 08</div>
+        <h1><span>Events</span> — Listeners &amp; Handling</h1>
+      </div>
+      <div style="font-size: 13px; color: var(--muted)">
+        Topic: addEventListener · event object · preventDefault · common events
+      </div>
+    </header>
+
+    <div class="container">
+      <!-- EVENT EXPLORER -->
+      <div class="section">
+        <h2>👀 Event Explorer — Sab Events Live Dekho</h2>
+        <div class="play-box">
+          <div
+            style="font-size: 14px; color: var(--accent2); font-weight: 600; margin-bottom: 16px"
+          >
+            Interact karo — events log mein dekhte jao
+          </div>
+          <button id="demo-btn">Click Mujhe!</button>
+          <input id="demo-input" placeholder="Kuch type karo — input events dekhna ke liye..." />
+          <div id="hover-box">Is box pe mouse le jao — mouseover event!</div>
+          <div style="margin-top: 16px">
+            <div
+              style="
+                font-size: 12px;
+                color: var(--muted);
+                margin-bottom: 8px;
+                font-family: monospace;
+              "
+            >
+              // Event Log
+            </div>
+            <div id="event-log">
+              <div style="color: var(--muted); font-size: 12px">Events yahan dikhenge...</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASKS -->
+      <div class="section">
+        <h2>✏️ Tasks</h2>
+
+        <!-- TASK 1 -->
+        <div class="task-box">
+          <span class="task-num">TASK 1</span>
+          <h3>addEventListener — Basics</h3>
+          <ol>
+            <li>
+              demo-btn pe <strong>click listener</strong> lagao — console mein
+              <code>"Button click hua!"</code> print karo
+            </li>
+            <li>
+              Agle click pe <strong>event object</strong> print karo — <code>e.type</code>,
+              <code>e.target</code> dekho
+            </li>
+            <li>
+              demo-input pe <strong>input event</strong> lagao — har keypress pe value print ho
+            </li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 1</span></div>
+          <pre><span class="cmt">// ── TASK 1: addEventListener ─────────────────────────</span>
+<span class="kw">const</span> btn   = document.<span class="fn">getElementById</span>(<span class="str">'demo-btn'</span>);
+<span class="kw">const</span> input = document.<span class="fn">getElementById</span>(<span class="str">'demo-input'</span>);
+
+<span class="cmt">// 1. Click listener</span>
+btn.<span class="task-arrow">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>() {
+  console.<span class="fn">log</span>(<span class="str">'Button click hua!'</span>);
+});
+
+<span class="cmt">// 2. Event object explore karo</span>
+btn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(<span class="task-arrow">e</span>) {   <span class="cmt">// 'e' = event object</span>
+  console.<span class="fn">log</span>(<span class="str">'Event type:'</span>,   e.<span class="task-arrow">type</span>);    <span class="cmt">// 'click'</span>
+  console.<span class="fn">log</span>(<span class="str">'Target element:'</span>, e.<span class="task-arrow">target</span>);  <span class="cmt">// button element</span>
+  console.<span class="fn">log</span>(<span class="str">'Mouse X:'</span>,       e.<span class="task-arrow">clientX</span>); <span class="cmt">// cursor ki position</span>
+});
+
+<span class="cmt">// 3. Input event — har change pe fire hota hai</span>
+input.<span class="fn">addEventListener</span>(<span class="str">'input'</span>, <span class="kw">function</span>(e) {
+  console.<span class="fn">log</span>(<span class="str">'Current value:'</span>, e.<span class="task-arrow">/* target.value */</span>);
+});</pre>
+        </div>
+
+        <button class="hint-toggle" onclick="toggleHint('h1')">💡 Hint</button>
+        <div class="hint-box" id="h1">
+          <code>element.addEventListener('event-name', callback)</code><br />
+          Callback mein pehla parameter = event object (e, event, whatever naam do)<br />
+          <code>e.target</code> = jis element pe event hua<br />
+          <code>e.target.value</code> = input ka current value<br />
+          <code>e.type</code> = event ka type ('click', 'input', etc.)
+        </div>
+
+        <!-- TASK 2 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 2</span>
+          <h3>Mouse Events — Hover Effects</h3>
+          <ol>
+            <li>
+              hover-box pe <strong>mouseenter</strong> event — class <code>hovered</code> add karo
+            </li>
+            <li>
+              hover-box pe <strong>mouseleave</strong> event — class <code>hovered</code> remove
+              karo
+            </li>
+            <li>mouseenter ke baad text change karo: <strong>"Mouse andar hai!"</strong></li>
+            <li>mouseleave ke baad text wapas original karo</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 2</span></div>
+          <pre><span class="cmt">// ── TASK 2: Mouse Events ─────────────────────────────</span>
+<span class="kw">const</span> hoverBox = document.<span class="fn">getElementById</span>(<span class="str">'hover-box'</span>);
+<span class="kw">const</span> originalText = hoverBox.<span class="task-arrow">textContent</span>;
+
+hoverBox.<span class="fn">addEventListener</span>(<span class="str">'mouseenter'</span>, <span class="kw">function</span>() {
+  hoverBox.classList.<span class="task-arrow">add</span>(<span class="str">'hovered'</span>);
+  hoverBox.<span class="task-arrow">textContent</span> = <span class="str">'Mouse andar hai! 🎯'</span>;
+});
+
+hoverBox.<span class="fn">addEventListener</span>(<span class="task-arrow">/* 'mouseleave' */</span>, <span class="kw">function</span>() {
+  hoverBox.classList.<span class="task-arrow">/* remove */</span>(<span class="str">'hovered'</span>);
+  hoverBox.<span class="task-arrow">/* textContent */</span> = originalText;
+});</pre>
+        </div>
+
+        <!-- TASK 3 -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 3</span>
+          <h3>Keyboard Events — Enter Press Detect Karo</h3>
+          <ol>
+            <li>demo-input pe <strong>keydown</strong> event lagao</li>
+            <li>
+              Agar Enter key press ho (<code>e.key === 'Enter'</code>) toh
+              <strong>alert dikhao</strong> ya console mein print karo
+            </li>
+            <li>Agar Escape press ho toh <strong>input clear</strong> karo</li>
+          </ol>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header"><span>📄 JavaScript</span><span>TASK 3</span></div>
+          <pre><span class="cmt">// ── TASK 3: Keyboard Events ──────────────────────────</span>
+<span class="kw">const</span> input = document.<span class="fn">getElementById</span>(<span class="str">'demo-input'</span>);
+
+input.<span class="fn">addEventListener</span>(<span class="str">'keydown'</span>, <span class="kw">function</span>(e) {
+  console.<span class="fn">log</span>(<span class="str">'Key pressed:'</span>, e.<span class="task-arrow">key</span>); <span class="cmt">// exact key naam milta hai</span>
+
+  <span class="cmt">// Enter check</span>
+  <span class="kw">if</span> (e.<span class="task-arrow">key</span> === <span class="str">'Enter'</span>) {
+    console.<span class="fn">log</span>(<span class="str">'Enter press hua! Value:'</span>, e.<span class="fn">target</span>.<span class="task-arrow">value</span>);
+  }
+
+  <span class="cmt">// Escape — input clear karo</span>
+  <span class="kw">if</span> (e.<span class="task-arrow">key</span> === <span class="task-arrow">/* 'Escape' */</span>) {
+    e.<span class="fn">target</span>.<span class="task-arrow">value</span> = <span class="str">''</span>;
+  }
+});</pre>
+        </div>
+
+        <!-- TASK 4 — FORM + PREVENTDEFAULT -->
+        <div class="task-box" style="margin-top: 24px">
+          <span class="task-num">TASK 4</span>
+          <h3>Form Validation — preventDefault ka Real Use</h3>
+          <p>
+            Neeche ek form hai. Submit hone par page <strong>reload nahi hona chahiye</strong> —
+            <code>preventDefault()</code> use karo. Validation bhi karo — empty fields submit na ho
+            sakein.
+          </p>
+        </div>
+
+        <div id="practice-form">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" id="name-field" placeholder="Apna naam likho" />
+            <div class="validation-msg" id="name-msg"></div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" id="email-field" placeholder="email@example.com" />
+            <div class="validation-msg" id="email-msg"></div>
+          </div>
+          <button id="submit-btn">Submit</button>
+          <div id="form-result" style="margin-top: 14px; font-size: 14px"></div>
+        </div>
+
+        <div class="code-file">
+          <div class="code-header">
+            <span>📄 JavaScript</span><span>TASK 4 — Form Validation</span>
+          </div>
+          <pre><span class="cmt">// ── TASK 4: Form + preventDefault ───────────────────</span>
+<span class="kw">const</span> submitBtn  = document.<span class="fn">getElementById</span>(<span class="str">'submit-btn'</span>);
+<span class="kw">const</span> nameField  = document.<span class="fn">getElementById</span>(<span class="str">'name-field'</span>);
+<span class="kw">const</span> emailField = document.<span class="fn">getElementById</span>(<span class="str">'email-field'</span>);
+<span class="kw">const</span> result     = document.<span class="fn">getElementById</span>(<span class="str">'form-result'</span>);
+
+submitBtn.<span class="fn">addEventListener</span>(<span class="str">'click'</span>, <span class="kw">function</span>(e) {
+  <span class="cmt">// 1. Page reload rokna — IMPORTANT!</span>
+  <span class="cmt">// (yahan form tag nahi hai, but habit mein rakho)</span>
+
+  <span class="kw">let</span> valid = <span class="task-arrow">true</span>;
+
+  <span class="cmt">// 2. Name validation</span>
+  <span class="kw">if</span> (nameField.<span class="task-arrow">value</span>.<span class="fn">trim</span>() === <span class="str">''</span>) {
+    showError(<span class="str">'name-msg'</span>, <span class="str">'name-field'</span>, <span class="str">'Naam zaroor bharo!'</span>);
+    valid = <span class="task-arrow">false</span>;
+  } <span class="kw">else</span> {
+    showSuccess(<span class="str">'name-msg'</span>, <span class="str">'name-field'</span>, <span class="str">'✓ Sahi hai'</span>);
+  }
+
+  <span class="cmt">// 3. Email validation</span>
+  <span class="kw">if</span> (!emailField.<span class="task-arrow">value</span>.<span class="fn">includes</span>(<span class="str">'@'</span>)) {
+    showError(<span class="str">'email-msg'</span>, <span class="str">'email-field'</span>, <span class="str">'Valid email chahiye!'</span>);
+    valid = <span class="task-arrow">false</span>;
+  } <span class="kw">else</span> {
+    showSuccess(<span class="str">'email-msg'</span>, <span class="str">'email-field'</span>, <span class="str">'✓ Sahi hai'</span>);
+  }
+
+  <span class="cmt">// 4. Sab valid ho toh success message</span>
+  <span class="kw">if</span> (valid) {
+    result.<span class="task-arrow">textContent</span> = <span class="str">'✅ Form submit ho gaya! Name: '</span> + nameField.<span class="fn">value</span>;
+    result.<span class="task-arrow">style</span>.<span class="task-arrow">color</span> = <span class="str">'#3ddc97'</span>;
+  }
+});
+
+<span class="cmt">// Helper functions</span>
+<span class="kw">function</span> <span class="fn">showError</span>(msgId, fieldId, msg) {
+  <span class="kw">const</span> m = document.<span class="fn">getElementById</span>(msgId);
+  m.<span class="task-arrow">textContent</span> = msg; m.className = <span class="str">'validation-msg show err'</span>;
+  document.<span class="fn">getElementById</span>(fieldId).className = <span class="str">'error'</span>;
+}
+<span class="kw">function</span> <span class="fn">showSuccess</span>(msgId, fieldId, msg) {
+  <span class="kw">const</span> m = document.<span class="fn">getElementById</span>(msgId);
+  m.<span class="task-arrow">textContent</span> = msg; m.className = <span class="str">'validation-msg show ok'</span>;
+  document.<span class="fn">getElementById</span>(fieldId).className = <span class="str">'success'</span>;
+}</pre>
+        </div>
+      </div>
+
+      <!-- SELF CHECK -->
+      <div
+        style="
+          background: rgba(61, 220, 151, 0.06);
+          border: 1px solid rgba(61, 220, 151, 0.2);
+          border-radius: 12px;
+          padding: 20px 24px;
+          margin: 4px 0 20px;
+        "
+      >
+        <div
+          style="
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--green);
+            margin-bottom: 12px;
+          "
+        >
+          ✅ Self-Check
+        </div>
+        <ul style="color: var(--muted); font-size: 14px; padding-left: 18px; line-height: 2.2">
+          <li>addEventListener ka syntax bina dekhe likh sakte ho? ✓</li>
+          <li>Event object (e) se target, type, key, value nikalna aata hai? ✓</li>
+          <li>preventDefault kab aur kyun use karte hain — samajh aaya? ✓</li>
+          <li>click, input, keydown, mouseenter, mouseleave — sab use kiye? ✓</li>
+        </ul>
+      </div>
+
+      <div class="nav-bottom">
+        <a href="04-create-insert.html" class="nav-btn back">← Back</a>
+        <a href="06-event-delegation.html" class="nav-btn">Next: Event Delegation →</a>
+      </div>
+    </div>
+
+    <script>
+      // Live event logger
+      const log = document.getElementById('event-log');
+      function addLog(type, msg) {
+        const entry = document.createElement('div');
+        entry.className = 'log-entry';
+        entry.innerHTML = `<span class="log-type log-${type}">${type.toUpperCase()}</span><span style="color:var(--text)">${msg}</span>`;
+        log.prepend(entry);
+        if (log.children.length > 12) log.lastChild.remove();
+      }
+      document
+        .getElementById('demo-btn')
+        .addEventListener('click', e =>
+          addLog('click', `Button clicked — e.clientX: ${e.clientX}`)
+        );
+      document
+        .getElementById('demo-input')
+        .addEventListener('input', e => addLog('input', `value: "${e.target.value}"`));
+      document
+        .getElementById('demo-input')
+        .addEventListener('keydown', e => addLog('key', `key: "${e.key}"`));
+      document
+        .getElementById('hover-box')
+        .addEventListener('mouseenter', () => addLog('mouse', 'mouseenter — mouse andar aaya'));
+      document
+        .getElementById('hover-box')
+        .addEventListener('mouseleave', () => addLog('mouse', 'mouseleave — mouse bahar gaya'));
+      function toggleHint(id) {
+        document.getElementById(id).classList.toggle('open');
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,107 @@
+title Fitness_Influencer_Coaching_Platform_ER_Diagram
+notation crows-foot
+colorMode pastel
+styleMode shadow
+typeface mono
+
+trainer [color: teal] {
+  trainer_id number pk
+  full_name string
+  specialty string
+  instagram_handle string
+}
+
+client [color: green] {
+  client_id number pk
+  full_name string
+  phone_number string
+  primary_goal string
+  join_source string
+}
+
+coaching_plan [color: blue] {
+  coaching_plan_id number pk
+  trainer_id number fk
+  plan_name string
+  plan_type string
+  duration_weeks number
+  price_amount number
+}
+
+client_subscription [color: orange] {
+  client_subscription_id number pk
+  client_id number fk
+  coaching_plan_id number fk
+  start_date date
+  end_date date
+  subscription_status string
+  amount_charged number
+}
+
+consultation_session [color: pink] {
+  consultation_session_id number pk
+  trainer_id number fk
+  client_id number fk
+  client_subscription_id number fk
+  session_type string
+  session_mode string
+  scheduled_at datetime
+  session_status string
+}
+
+checkin_report [color: yellow] {
+  checkin_report_id number pk
+  client_subscription_id number fk
+  week_number number
+  checkin_status string
+  energy_level string
+  adherence_note string
+  submitted_at datetime
+}
+
+progress_record [color: yellow] {
+  progress_record_id number pk
+  checkin_report_id number fk unique
+  weight_kg number
+  waist_cm number
+  chest_cm number
+  body_fat_percent number
+}
+
+trainer_note [color: purple] {
+  trainer_note_id number pk
+  trainer_id number fk
+  client_id number fk
+  consultation_session_id number fk
+  checkin_report_id number fk
+  note_type string
+  note_text string
+  created_at datetime
+}
+
+payment_record [color: gray] {
+  payment_record_id number pk
+  client_id number fk
+  client_subscription_id number fk
+  consultation_session_id number fk
+  amount_paid number
+  payment_for string
+  payment_status string
+  paid_at datetime
+}
+
+coaching_plan.trainer_id > trainer.trainer_id: [color: teal]
+client_subscription.client_id > client.client_id: [color: green]
+client_subscription.coaching_plan_id > coaching_plan.coaching_plan_id: [color: blue]
+consultation_session.trainer_id > trainer.trainer_id: [color: teal]
+consultation_session.client_id > client.client_id: [color: green]
+consultation_session.client_subscription_id > client_subscription.client_subscription_id: [color: orange]
+checkin_report.client_subscription_id > client_subscription.client_subscription_id: [color: orange]
+progress_record.checkin_report_id > checkin_report.checkin_report_id: [color: yellow]
+trainer_note.trainer_id > trainer.trainer_id: [color: teal]
+trainer_note.client_id > client.client_id: [color: green]
+trainer_note.consultation_session_id > consultation_session.consultation_session_id: [color: pink]
+trainer_note.checkin_report_id > checkin_report.checkin_report_id: [color: yellow]
+payment_record.client_id > client.client_id: [color: green]
+payment_record.client_subscription_id > client_subscription.client_subscription_id: [color: orange]
+payment_record.consultation_session_id > consultation_session.consultation_session_id: [color: pink]
