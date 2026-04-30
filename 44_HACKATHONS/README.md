@@ -12,7 +12,7 @@ Hackathon code should usually live in a dedicated GitHub repository because it i
 
 | Hackathon | Start | End | GitHub Repo | Live Demo | Demo Video | Submission Link | Status |
 | --------- | ----- | --- | ----------- | --------- | ---------- | --------------- | ------ |
-| Book My Ticket | `11 Apr 2026, 11:00 PM` | `15 Apr 2026, 11:59 PM` | [Add Repo Link](https://github.com/your-username/book-my-ticket) | [Add Hosted Link](https://your-project-url.example.com) | [Add Demo Video](https://your-video-link.example.com) | [Add Submission Link](https://your-submission-link.example.com) | In progress |
+| [Book My Ticket](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/44_HACKATHONS/assignments/book-my-ticket.md) | `11 Apr 2026, 11:00 PM` | `15 Apr 2026, 11:59 PM` | [Pending Repo](#) | [Pending Hosted Link](#) | [Pending Video](#) | [Pending Submission](#) | In progress |
 
 ---
 

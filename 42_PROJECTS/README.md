@@ -24,8 +24,8 @@ Inside this repo, `42_PROJECTS/` should stay minimal:
 
 | Project | Type | Start | Due | GitHub Repo | Live Demo | Demo Video | Submission Link | Status |
 | ------- | ---- | ----- | --- | ----------- | --------- | ---------- | --------------- | ------ |
-| Build Your Own ChaiTailwind | Cohort project | `19 Mar 2026, 9:00 PM` | `10 May 2026, 11:59 PM` | [Add Repo Link](https://github.com/your-username/build-your-own-chaitailwind) | [Add Hosted Link](https://your-project-url.example.com) | [Add Demo Video](https://your-video-link.example.com) | [Add Submission Link](https://your-submission-link.example.com) | In progress |
-| Cohort 26 Buildathon | Cohort project | `28 Feb 2026, 8:00 PM` | `10 May 2026, 11:59 PM` | [Add Repo Link](https://github.com/your-username/cohort-26-buildathon) | [Add Hosted Link](https://your-project-url.example.com) | [Add Demo Video](https://your-video-link.example.com) | [Add Submission Link](https://your-submission-link.example.com) | In progress |
+| [Cohort 26 Buildathon](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/42_PROJECTS/cohort-projects/cohort-26-buildathon.md) | Cohort project | `28 Feb 2026, 8:00 PM` | `10 May 2026, 11:59 PM` | [Pending Repo](#) | [Pending Hosted Link](#) | [Pending Video](#) | [Pending Submission](#) | In progress |
+| [Build Your Own ChaiTailwind](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/42_PROJECTS/cohort-projects/build-your-own-chaitailwind.md) | Cohort project | `19 Mar 2026, 9:00 PM` | `10 May 2026, 11:59 PM` | [Pending Repo](#) | [Pending Hosted Link](#) | [Pending Video](#) | [Pending Submission](#) | In progress |
 
 ---
 
