@@ -65,6 +65,7 @@ The repository mirrors the actual cohort dashboard to keep the learning path cle
 03_BUILDING_BLOCKS/            -> HTML and CSS foundations
 04_INTERACTING_WITH_BROWSER/   -> browser JavaScript and async concepts
 05_BACKEND_ENGINEERING/        -> backend engineering and Node.js classes
+06_FRONTEND_REACT/             -> frontend engineering and React.js ecosystem
 ```
 
 ### Support & Revision
@@ -126,8 +127,9 @@ It starts with fundamental workflows and builds up to complex backend systems.
 - `03_BUILDING_BLOCKS`: HTML and CSS logic.
 - `04_INTERACTING_WITH_BROWSER`: Advanced JavaScript and async execution.
 - `05_BACKEND_ENGINEERING`: Servers, databases, and system architecture.
+- `06_FRONTEND_REACT`: React.js, UI engineering, and frontend frameworks.
 
-*(Note: Folders `06` through `30` are intentionally reserved here for upcoming core modules like React, Next.js, and Fullstack Projects).*
+*(Note: Folders `07` through `30` are intentionally reserved here for upcoming core modules like Next.js and Fullstack Projects).*
 
 ### `31_T_CLASSES`
 
