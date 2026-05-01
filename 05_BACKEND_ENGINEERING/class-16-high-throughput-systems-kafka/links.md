@@ -21,9 +21,9 @@ Status: Completed
 ## Class Code
 
 - Gist reference -> `https://gist.github.com/piyushgarg-dev/32cadf6420c452b66a9a6d977ade0b01`
-- Repo `class-code/` snapshot will be added if it belongs in this repo
+- repo class-code snapshot -> `class-code/kafka-learning`
 
-Status: Pending
+Status: Completed
 
 ---
 
@@ -37,9 +37,10 @@ Status: Pending
 
 ## Assignment
 
-- Assignment details are not documented yet
+- peer-review project documentation -> `assignments/live-location-tracker.md`
+- this assignment involves building a real-time event-driven location tracking system using Kafka
 
-Status: Pending
+Status: Completed
 
 ---
 

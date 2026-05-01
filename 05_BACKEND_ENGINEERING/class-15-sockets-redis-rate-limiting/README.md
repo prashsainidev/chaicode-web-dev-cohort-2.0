@@ -43,6 +43,15 @@ Notebook-style markdown notes for this class are added in:
 
 ---
 
+## Peer Review Assignment
+
+The main project assignment for this module is documented here:
+- [1 Million Checkboxes Assignment](assignments/1-million-checkboxes.md)
+
+This full-stack project is designed to test WebSocket stability, Redis Pub/Sub integration, and Redis-backed rate limiting. It acts as a major cohort peer-review submission.
+
+---
+
 ## Current Status
 
 - class attended

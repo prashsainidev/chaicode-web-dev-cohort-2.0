@@ -42,6 +42,15 @@ Notebook-style markdown notes for this class are added in:
 
 ---
 
+## Peer Review Assignment
+
+The main project assignment for this module is documented here:
+- [Live Location Tracker Assignment](assignments/live-location-tracker.md)
+
+This backend project tests event-driven architecture by separating location ingestion (WebSocket server) from location persistence (Database processor) using a Kafka message broker. It acts as a major cohort peer-review submission.
+
+---
+
 ## Current Status
 
 - class attended

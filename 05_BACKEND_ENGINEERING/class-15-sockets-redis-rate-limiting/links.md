@@ -20,10 +20,9 @@ Status: Completed
 
 ## Class Code
 
-- Local class code path will be added if shared
-- Repo `class-code/` snapshot will be added if it belongs in this repo
+- repo class-code snapshot -> `class-code/websocket-1-million-checkboxes-ref`
 
-Status: Pending
+Status: Completed
 
 ---
 
@@ -37,9 +36,10 @@ Status: Pending
 
 ## Assignment
 
-- Assignment details are not documented yet
+- peer-review project documentation -> `assignments/1-million-checkboxes.md`
+- this assignment involves building the real-time checkbox app using Redis and WebSockets
 
-Status: Pending
+Status: Completed
 
 ---
 

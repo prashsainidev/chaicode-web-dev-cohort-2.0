@@ -25,7 +25,8 @@ Status: Completed
 - temporary class code is kept in a separate workspace outside this repo
 - temporary OIDC auth code is kept in a separate workspace outside this repo
 - reference repo -> `https://github.com/piyushgarg-dev/oidc-auth`
-- repo class-code snapshot -> `class-code/oidc-auth-main`
+- repo class-code snapshot -> `class-code/oidc-auth-reference`
+- my personal OIDC implementation -> `https://github.com/prashsainidev/oidc-implementation`
 - main explored WebSocket files: `server.js`, `script.js`, `index.html`
 - main explored OIDC file: `src/index.ts`
 
@@ -62,5 +63,5 @@ Status: Pending
 ## Extra Notes
 
 - this update is based on the actual WebSocket and OIDC code explored outside this repo
-- the class-code folder now also contains `oidc-auth-main`, so repo docs are aligned with what was added locally
+- the class-code folder now also contains `oidc-auth-reference`, so repo docs are aligned with what was added locally
 - after repo docs are finalized, the temporary external code folders can be cleaned separately

@@ -53,7 +53,7 @@ This class focused mainly on understanding real-time communication in Node.js th
 
 The main code explored for this class is currently kept in separate workspaces outside this repo:
 
-- `class-code/oidc-auth-main`
+- `class-code/oidc-auth-reference`
 
 Notebook-style markdown notes for this class are added in:
 
