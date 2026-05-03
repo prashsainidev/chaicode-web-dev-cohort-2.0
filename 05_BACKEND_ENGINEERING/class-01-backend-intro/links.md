@@ -38,6 +38,8 @@ Status: Not applicable
 
 Status: In progress
 
+
+
 ---
 
 ## Masterji
@@ -45,5 +47,3 @@ Status: In progress
 - Task: Backend Basics
 
 Status: In progress
-
-

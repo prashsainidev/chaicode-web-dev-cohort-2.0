@@ -8,7 +8,7 @@ This file tracks my cohort progress in a clearer way so I can see:
 - what is practiced
 - how blog writing is growing alongside the classes
 
-Last updated: April 30, 2026
+Last updated: May 3, 2026
 
 ---
 
@@ -105,6 +105,15 @@ Note:
 | OpenID Connect Cont. & Intro to WebSockets | 19 Apr 2026, Sun, 07:45 PM | Done | Not applicable | Done | Done        | Pending | Not applicable    |
 | Sockets, Redis, Rate Limiting: 1 Million Checkboxes | 25 Apr 2026, Sat, 07:45 PM | Done | Not applicable | Done | Pending | Pending | Pending |
 | High Throughput Systems - Kafka: Live Location Tracker | 26 Apr 2026, Sun, 07:45 PM | Done | Not applicable | Done | Pending | Pending | Pending |
+
+---
+
+## 06 Building Modern Frontends
+
+| Class                    | Date                       | Live     | Rewatch        | Notes   | Practice    | Assignment  | Blog    |
+| ------------------------ | -------------------------- | -------- | -------------- | ------- | ----------- | ----------- | ------- |
+| Chai Aur React (Part 1)  | 02 May 2026, Fri, 07:45 PM | Done     | Not applicable | Done    | In progress | In progress | Pending |
+| Chai Aur React (Part 2)  | 03 May 2026, Sat, 07:45 PM | Upcoming | Upcoming       | Pending | Pending     | Pending     | Pending |
 
 ---
 
