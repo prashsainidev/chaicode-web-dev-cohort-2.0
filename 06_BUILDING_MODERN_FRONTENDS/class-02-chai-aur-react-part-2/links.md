@@ -11,23 +11,24 @@
 
 ## Notes
 
-- link will be added post-class
+- Notes are available in the `class-notes` folder.
 
-Status: Pending
+Status: Done
 
 ---
 
 ## Class Code
 
-- class code reference will be added post-class
+- Hitesh Sir's GitHub / Repo Link: [https://react.chaicode.com/](https://react.chaicode.com/)
+- Code has been dumped into the `class-code` folder.
 
-Status: Pending
+Status: Done
 
 ---
 
 ## Resources
 
-- resource links will be added post-class
+- Eraser / TLDraw Whiteboard Link: **Not provided yet**
 
 Status: Pending
 

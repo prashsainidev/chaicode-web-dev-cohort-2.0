@@ -2,34 +2,38 @@
 
 ## Overview
 
-This frontend class is scheduled for Sunday, `3 May 2026`.
+This frontend class was held on Sunday, `3 May 2026`.
 
 The topic for this session is `Chai Aur React (Part 2)`.
 
-*This is a placeholder README. It will be updated with actual learnings and notes once the live class is completed.*
+This folder contains all the materials, notes, and my personal practice code related to this live class.
 
 ---
 
 ## What I Learned
 
-- details will be updated post-class
+- Deep dive into React fundamentals (Continuing from Part 1).
+- (*Will update with specific topics as I complete my practice*)
 
 ---
 
-## Class Notes
+## Folder Structure
 
-- class notes will be added post-class
+- `class-code/`: Contains the exact raw code provided by Hitesh Sir during the live session.
+- `class-notes/`: Contains the notes taken during the class.
+- `practice/`: My personal playground where I am currently practicing the concepts.
+- `assignments/`: Small in-class assignments.
 
 ---
 
 ## Current Status
 
-- class scheduled
-- topic confirmed as `Chai Aur React (Part 2)`
-- pending actual class attendance
+- **Live Class**: Attended (Done)
+- **Class Code**: Dumped (Done)
+- **Practice**: In Progress
 
 ---
 
-## Practice Direction
+## Reference Links
 
-- practice details will be added post-class
+Check `links.md` for the official GitHub repo and other resource links provided during the class.

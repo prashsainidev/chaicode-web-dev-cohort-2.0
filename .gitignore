@@ -49,5 +49,6 @@ __MACOSX/
 100_LOCAL_ONLY/
 43_BLOGS/txt/
 
-# Large personal file to keep out of Git
-31_T_CLASSES/t4-js-in-action/class-notes/The_Format_of_Our_Memory_lyst1771580699965.pdf
+# Local SOP Checklists
+00_TRACKING/CLASS_UPDATE_CHECKLIST.md
+

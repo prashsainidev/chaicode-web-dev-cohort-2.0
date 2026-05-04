@@ -55,9 +55,18 @@ Status: Completed
 
 ---
 
-## Assignment
+## Assignment & MasterJi Projects
 
 - Added frontend follow-up brief -> [Open Assignment](./assignments/react-freeapi-warmup.md)
+- **MasterJi Dashboard Projects**: Received 8 FreeAPI projects (Users, Meals, Cats, Jokes, Quotes, Products, YouTube, Auth).
+- [03. Random Users UI](../../42_PROJECTS/cohort-projects/03-freeapi-random-users-ui.md)
+- [04. Meals Listing Interface](../../42_PROJECTS/cohort-projects/04-freeapi-meals-listing-interface.md)
+- [05. Random Cat Viewer](../../42_PROJECTS/cohort-projects/05-freeapi-random-cat-viewer.md)
+- [06. Jokes Viewer Application](../../42_PROJECTS/cohort-projects/06-freeapi-jokes-viewer-application.md)
+- [07. Quotes Listing Application](../../42_PROJECTS/cohort-projects/07-freeapi-quotes-listing-application.md)
+- [08. Product Listing Interface](../../42_PROJECTS/cohort-projects/08-freeapi-product-listing-interface.md)
+- [09. YouTube Videos Listing UI](../../42_PROJECTS/cohort-projects/09-freeapi-youtube-videos-listing-ui.md)
+- [10. Build an Authentication App](../../42_PROJECTS/cohort-projects/10-freeapi-build-an-authentication-app.md)
 - Goal: use React basics from this class to build a small API-driven UI with FreeAPI
 
 Status: In progress
