@@ -3,7 +3,7 @@ import { useState } from 'react';
 function App() {
   return (
     <>
-      <h1>Hello I'm App.jsx</h1>
+      <h1 style={{ color: 'purple', backgroundColor: 'green' }}>Hello I'm App component from src folder.</h1>
     </>
   );
 }
