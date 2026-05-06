@@ -6,9 +6,9 @@ Use this folder for lightweight references, summaries, and links. If a project i
 
 ## Personal Project Index
 
-| Project | Type | GitHub Repo | Live Demo | Demo Video | Notes |
-| ------- | ---- | ----------- | --------- | ---------- | ----- |
-| [Sample Portfolio Project](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/42_PROJECTS/personal-projects/01-sample-portfolio-project.md) | Personal / Portfolio | [Pending Repo](#) | [Pending Hosted Link](#) | [Pending Video](#) | Replace this row with your actual project details |
+| Project | Type | GitHub Repo | Live Demo | Demo Video | Build Status | Notes |
+| ------- | ---- | ----------- | --------- | ---------- | ------------ | ----- |
+| [Sample Portfolio Project](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/42_PROJECTS/personal-projects/01-sample-portfolio-project.md) | Personal / Portfolio | [Pending Repo](#) | [Pending Hosted Link](#) | [Pending Video](#) | Pending | Replace this row with your actual project details |
 
 ---
 
