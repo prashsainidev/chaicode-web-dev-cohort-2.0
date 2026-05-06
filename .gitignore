@@ -52,3 +52,5 @@ __MACOSX/
 # Local SOP Checklists
 00_TRACKING/CLASS_UPDATE_CHECKLIST.md
 
+# Large files
+*.pdf
