@@ -16,5 +16,5 @@ Design a simple interface that updates the displayed image when new data is fetc
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

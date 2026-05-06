@@ -16,5 +16,5 @@ Design the interface in a way that makes browsing meals simple and visually clea
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

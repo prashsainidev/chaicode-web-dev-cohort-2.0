@@ -16,5 +16,5 @@ Your application should fetch user data from the API and present it in a structu
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

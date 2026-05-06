@@ -16,5 +16,5 @@ Focus on building a clean layout that represents video cards properly.
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

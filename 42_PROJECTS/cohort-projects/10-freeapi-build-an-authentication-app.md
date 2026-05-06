@@ -2,6 +2,7 @@
 
 **Cohort**: Web Dev Cohort 2026
 **Timeline**: Start: 2 May 2026, 8:00 pm | Due: 6 May 2026, 11:59 pm
+**Status**: Completed (Deployed to Vercel)
 
 ## Description
 In this project, you will build a simple authentication-based application using HTML, CSS/Tailwind, and JavaScript.
@@ -46,16 +47,16 @@ Use this endpoint to show the details of the currently logged-in user.
 
 ## What To Build
 Your application should include:
-- Register screen or form
-- Login screen or form
-- Logout button
-- Current user profile/details section
-- Proper success and error messages
-- Clean UI using CSS or Tailwind
-- Basic loading states while API requests are running
+* Register screen or form
+* Login screen or form
+* Logout button
+* Current user profile/details section
+* Proper success and error messages
+* Clean UI using CSS or Tailwind
+* Basic loading states while API requests are running
 
 The goal is to understand how frontend authentication works with API requests, sessions, cookies, and logged-in user state.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

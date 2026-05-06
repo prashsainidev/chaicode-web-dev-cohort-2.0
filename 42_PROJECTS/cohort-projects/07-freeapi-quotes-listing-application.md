@@ -16,5 +16,5 @@ You may design this as a quote gallery or a quote generator-style interface.
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

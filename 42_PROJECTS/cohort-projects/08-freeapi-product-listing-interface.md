@@ -16,5 +16,5 @@ Focus on designing a clean UI that presents product information clearly.
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link

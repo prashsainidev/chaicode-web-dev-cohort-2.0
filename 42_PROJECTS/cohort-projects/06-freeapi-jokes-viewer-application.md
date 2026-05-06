@@ -16,5 +16,5 @@ Design the UI in a way that makes browsing jokes simple and engaging.
 You may use CSS or Tailwind CSS for styling.
 
 ## Submit
-- Live hosted project link
-- Public GitHub repository link
+* Live hosted project link
+* Public GitHub repository link
