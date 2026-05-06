@@ -260,7 +260,7 @@ This section begins the next backend publishing wave and focuses on understandin
 | 41  | [What Is Node.js? JavaScript on the Server Explained](https://prashsainidev.hashnode.dev/what-is-nodejs)    | Draft ready |
 | 42  | [Setting Up Your First Node.js Application Step-by-Step](https://prashsainidev.hashnode.dev/first-nodejs-application) | Draft ready |
 
-Hashnode series publishing for this section starts soon.
+[Open the Node.js Foundations series](https://prashsainidev.hashnode.dev/series/nodejs-foundations)
 
 ---
 
@@ -275,7 +275,7 @@ This section explains why Node.js feels fast, how async flow works, and how mult
 | 45  | [How Node.js Handles Multiple Requests with a Single Thread](https://prashsainidev.hashnode.dev/how-nodejs-handles-multiple-requests) | Draft ready |
 | 46  | [Async Code in Node.js: Callbacks and Promises](https://prashsainidev.hashnode.dev/nodejs-callbacks-and-promises)              | Draft ready |
 
-Hashnode series publishing for this section starts soon.
+[Open the Node.js Concurrency And Async Flow series](https://prashsainidev.hashnode.dev/series/nodejs-concurrency-and-async-flow)
 
 ---
 
@@ -289,7 +289,7 @@ This section moves into practical Express backend flow.
 | 48  | [URL Parameters vs Query Strings in Express.js](https://prashsainidev.hashnode.dev/express-route-params-vs-query-strings)      | Draft ready |
 | 49  | [What Is Middleware in Express and How It Works](https://prashsainidev.hashnode.dev/express-middleware-explained)     | Draft ready |
 
-Hashnode series publishing for this section starts soon.
+[Open the Express.js Fundamentals series](https://prashsainidev.hashnode.dev/series/expressjs-fundamentals)
 
 ---
 
@@ -303,7 +303,7 @@ This section connects route design with authentication thinking.
 | 51  | [JWT Authentication in Node.js Explained Simply](https://prashsainidev.hashnode.dev/jwt-authentication-nodejs)                      | Draft ready |
 | 52  | [Sessions vs JWT vs Cookies: Understanding Authentication Approaches](https://prashsainidev.hashnode.dev/sessions-vs-jwt-vs-cookies) | Draft ready |
 
-Hashnode series publishing for this section starts soon.
+[Open the API Design And Authentication series](https://prashsainidev.hashnode.dev/series/api-design-and-authentication)
 
 ---
 
@@ -316,7 +316,7 @@ This section continues backend learning into uploads, storage structure, and sta
 | 53  | [Handling File Uploads in Express with Multer](https://prashsainidev.hashnode.dev/file-uploads-express-multer)       | Draft ready |
 | 54  | [Storing Uploaded Files and Serving Them in Express](https://prashsainidev.hashnode.dev/storing-and-serving-uploads-express) | Draft ready |
 
-Hashnode series publishing for this section starts soon.
+[Open the File Uploads And Storage series](https://prashsainidev.hashnode.dev/series/file-uploads-and-storage)
 
 ---
 

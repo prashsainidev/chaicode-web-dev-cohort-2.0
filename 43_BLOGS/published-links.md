@@ -170,7 +170,7 @@ Series Status: Complete
 
 ## Node.js Foundations
 
-Series: Publishing soon
+Series: [Node.js Foundations](https://prashsainidev.hashnode.dev/series/nodejs-foundations)
 
 Series Status: Drafts ready
 
@@ -183,7 +183,7 @@ Series Status: Drafts ready
 
 ## Node.js Concurrency And Async Flow
 
-Series: Publishing soon
+Series: [Node.js Concurrency & Async Flow](https://prashsainidev.hashnode.dev/series/nodejs-concurrency-and-async-flow)
 
 Series Status: Drafts ready
 
@@ -198,7 +198,7 @@ Series Status: Drafts ready
 
 ## Express.js Fundamentals
 
-Series: Publishing soon
+Series: [Express.js Fundamentals](https://prashsainidev.hashnode.dev/series/expressjs-fundamentals)
 
 Series Status: Drafts ready
 
@@ -212,7 +212,7 @@ Series Status: Drafts ready
 
 ## API Design And Authentication
 
-Series: Publishing soon
+Series: [API Design & Authentication](https://prashsainidev.hashnode.dev/series/api-design-and-authentication)
 
 Series Status: Drafts ready
 
@@ -226,7 +226,7 @@ Series Status: Drafts ready
 
 ## File Uploads And Storage
 
-Series: Publishing soon
+Series: [File Uploads & Storage](https://prashsainidev.hashnode.dev/series/file-uploads-and-storage)
 
 Series Status: Drafts ready
 
