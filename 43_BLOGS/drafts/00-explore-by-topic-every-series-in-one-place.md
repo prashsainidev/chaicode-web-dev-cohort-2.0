@@ -185,7 +185,7 @@ This upcoming series focuses on what Node.js is and how to set up the first Node
 
 Best for readers moving from browser-side JavaScript into backend runtime understanding.
 
-Publishing status: draft-ready and publishing soon.
+[Open the Node.js Foundations series](https://prashsainidev.hashnode.dev/series/nodejs-foundations)
 
 * * *
 
@@ -197,7 +197,7 @@ This upcoming series covers blocking vs non-blocking behavior, multiple requests
 
 Best for readers who want a stronger backend mental model before Express-heavy work.
 
-Publishing status: draft-ready and publishing soon.
+[Open the Node.js Concurrency And Async Flow series](https://prashsainidev.hashnode.dev/series/nodejs-concurrency-and-async-flow)
 
 * * *
 
@@ -209,7 +209,7 @@ This upcoming series covers creating routes, using URL params and query strings,
 
 Best for readers who have basic Node.js context and want to move into real Express flow.
 
-Publishing status: draft-ready and publishing soon.
+[Open the Express.js Fundamentals series](https://prashsainidev.hashnode.dev/series/expressjs-fundamentals)
 
 * * *
 
@@ -221,7 +221,7 @@ This upcoming series covers REST structure, JWT basics, and session vs JWT vs co
 
 Best for readers who want cleaner backend architecture thinking.
 
-Publishing status: draft-ready and publishing soon.
+[Open the API Design And Authentication series](https://prashsainidev.hashnode.dev/series/api-design-and-authentication)
 
 * * *
 
@@ -233,7 +233,7 @@ This upcoming series covers Multer-based uploads and the logic of storing and se
 
 Best for readers who want more practical backend feature-building after routes and middleware.
 
-Publishing status: draft-ready and publishing soon.
+[Open the File Uploads And Storage series](https://prashsainidev.hashnode.dev/series/file-uploads-and-storage)
 
 * * *
 

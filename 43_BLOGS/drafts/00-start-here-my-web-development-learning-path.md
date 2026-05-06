@@ -257,8 +257,8 @@ This section begins the next backend publishing wave and focuses on understandin
 
 | #   | Article                                                | Status      |
 | --- | ------------------------------------------------------ | ----------- |
-| 41  | What Is Node.js? JavaScript on the Server Explained    | Draft ready |
-| 42  | Setting Up Your First Node.js Application Step-by-Step | Draft ready |
+| 41  | [What Is Node.js? JavaScript on the Server Explained](https://prashsainidev.hashnode.dev/what-is-nodejs)    | Draft ready |
+| 42  | [Setting Up Your First Node.js Application Step-by-Step](https://prashsainidev.hashnode.dev/first-nodejs-application) | Draft ready |
 
 Hashnode series publishing for this section starts soon.
 
@@ -270,10 +270,10 @@ This section explains why Node.js feels fast, how async flow works, and how mult
 
 | #   | Article                                                    | Status      |
 | --- | ---------------------------------------------------------- | ----------- |
-| 43  | Why Node.js Is Perfect for Building Fast Web Applications  | Draft ready |
-| 44  | Blocking vs Non-Blocking Code in Node.js                   | Draft ready |
-| 45  | How Node.js Handles Multiple Requests with a Single Thread | Draft ready |
-| 46  | Async Code in Node.js: Callbacks and Promises              | Draft ready |
+| 43  | [Why Node.js Is Perfect for Building Fast Web Applications](https://prashsainidev.hashnode.dev/why-nodejs-is-fast-for-web-apps)  | Draft ready |
+| 44  | [Blocking vs Non-Blocking Code in Node.js](https://prashsainidev.hashnode.dev/blocking-vs-non-blocking-nodejs)                   | Draft ready |
+| 45  | [How Node.js Handles Multiple Requests with a Single Thread](https://prashsainidev.hashnode.dev/how-nodejs-handles-multiple-requests) | Draft ready |
+| 46  | [Async Code in Node.js: Callbacks and Promises](https://prashsainidev.hashnode.dev/nodejs-callbacks-and-promises)              | Draft ready |
 
 Hashnode series publishing for this section starts soon.
 
@@ -285,9 +285,9 @@ This section moves into practical Express backend flow.
 
 | #   | Article                                            | Status      |
 | --- | -------------------------------------------------- | ----------- |
-| 47  | Creating Routes and Handling Requests with Express | Draft ready |
-| 48  | URL Parameters vs Query Strings in Express.js      | Draft ready |
-| 49  | What Is Middleware in Express and How It Works     | Draft ready |
+| 47  | [Creating Routes and Handling Requests with Express](https://prashsainidev.hashnode.dev/express-routes-and-requests) | Draft ready |
+| 48  | [URL Parameters vs Query Strings in Express.js](https://prashsainidev.hashnode.dev/express-route-params-vs-query-strings)      | Draft ready |
+| 49  | [What Is Middleware in Express and How It Works](https://prashsainidev.hashnode.dev/express-middleware-explained)     | Draft ready |
 
 Hashnode series publishing for this section starts soon.
 
@@ -299,9 +299,9 @@ This section connects route design with authentication thinking.
 
 | #   | Article                                                             | Status      |
 | --- | ------------------------------------------------------------------- | ----------- |
-| 50  | REST API Design Made Simple with Express.js                         | Draft ready |
-| 51  | JWT Authentication in Node.js Explained Simply                      | Draft ready |
-| 52  | Sessions vs JWT vs Cookies: Understanding Authentication Approaches | Draft ready |
+| 50  | [REST API Design Made Simple with Express.js](https://prashsainidev.hashnode.dev/rest-api-design-expressjs)                         | Draft ready |
+| 51  | [JWT Authentication in Node.js Explained Simply](https://prashsainidev.hashnode.dev/jwt-authentication-nodejs)                      | Draft ready |
+| 52  | [Sessions vs JWT vs Cookies: Understanding Authentication Approaches](https://prashsainidev.hashnode.dev/sessions-vs-jwt-vs-cookies) | Draft ready |
 
 Hashnode series publishing for this section starts soon.
 
@@ -313,8 +313,8 @@ This section continues backend learning into uploads, storage structure, and sta
 
 | #   | Article                                            | Status      |
 | --- | -------------------------------------------------- | ----------- |
-| 53  | Handling File Uploads in Express with Multer       | Draft ready |
-| 54  | Storing Uploaded Files and Serving Them in Express | Draft ready |
+| 53  | [Handling File Uploads in Express with Multer](https://prashsainidev.hashnode.dev/file-uploads-express-multer)       | Draft ready |
+| 54  | [Storing Uploaded Files and Serving Them in Express](https://prashsainidev.hashnode.dev/storing-and-serving-uploads-express) | Draft ready |
 
 Hashnode series publishing for this section starts soon.
 
