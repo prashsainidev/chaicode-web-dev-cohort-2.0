@@ -27,13 +27,16 @@ Status: Not applicable
 ## Blog
 
 - Creating Routes and Handling Requests with Express
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/47-creating-routes-and-handling-requests-with-express.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/47-creating-routes-and-handling-requests-with-express.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/express-routes-and-requests)
 - Published Link: Not published yet
 - URL Parameters vs Query Strings in Express.js
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/48-url-parameters-vs-query-strings-in-expressjs.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/48-url-parameters-vs-query-strings-in-expressjs.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/express-route-params-vs-query-strings)
 - Published Link: Not published yet
 - What Is Middleware in Express and How It Works
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/49-what-is-middleware-in-express-and-how-it-works.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/13-expressjs-fundamentals/49-what-is-middleware-in-express-and-how-it-works.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/express-middleware-explained)
 - Published Link: Not published yet
 
 Status: In progress

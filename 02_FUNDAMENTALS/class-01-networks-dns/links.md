@@ -36,24 +36,24 @@ Status: Not applicable
 ## Blog
 
 - Understanding Network Devices
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/01-understanding-network-devices.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/understanding-network-devices)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/01-understanding-network-devices.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/understanding-network-devices)
 
 Status: Completed
 
 ---
 
 - How DNS Resolution Works
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/02-how-dns-resolution-works.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/how-dns-resolution-works)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/02-how-dns-resolution-works.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/how-dns-resolution-works)
 
 Status: Completed
 
 ---
 
 - DNS Record Types Explained
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/03-dns-record-types-explained.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/dns-record-types-explained)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/03-dns-record-types-explained.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/dns-record-types-explained)
 
 Status: Completed
 

@@ -27,13 +27,15 @@ Status: Not applicable
 ## Blog
 
 - Serialization and Deserialization in Web Development
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/10-backend-and-data-exchange/39-serialization-and-deserialization-in-web-development.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/serialization-and-deserialization-in-web-development)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/10-backend-and-data-exchange/39-serialization-and-deserialization-in-web-development.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/serialization-and-deserialization-in-web-development)
 - What Is Node.js? JavaScript on the Server Explained
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/11-nodejs-foundations/41-what-is-nodejs-javascript-on-the-server-explained.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/11-nodejs-foundations/41-what-is-nodejs-javascript-on-the-server-explained.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/what-is-nodejs)
 - Published Link: Not published yet
 - Setting Up Your First Node.js Application Step-by-Step
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/11-nodejs-foundations/42-setting-up-your-first-nodejs-application-step-by-step.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/11-nodejs-foundations/42-setting-up-your-first-nodejs-application-step-by-step.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/first-nodejs-application)
 - Published Link: Not published yet
 
 Status: In progress

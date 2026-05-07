@@ -43,16 +43,16 @@ Status: Completed
 ## Blog
 
 - Git for Beginners: Basics and Essential Commands
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/09-git-for-beginners-basics-and-essential-commands.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/git-for-beginners)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/09-git-for-beginners-basics-and-essential-commands.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/git-for-beginners)
 
 Status: Completed
 
 ---
 
 - Inside Git: How It Works and the Role of the .git Folder
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/10-inside-git-how-it-works-and-the-role-of-the-git-folder.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/inside-git-git-folder)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/10-inside-git-how-it-works-and-the-role-of-the-git-folder.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/inside-git-git-folder)
 
 Status: Completed
 

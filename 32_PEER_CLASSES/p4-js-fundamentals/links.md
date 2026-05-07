@@ -30,9 +30,9 @@ Status: Available
 
 ## Blog Draft References
 
-- Functions draft -> `43_BLOGS/drafts/04-javascript-fundamentals/17-function-declaration-vs-function-expression-whats-the-difference.md`
-- Arrow functions draft -> `43_BLOGS/drafts/04-javascript-fundamentals/18-arrow-functions-in-javascript-a-simpler-way-to-write-functions.md`
-- Objects draft -> `43_BLOGS/drafts/05-javascript-arrays-and-objects/21-understanding-objects-in-javascript.md`
+- Functions blog -> `https://prashsainidev.hashnode.dev/function-declaration-vs-expression`
+- Arrow functions blog -> `https://prashsainidev.hashnode.dev/arrow-functions`
+- Objects blog -> `https://prashsainidev.hashnode.dev/understanding-objects`
 
 Status: Planned
 

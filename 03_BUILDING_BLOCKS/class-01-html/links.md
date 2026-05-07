@@ -39,16 +39,16 @@ Status: In progress
 ## Blog
 
 - Understanding HTML Tags and Elements
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/11-understanding-html-tags-and-elements.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/html-tags-and-elements)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/11-understanding-html-tags-and-elements.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/html-tags-and-elements)
 
 Status: Completed
 
 ---
 
 - Emmet for HTML: A Beginner's Guide to Writing Faster Markup
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/12-emmet-for-html-a-beginners-guide-to-writing-faster-markup.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/emmet-for-html)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/12-emmet-for-html-a-beginners-guide-to-writing-faster-markup.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/emmet-for-html)
 
 Status: Completed
 

@@ -27,8 +27,8 @@ Status: Not applicable
 ## Blog
 
 - CSS Selectors 101: Targeting Elements with Precision
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/13-css-selectors-101-targeting-elements-with-precision.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/css-selectors-101)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/03-html-and-css-basics/13-css-selectors-101-targeting-elements-with-precision.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/css-selectors-101)
 
 Status: Completed
 

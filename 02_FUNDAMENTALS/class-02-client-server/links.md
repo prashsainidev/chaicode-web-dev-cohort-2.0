@@ -36,32 +36,32 @@ Status: Not applicable
 ## Blog
 
 - TCP Working: 3-Way Handshake & Reliable Communication
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/04-tcp-working-3-way-handshake-and-reliable-communication.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/tcp-working-3-way-handshake)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/04-tcp-working-3-way-handshake-and-reliable-communication.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/tcp-working-3-way-handshake)
 
 Status: Completed
 
 ---
 
 - TCP vs UDP: When to Use What, and How TCP Relates to HTTP
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/05-tcp-vs-udp-when-to-use-what-and-how-tcp-relates-to-http.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/tcp-vs-udp)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/05-tcp-vs-udp-when-to-use-what-and-how-tcp-relates-to-http.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/tcp-vs-udp)
 
 Status: Completed
 
 ---
 
 - Getting Started with cURL
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/06-getting-started-with-curl.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/getting-started-with-curl)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/06-getting-started-with-curl.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/getting-started-with-curl)
 
 Status: Completed
 
 ---
 
 - How a Browser Works: A Beginner-Friendly Guide to Browser Internals
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/07-how-a-browser-works-a-beginner-friendly-guide-to-browser-internals.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/how-a-browser-works)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/01-networking-and-internet/07-how-a-browser-works-a-beginner-friendly-guide-to-browser-internals.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/how-a-browser-works)
 
 Status: Completed
 

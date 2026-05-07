@@ -35,8 +35,8 @@ Status: Not applicable
 ## Blog
 
 - Why Version Control Exists: The Pendrive Problem
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/08-why-version-control-exists-the-pendrive-problem.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/why-version-control-exists)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/02-git-and-version-control/08-why-version-control-exists-the-pendrive-problem.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/why-version-control-exists)
 
 Status: Completed
 

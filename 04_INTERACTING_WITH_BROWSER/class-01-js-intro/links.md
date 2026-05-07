@@ -28,8 +28,8 @@ Status: Completed
 ## Blog
 
 - Understanding Variables and Data Types in JavaScript
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/14-understanding-variables-and-data-types-in-javascript.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/variables-and-data-types)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/14-understanding-variables-and-data-types-in-javascript.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/variables-and-data-types)
 
 Status: Completed
 

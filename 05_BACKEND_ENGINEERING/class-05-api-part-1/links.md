@@ -49,7 +49,8 @@ Status: Not applicable
 ## Blog
 
 - REST API Design Made Simple with Express.js
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/50-rest-api-design-made-simple-with-expressjs.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/50-rest-api-design-made-simple-with-expressjs.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/rest-api-design-expressjs)
 - Published Link: Not published yet
 
 Status: In progress

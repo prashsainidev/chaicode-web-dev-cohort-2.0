@@ -77,10 +77,12 @@ Status: In progress
 ## Blog
 
 - Handling File Uploads in Express with Multer
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/15-file-uploads-and-storage/53-handling-file-uploads-in-express-with-multer.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/15-file-uploads-and-storage/53-handling-file-uploads-in-express-with-multer.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/file-uploads-express-multer)
 - Published Link: Not published yet
 - Storing Uploaded Files and Serving Them in Express
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/15-file-uploads-and-storage/54-storing-uploaded-files-and-serving-them-in-express.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/15-file-uploads-and-storage/54-storing-uploaded-files-and-serving-them-in-express.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/storing-and-serving-uploads-express)
 - Published Link: Not published yet
 
 Status: In progress

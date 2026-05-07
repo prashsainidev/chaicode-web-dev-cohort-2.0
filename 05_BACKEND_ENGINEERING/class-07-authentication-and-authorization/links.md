@@ -59,10 +59,12 @@ Status: In progress
 ## Blog
 
 - JWT Authentication in Node.js Explained Simply
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/51-jwt-authentication-in-nodejs-explained-simply.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/51-jwt-authentication-in-nodejs-explained-simply.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/jwt-authentication-nodejs)
 - Published Link: Not published yet
 - Sessions vs JWT vs Cookies: Understanding Authentication Approaches
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/52-sessions-vs-jwt-vs-cookies-understanding-authentication-approaches.md)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/14-api-design-and-authentication/52-sessions-vs-jwt-vs-cookies-understanding-authentication-approaches.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/sessions-vs-jwt-vs-cookies)
 - Published Link: Not published yet
 
 Status: In progress

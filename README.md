@@ -117,7 +117,7 @@ This is the planning and visibility layer of the repo.
 
 ### `01_TOOLS` to `30_...` (Core Curriculum)
 
-This block holds the actual step-by-step technical learning. 
+This block holds the actual step-by-step technical learning.
 It starts with fundamental workflows and builds up to complex backend systems.
 
 - `01_TOOLS`: Version control and IDE workflows.

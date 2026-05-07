@@ -31,8 +31,8 @@
 ## Blog
 
 - Topic: NodeList vs HTMLCollection
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/09-dom-and-browser-apis/38-nodelist-vs-htmlcollection-understanding-the-real-difference-in-the-dom.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/nodelist-vs-htmlcollection-understanding-the-real-difference-in-the-dom)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/09-dom-and-browser-apis/38-nodelist-vs-htmlcollection-understanding-the-real-difference-in-the-dom.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/nodelist-vs-htmlcollection-understanding-the-real-difference-in-the-dom)
 - Status: In progress
 
 ---

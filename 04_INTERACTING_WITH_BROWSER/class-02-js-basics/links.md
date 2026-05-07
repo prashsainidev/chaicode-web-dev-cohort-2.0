@@ -22,16 +22,16 @@ Status: Completed
 ## Blog
 
 - JavaScript Operators: The Basics You Need to Know
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/15-javascript-operators-the-basics-you-need-to-know.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/javascript-operators)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/15-javascript-operators-the-basics-you-need-to-know.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/javascript-operators)
 
 Status: Completed
 
 ---
 
 - Control Flow in JavaScript: If, Else, and Switch Explained
-- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/16-control-flow-in-javascript-if-else-and-switch-explained.md)
-- Published Link: [Read Blog](https://prashsainidev.hashnode.dev/control-flow-if-else-switch)
+- Draft File: [Open Draft](https://github.com/prashsainidev/chaicode-web-dev-cohort-2.0/blob/main/43_BLOGS/drafts/04-javascript-fundamentals/16-control-flow-in-javascript-if-else-and-switch-explained.md)
+- Published Blog: [Read Published Blog](https://prashsainidev.hashnode.dev/control-flow-if-else-switch)
 
 Status: Completed
 
