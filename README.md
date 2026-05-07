@@ -46,10 +46,8 @@ What is already in place:
 
 Current blog snapshot:
 
-- published articles: `40`
-- draft-ready articles in repo: `14`
-- completed live series on Hashnode: `10`
-- next publishing wave: `5` backend-focused series
+- published articles: `54`
+- all `15` series are completed and live on Hashnode
 - blog navigation pages are also maintained from this repo
 
 ## Repository Structure

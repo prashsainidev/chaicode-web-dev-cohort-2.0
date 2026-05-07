@@ -54,11 +54,11 @@ Current publishing snapshot:
 |   +-- peer-review/
 |
 +-- txt/
-|   +-- hashnode-publishing-guide.txt
-|   +-- hashnode-seo-metadata-bank.txt
-|   +-- 0-series-diagram.txt
-|   +-- 1-cover-image.txt
-|   +-- 2-best-diagrams.txt
+|   +-- 00-all-blogs-list.txt
+|   +-- 01-hashnode-publishing-guide.txt
+|   +-- 02-hashnode-seo-metadata-bank.txt
+|   +-- 03-blog-cover-image.txt
+|   +-- 04-diagram-prompt-create.txt
 |
 +-- published-links.md
 +-- README.md
@@ -88,13 +88,13 @@ This folder holds helper files for the publishing workflow.
 
 Important files:
 
-- `hashnode-publishing-guide.txt`
+- `01-hashnode-publishing-guide.txt`
   - step-by-step publish system
   - master blog order
   - series structure
   - publishing checklist
 
-- `hashnode-seo-metadata-bank.txt`
+- `02-hashnode-seo-metadata-bank.txt`
   - slugs
   - tags
   - SEO titles

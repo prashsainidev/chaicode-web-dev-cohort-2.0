@@ -172,12 +172,12 @@ Series Status: Complete
 
 Series: [Node.js Foundations](https://prashsainidev.hashnode.dev/series/nodejs-foundations)
 
-Series Status: Drafts ready
+Series Status: Complete
 
 | Blog | Link | Status |
 |-----|------|--------|
-| What Is Node.js? JavaScript on the Server Explained | Not published yet | Draft ready |
-| Setting Up Your First Node.js Application Step-by-Step | Not published yet | Draft ready |
+| What Is Node.js? JavaScript on the Server Explained | [Read Blog](https://prashsainidev.hashnode.dev/what-is-nodejs) | Published |
+| Setting Up Your First Node.js Application Step-by-Step | [Read Blog](https://prashsainidev.hashnode.dev/first-nodejs-application) | Published |
 
 ---
 
@@ -185,14 +185,14 @@ Series Status: Drafts ready
 
 Series: [Node.js Concurrency & Async Flow](https://prashsainidev.hashnode.dev/series/nodejs-concurrency-and-async-flow)
 
-Series Status: Drafts ready
+Series Status: Complete
 
 | Blog | Link | Status |
 |-----|------|--------|
-| Why Node.js Is Perfect for Building Fast Web Applications | Not published yet | Draft ready |
-| Blocking vs Non-Blocking Code in Node.js | Not published yet | Draft ready |
-| How Node.js Handles Multiple Requests with a Single Thread | Not published yet | Draft ready |
-| Async Code in Node.js: Callbacks and Promises | Not published yet | Draft ready |
+| Why Node.js Is Perfect for Building Fast Web Applications | [Read Blog](https://prashsainidev.hashnode.dev/why-nodejs-is-fast-for-web-apps) | Published |
+| Blocking vs Non-Blocking Code in Node.js | [Read Blog](https://prashsainidev.hashnode.dev/blocking-vs-non-blocking-nodejs) | Published |
+| How Node.js Handles Multiple Requests with a Single Thread | [Read Blog](https://prashsainidev.hashnode.dev/how-nodejs-handles-multiple-requests) | Published |
+| Async Code in Node.js: Callbacks and Promises | [Read Blog](https://prashsainidev.hashnode.dev/nodejs-callbacks-and-promises) | Published |
 
 ---
 
@@ -200,13 +200,13 @@ Series Status: Drafts ready
 
 Series: [Express.js Fundamentals](https://prashsainidev.hashnode.dev/series/expressjs-fundamentals)
 
-Series Status: Drafts ready
+Series Status: Complete
 
 | Blog | Link | Status |
 |-----|------|--------|
-| Creating Routes and Handling Requests with Express | Not published yet | Draft ready |
-| URL Parameters vs Query Strings in Express.js | Not published yet | Draft ready |
-| What Is Middleware in Express and How It Works | Not published yet | Draft ready |
+| Creating Routes and Handling Requests with Express | [Read Blog](https://prashsainidev.hashnode.dev/express-routes-and-requests) | Published |
+| URL Parameters vs Query Strings in Express.js | [Read Blog](https://prashsainidev.hashnode.dev/express-route-params-vs-query-strings) | Published |
+| What Is Middleware in Express and How It Works | [Read Blog](https://prashsainidev.hashnode.dev/express-middleware-explained) | Published |
 
 ---
 
@@ -214,13 +214,13 @@ Series Status: Drafts ready
 
 Series: [API Design & Authentication](https://prashsainidev.hashnode.dev/series/api-design-and-authentication)
 
-Series Status: Drafts ready
+Series Status: Complete
 
 | Blog | Link | Status |
 |-----|------|--------|
-| REST API Design Made Simple with Express.js | Not published yet | Draft ready |
-| JWT Authentication in Node.js Explained Simply | Not published yet | Draft ready |
-| Sessions vs JWT vs Cookies: Understanding Authentication Approaches | Not published yet | Draft ready |
+| REST API Design Made Simple with Express.js | [Read Blog](https://prashsainidev.hashnode.dev/rest-api-design-expressjs) | Published |
+| JWT Authentication in Node.js Explained Simply | [Read Blog](https://prashsainidev.hashnode.dev/jwt-authentication-nodejs) | Published |
+| Sessions vs JWT vs Cookies: Understanding Authentication Approaches | [Read Blog](https://prashsainidev.hashnode.dev/sessions-vs-jwt-vs-cookies) | Published |
 
 ---
 
@@ -228,17 +228,17 @@ Series Status: Drafts ready
 
 Series: [File Uploads & Storage](https://prashsainidev.hashnode.dev/series/file-uploads-and-storage)
 
-Series Status: Drafts ready
+Series Status: Complete
 
 | Blog | Link | Status |
 |-----|------|--------|
-| Handling File Uploads in Express with Multer | Not published yet | Draft ready |
-| Storing Uploaded Files and Serving Them in Express | Not published yet | Draft ready |
+| Handling File Uploads in Express with Multer | [Read Blog](https://prashsainidev.hashnode.dev/file-uploads-express-multer) | Published |
+| Storing Uploaded Files and Serving Them in Express | [Read Blog](https://prashsainidev.hashnode.dev/storing-and-serving-uploads-express) | Published |
 
 ---
 
 ## Notes
 
-- published series now cover article `01` to `40`
-- article `41` to `54` are fully drafted and are the next publishing wave
-- class folders should point to these draft files first, then to live Hashnode links after publishing
+- published series now cover article `01` to `54`
+- all 15 series are completely published and live
+- class folders point to live Hashnode links
