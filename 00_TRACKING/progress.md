@@ -91,11 +91,11 @@ Note:
 | -------------------------------------- | -------------------------- | ---- | ----------- | ------- | ----------- | -------------- | ----------------- |
 | Intro to Backend Engineering           | 07 Mar 2026, Sat, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 2 published       |
 | Backend with TypeScript                | 08 Mar 2026, Sun, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | Not applicable    |
-| NodeJS Internals and Architecture      | 14 Mar 2026, Sat, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 2 drafts ready    |
-| Chai aur Express                       | 15 Mar 2026, Sun, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 4 drafts ready    |
-| Building RESTful API (Part 1)          | 21 Mar 2026, Sat, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 3 drafts ready    |
-| Building RESTful API (Part 2)          | 22 Mar 2026, Sun, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 3 drafts ready    |
-| Authentication and Authorization       | 28 Mar 2026, Sat, 07:45 PM | Done | Not applicable | Done        | In progress | Not applicable | 2 drafts ready    |
+| NodeJS Internals and Architecture      | 14 Mar 2026, Sat, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 2 published       |
+| Chai aur Express                       | 15 Mar 2026, Sun, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 4 published       |
+| Building RESTful API (Part 1)          | 21 Mar 2026, Sat, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 3 published       |
+| Building RESTful API (Part 2)          | 22 Mar 2026, Sun, 07:45 PM | Done | In progress | Pending | Pending     | Not applicable | 3 published       |
+| Authentication and Authorization       | 28 Mar 2026, Sat, 07:45 PM | Done | Not applicable | Done        | In progress | Not applicable | 2 published       |
 | Authentication with TypeScript, Drizzle and Postgres | 29 Mar 2026, Sun, 07:45 PM | Done | Not applicable | In progress | Pending     | Not applicable | Not applicable    |
 | Chai Aur SQL (Part 1)                  | 04 Apr 2026, Sat, 07:45 PM | Done | Not applicable | Done | Pending | Not applicable | Not applicable    |
 | Chai Aur SQL (Part 2)                  | 05 Apr 2026, Sun, 07:45 PM | Done | Not applicable | Done | Pending | Not applicable | Not applicable    |
@@ -160,9 +160,8 @@ This section is now grouped by series so multi-blog classes feel easier to under
 
 Current overall state:
 
-- article `01` to `40` are live on Hashnode
-- article `41` to `54` are fully drafted in the repo
-- total structure is now `15 series` and `54 articles`
+- all `54` articles across `15` series are now live and published on Hashnode!
+- total structure is `15 series` and `54 articles`
 
 | Series | Live | Draft Ready | Status |
 | ------ | ---- | ----------- | ------ |
@@ -176,31 +175,31 @@ Current overall state:
 | Modern JavaScript | 2 | 0 | Complete |
 | DOM And Browser APIs | 1 | 0 | Complete |
 | Backend And Data Exchange | 2 | 0 | Complete |
-| Node.js Foundations | 0 | 2 | Draft ready |
-| Node.js Concurrency And Async Flow | 0 | 4 | Draft ready |
-| Express.js Fundamentals | 0 | 3 | Draft ready |
-| API Design And Authentication | 0 | 3 | Draft ready |
-| File Uploads And Storage | 0 | 2 | Draft ready |
+| Node.js Foundations | 2 | 0 | Complete |
+| Node.js Concurrency And Async Flow | 4 | 0 | Complete |
+| Express.js Fundamentals | 3 | 0 | Complete |
+| API Design And Authentication | 3 | 0 | Complete |
+| File Uploads And Storage | 2 | 0 | Complete |
 
 ### Live Blog Count
 
-- Published articles: `40`
-- Draft-ready articles: `14`
-- Published series: `10`
-- Upcoming backend series: `5`
+- Published articles: `54`
+- Draft-ready articles: `0`
+- Published series: `15`
+- Upcoming backend series: `0`
 
 ### Next Blog Priority
 
-- publish Node.js Foundations first
-- then publish Node.js Concurrency And Async Flow
-- then move into Express.js Fundamentals, API Design And Authentication, and File Uploads And Storage
+- all backend blogs have been successfully published!
+- focus can now shift to React and Frontend blogs
+- keep class tracking updated as new lectures happen
 
 ---
 
 ## Current Focus
 
 - keep progress tracking aligned with actual class and blog state
-- keep backend documentation synced with draft-ready blog work
+- keep backend documentation synced with published blogs
 - make rewatch status more honest and more useful
 - keep the repo understandable for future me and for visitors
 
@@ -212,7 +211,7 @@ Current overall state:
 
 - backend blog tracking is now connected to actual class coverage
 - progress status is easier to read because `Live` and `Rewatch` are separated
-- published vs draft-ready blog status is now clearer across the repo
+- published status of all blogs is now clear across the repo
 - peer-class tracking is less misleading now that passed sessions are no longer marked `Upcoming`
 
 ### Problems Faced
@@ -224,6 +223,6 @@ Current overall state:
 ### Next Cleanup
 
 - keep backend classes updated as new sessions happen
-- convert draft-ready backend blogs into published links as soon as each one goes live
+- keep tracking new React blogs as they are written
 - update rewatch status honestly after each class
 - move unfinished non-public work into `100_LOCAL_ONLY/` instead of mixing it into tracking docs
