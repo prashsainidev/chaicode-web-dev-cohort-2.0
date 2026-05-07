@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: JWT Authentication in Node.js Explained Simply
-Hashnode Subtitle: Learn what JWT is, how token-based authentication works, and how protected routes are handled in Node.js.
-Cover Image Prompt: A secure modern illustration of a login flow where a server issues a JWT token to a client and later validates it for protected routes, clean educational editorial style, no text in image.
-Suggested Slug: jwt-authentication-nodejs
-Suggested Tags: nodejs, jwt, authentication, backend
--->
-
 ## Introduction
 
 Authentication is one of the first serious backend ideas most learners meet.

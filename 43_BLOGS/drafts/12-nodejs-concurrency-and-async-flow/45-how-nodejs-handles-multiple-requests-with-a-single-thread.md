@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: How Node.js Handles Multiple Requests with a Single Thread
-Hashnode Subtitle: Understand why single-threaded does not mean weak and how Node.js manages many requests efficiently.
-Cover Image Prompt: A chef in a smart modern kitchen managing many order tickets at once, blended with Node.js server request lines and event-loop visuals, educational editorial style, no text in image.
-Suggested Slug: how-nodejs-handles-multiple-requests
-Suggested Tags: nodejs, eventloop, backend, webdev
--->
-
 ## Introduction
 
 One sentence creates a lot of confusion in Node.js:

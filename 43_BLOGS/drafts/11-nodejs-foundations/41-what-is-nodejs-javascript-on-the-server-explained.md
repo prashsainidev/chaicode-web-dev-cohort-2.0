@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: What Is Node.js? JavaScript on the Server Explained
-Hashnode Subtitle: Understand how JavaScript moved beyond the browser and became a serious backend runtime with Node.js.
-Cover Image Prompt: A clean editorial illustration showing JavaScript moving from a browser window to a server rack, with request arrows, glowing runtime layers, and a modern developer-learning aesthetic. No text inside the image.
-Suggested Slug: what-is-nodejs
-Suggested Tags: nodejs, javascript, webdev, backend
--->
-
 ## Introduction
 
 For a long time, JavaScript had one fixed identity:

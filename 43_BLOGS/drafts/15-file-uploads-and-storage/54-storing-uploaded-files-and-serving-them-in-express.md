@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Storing Uploaded Files and Serving Them in Express
-Hashnode Subtitle: Learn where uploaded files go, how static file serving works, and what safe file handling looks like in Express.
-Cover Image Prompt: An Express.js backend illustration showing uploaded files stored in folders and then served back through public URLs, with clean folder structure and request-response visuals, no text in image.
-Suggested Slug: storing-and-serving-uploads-express
-Suggested Tags: expressjs, nodejs, uploads, backend
--->
-
 ## Introduction
 
 Uploading a file is only the beginning.

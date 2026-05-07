@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: What Is Middleware in Express and How It Works
-Hashnode Subtitle: Understand where middleware sits in the request flow and why it is one of the most important ideas in Express.
-Cover Image Prompt: A request pipeline illustration with checkpoints like logging, authentication, validation, and final route handling in a clean Express.js editorial style, no text in image.
-Suggested Slug: express-middleware-explained
-Suggested Tags: expressjs, nodejs, backend, middleware
--->
-
 ## Introduction
 
 Middleware is one of those Express concepts that sounds abstract at first.

@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: REST API Design Made Simple with Express.js
-Hashnode Subtitle: Learn how REST works, how routes map to resources, and how to design cleaner APIs in Express.
-Cover Image Prompt: A modern diagram-style illustration of a users resource with GET, POST, PUT, DELETE request paths connecting client and Express server, clean educational editorial style with no text in image.
-Suggested Slug: rest-api-design-expressjs
-Suggested Tags: expressjs, nodejs, restapi, backend
--->
-
 ## Introduction
 
 At some point in backend learning, one phrase starts showing up everywhere:

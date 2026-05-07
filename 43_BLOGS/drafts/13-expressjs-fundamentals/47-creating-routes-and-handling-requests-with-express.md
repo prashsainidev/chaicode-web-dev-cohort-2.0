@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Creating Routes and Handling Requests with Express
-Hashnode Subtitle: Learn how Express simplifies Node.js backend development through cleaner routing and request handling.
-Cover Image Prompt: A clean visual of requests entering an Express.js server and being directed into neat route boxes for GET and POST handlers, modern editorial style, no text inside the image.
-Suggested Slug: express-routes-and-requests
-Suggested Tags: expressjs, nodejs, backend, webdev
--->
-
 ## Introduction
 
 Once you start building with Node.js, one thing becomes obvious very quickly:

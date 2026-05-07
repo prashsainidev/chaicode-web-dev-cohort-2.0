@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Blocking vs Non-Blocking Code in Node.js
-Hashnode Subtitle: Learn the real difference between blocking and non-blocking behavior and why it matters so much for server performance.
-Cover Image Prompt: A split-scene illustration comparing a blocked Node.js server lane and a flowing non-blocking request lane, with file-read and database request visuals, modern technical editorial style, no text in image.
-Suggested Slug: blocking-vs-non-blocking-nodejs
-Suggested Tags: nodejs, async, backend, javascript
--->
-
 ## Introduction
 
 One of the most important ideas in Node.js is the difference between:

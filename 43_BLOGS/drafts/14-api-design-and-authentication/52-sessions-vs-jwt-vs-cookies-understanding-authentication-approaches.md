@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Sessions vs JWT vs Cookies: Understanding Authentication Approaches
-Hashnode Subtitle: Learn what sessions, cookies, and JWTs actually do, and know when each authentication approach makes sense.
-Cover Image Prompt: A comparison-style illustration showing session-based auth flow and JWT-based auth flow side by side, with browser cookie storage hints and clean educational visuals, no text in image.
-Suggested Slug: sessions-vs-jwt-vs-cookies
-Suggested Tags: authentication, jwt, cookies, backend
--->
-
 ## Introduction
 
 One of the most confusing beginner auth topics is this:

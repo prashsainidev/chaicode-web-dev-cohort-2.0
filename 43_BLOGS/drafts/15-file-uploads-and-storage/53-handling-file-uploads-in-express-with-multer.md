@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Handling File Uploads in Express with Multer
-Hashnode Subtitle: Learn why file uploads need middleware, how Multer works, and how single and multiple uploads are handled in Express.
-Cover Image Prompt: A modern web backend illustration showing a user uploading files through an Express server with Multer middleware into a storage folder, clean educational editorial style, no text in image.
-Suggested Slug: file-uploads-express-multer
-Suggested Tags: expressjs, multer, nodejs, backend
--->
-
 ## Introduction
 
 Handling text form data in Express is one thing.

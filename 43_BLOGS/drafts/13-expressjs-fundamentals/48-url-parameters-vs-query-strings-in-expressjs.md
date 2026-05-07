@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: URL Parameters vs Query Strings in Express.js
-Hashnode Subtitle: Learn the difference between route params and query strings, and know exactly when to use each one in Express.
-Cover Image Prompt: A split educational illustration showing an Express route URL with path parameters on one side and query filters on the other, with clean URL anatomy visuals and no text in the image.
-Suggested Slug: express-route-params-vs-query-strings
-Suggested Tags: expressjs, nodejs, backend, webdev
--->
-
 ## Introduction
 
 When beginners start building routes in Express, one confusion appears again and again:

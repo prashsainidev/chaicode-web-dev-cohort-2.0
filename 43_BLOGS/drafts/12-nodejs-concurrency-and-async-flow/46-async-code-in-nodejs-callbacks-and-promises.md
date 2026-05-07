@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Async Code in Node.js: Callbacks and Promises
-Hashnode Subtitle: Learn why async code exists in Node.js, how callbacks work, and why promises made async flows easier to manage.
-Cover Image Prompt: A clean technical illustration showing a Node.js file-read operation branching into a callback chain and a promise chain, with visual contrast between nested complexity and cleaner flow. No text in image.
-Suggested Slug: nodejs-callbacks-and-promises
-Suggested Tags: nodejs, javascript, async, promises
--->
-
 ## Introduction
 
 Node.js deals with many tasks that do not finish immediately.

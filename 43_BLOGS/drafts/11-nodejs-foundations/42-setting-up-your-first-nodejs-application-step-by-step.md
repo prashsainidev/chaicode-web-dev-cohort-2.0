@@ -1,11 +1,3 @@
-<!--
-Hashnode Title: Setting Up Your First Node.js Application Step-by-Step
-Hashnode Subtitle: Learn how to install Node.js, use the REPL, run your first script, and create a basic Hello World server.
-Cover Image Prompt: A beginner-friendly workstation scene with terminal, Node.js logo, simple folder structure, and a glowing local server running on a laptop. Clean editorial illustration, no embedded text.
-Suggested Slug: first-nodejs-application
-Suggested Tags: nodejs, javascript, backend, beginners
--->
-
 ## Introduction
 
 The first step into Node.js should feel exciting.
