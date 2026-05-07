@@ -84,8 +84,6 @@ come back when the file result is ready
 
 That is a very different style of execution.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Blocking execution timeline - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Why Blocking Hurts Servers More Than We Think
@@ -194,8 +192,6 @@ If the runtime blocks too much during those waits, performance suffers.
 If the runtime handles those waits in a non-blocking way, responsiveness improves.
 
 That is why non-blocking behavior is so central to Node.js discussions.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Non-blocking execution timeline - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

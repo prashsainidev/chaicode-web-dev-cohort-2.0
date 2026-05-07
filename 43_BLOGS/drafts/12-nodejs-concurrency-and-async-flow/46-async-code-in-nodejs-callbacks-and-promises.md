@@ -83,8 +83,6 @@ What is happening step by step?
 
 This was a big deal because it gave Node.js a way to handle delayed work without writing everything in a blocking style.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Callback execution chain - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Why Callbacks Were Useful
@@ -143,8 +141,6 @@ This is the kind of structure people often call **callback hell**.
 It is not that callbacks are bad by themselves.
 
 It is that deeply nested callback flow becomes visually messy and mentally tiring.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Promise lifecycle flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 
@@ -217,8 +213,6 @@ Here is the real difference that made promises popular.
 This is why promises were not just a new syntax trend.
 
 They solved a real readability problem.
-
-[[IMAGE SLOT 3 - DIAGRAM IDEA: Callback vs promise readability comparison - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

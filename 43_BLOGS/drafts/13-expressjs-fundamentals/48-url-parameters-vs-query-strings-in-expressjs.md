@@ -92,8 +92,6 @@ That is the cleanest beginner rule.
 
 If you keep that in mind, route design becomes much easier.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: URL structure breakdown - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Example 1: User Profile ID
@@ -231,8 +229,6 @@ Examples:
 - `/products?category=shoes`
 - `/posts?page=2`
 - `/users?role=admin`
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Params vs query comparison diagram - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

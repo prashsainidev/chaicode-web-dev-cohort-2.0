@@ -60,8 +60,6 @@ That means middleware is not the final destination.
 
 It is part of the journey.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Request -> middleware -> route handler flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## A Basic Middleware Example
@@ -213,8 +211,6 @@ Before the final route handler responds, the request may pass through:
 - auth checker
 
 That is why middleware feels so natural once visualized as a pipeline.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Multiple middleware execution chain - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

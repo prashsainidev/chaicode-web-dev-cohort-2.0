@@ -63,8 +63,6 @@ That is why sessions are called **stateful**.
 
 The server is storing and managing the session state.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Session authentication flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## What JWT Tokens Are
@@ -173,8 +171,6 @@ At a beginner level, the comparison can be understood like this:
 Neither one is universally perfect.
 
 The right choice depends on system needs.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: JWT authentication flow + session vs JWT comparison table - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

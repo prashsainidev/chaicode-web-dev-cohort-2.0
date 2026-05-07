@@ -131,8 +131,6 @@ It is not where you build full applications.
 
 But it is a great beginner playground.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Node execution flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Step 4: Create Your First JavaScript File
@@ -275,8 +273,6 @@ Even if the example is small, it introduces a very important mindset shift.
 You are no longer thinking only about code that changes a page.
 
 You are now thinking about code that can serve the page itself.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Script -> runtime -> output flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

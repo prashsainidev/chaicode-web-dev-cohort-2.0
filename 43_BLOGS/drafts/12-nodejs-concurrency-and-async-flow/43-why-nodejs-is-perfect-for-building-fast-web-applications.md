@@ -85,8 +85,6 @@ It starts slow operations and continues handling other ready work while those ta
 
 That is what makes Node.js feel efficient in web workloads.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Blocking server vs Node.js request handling - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Blocking vs Non-Blocking - A Restaurant Analogy
@@ -159,8 +157,6 @@ Simple line:
 - concurrency = multiple tasks being handled efficiently over time
 
 Node.js became known for doing web concurrency well.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Event loop request processing visualization - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

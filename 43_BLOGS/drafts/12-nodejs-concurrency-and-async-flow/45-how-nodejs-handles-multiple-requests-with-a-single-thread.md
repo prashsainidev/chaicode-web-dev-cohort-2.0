@@ -91,8 +91,6 @@ Node.js does not try to do every slow task by itself in one stuck flow.
 
 It coordinates work intelligently.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Single thread handling multiple requests - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## What Happens When a Request Arrives?
@@ -150,8 +148,6 @@ At beginner level, this is enough:
 - ready results come back into the execution flow later
 
 That is what makes the architecture effective.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Event loop + worker thread interaction flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

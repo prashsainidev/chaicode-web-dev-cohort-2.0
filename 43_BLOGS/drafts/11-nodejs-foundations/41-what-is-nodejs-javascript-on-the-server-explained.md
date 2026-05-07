@@ -90,8 +90,6 @@ what they really mean is:
 
 **Node.js is a runtime that lets JavaScript run outside the browser, especially for backend work**
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Browser JavaScript vs Node.js execution comparison - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## So What Exactly Is Node.js?
@@ -201,8 +199,6 @@ Think of it like this:
 That is why Node.js became strongly associated with modern web backends.
 
 It matched the reality of servers that constantly deal with many requests and many waiting points.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Node.js runtime architecture overview - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

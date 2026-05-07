@@ -112,8 +112,6 @@ So a route answers this question:
 
 That is why routing is one of the core ideas in Express.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Request -> route handler -> response flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Handling a GET Request
@@ -208,8 +206,6 @@ Its real value is:
 - easier growth as the app gets bigger
 
 That is why developers often learn raw Node HTTP first for understanding, but use Express for practical backend work.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Express routing structure visualization - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

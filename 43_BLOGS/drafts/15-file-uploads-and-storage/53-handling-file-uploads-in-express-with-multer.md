@@ -75,8 +75,6 @@ client selects file
 
 This high-level picture is the key idea.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Client -> server -> storage upload flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Single File Upload Example
@@ -172,8 +170,6 @@ The second half is:
 That is why upload handling and file serving are closely connected topics.
 
 In fact, the next article in the series continues exactly from this point.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Multer middleware execution flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

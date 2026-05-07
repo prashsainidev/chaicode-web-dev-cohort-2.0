@@ -106,8 +106,6 @@ Example:
 
 These method-resource combinations make APIs much easier to understand.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: CRUD vs HTTP methods mapping table - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## One Resource Example: Users
@@ -231,8 +229,6 @@ The server replies with:
 That is why route naming and method usage matter so much.
 
 Good API design reduces confusion for everyone using the system.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: REST request-response lifecycle - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

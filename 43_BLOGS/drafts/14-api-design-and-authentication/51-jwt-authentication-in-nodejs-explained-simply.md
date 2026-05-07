@@ -99,8 +99,6 @@ The important understanding is:
 
 the signature helps establish trust in the token.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: JWT login authentication flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Why Token-Based Authentication Feels Useful
@@ -193,8 +191,6 @@ At beginner level, the exact comparison can be understood more clearly in the se
 For now, remember this:
 
 JWT is popular because it lets identity travel with the request in token form.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Token validation lifecycle - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 

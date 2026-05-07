@@ -111,8 +111,6 @@ It may become accessible at:
 
 That is the key static-file idea.
 
-[[IMAGE SLOT 1 - DIAGRAM IDEA: Upload storage folder structure - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
-
 * * *
 
 ## Accessing Uploaded Files via URL
@@ -215,8 +213,6 @@ client uploads file
 ```
 
 That is the cleanest mental model for this topic.
-
-[[IMAGE SLOT 2 - DIAGRAM IDEA: Static file serving flow - ADD GENERATED IMAGE HERE BEFORE PUBLISHING]]
 
 * * *
 
