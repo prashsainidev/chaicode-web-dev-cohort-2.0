@@ -114,6 +114,8 @@ Note:
 | ------------------------ | -------------------------- | -------- | -------------- | ------- | ----------- | ----------- | ------- |
 | Chai Aur React (Part 1)  | 02 May 2026, Fri, 07:45 PM | Done     | Not applicable | Done    | In progress | In progress | Pending |
 | Chai Aur React (Part 2)  | 03 May 2026, Sat, 07:45 PM | Done     | Not applicable | Done    | In progress | Pending     | Pending |
+| Chai Aur React (Part 3)  | 09 May 2026, Sat, 07:45 PM | Done     | Not applicable | Done    | In progress | Pending     | Pending |
+| Chai Aur React (Part 4)  | 10 May 2026, Sun, 07:45 PM | Pending  | Pending        | Pending | Pending     | Pending     | Pending |
 
 ---
 
@@ -147,9 +149,9 @@ Note:
 | P4 - JS Fundamentals, Functions & Objects | 27 Mar 2026, Fri, 07:45 PM | Done | Not applicable | Done           | In progress    | Not applicable | Not applicable |
 | P5 - Datatypes, ES6, OOPs, Async JavaScript | 10 Apr 2026, Fri, 07:45 PM | Done | Not applicable | Done | Pending | Pending | Not applicable |
 | P6 - DOM, Events, APIs, Advanced JS       | 17 Apr 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
-| P7 - TypeScript Master Class              | 24 Apr 2026, Fri, 07:45 PM | Upcoming | Upcoming | Not applicable | Not applicable | Not applicable | Not applicable |
-| P8 - Node.js & Express                    | 01 May 2026, Fri, 07:45 PM | Upcoming | Upcoming | Not applicable | Not applicable | Not applicable | Not applicable |
-| P9 - RESTful API Design                   | 08 May 2026, Fri, 07:45 PM | Upcoming | Upcoming | Not applicable | Not applicable | Not applicable | Not applicable |
+| P7 - TypeScript Master Class              | 24 Apr 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
+| P8 - Node.js & Express                    | 01 May 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
+| P9 - RESTful API Design                   | 08 May 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
 | P10 - Databases Deep Dive                 | 15 May 2026, Fri, 07:45 PM | Upcoming | Upcoming | Not applicable | Not applicable | Not applicable | Not applicable |
 
 ---

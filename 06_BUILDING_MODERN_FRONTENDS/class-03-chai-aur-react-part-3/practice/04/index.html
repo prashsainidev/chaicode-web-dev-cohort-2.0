@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React Class 02</title>
+    <style>
+      /* dark mode */
+      body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+    <script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+
+  <body>
+    <h1>Hello ji</h1>
+    <div id="root">this is classic root</div>
+
+    <script type="text/babel">
+      // 1. Define the component without infinite recursion
+      const Chai = () => {
+        return (
+          <div>
+            <h1>Welcome back! Have some Chai.</h1>
+          </div>
+        );
+      };
+
+      // 2. Grab the root element from the DOM
+      const domNode = document.getElementById('root');
+
+      // 3. Create a React root and render the component
+      const root = ReactDOM.createRoot(domNode);
+      root.render(<Chai />);
+    </script>
+  </body>
+</html>

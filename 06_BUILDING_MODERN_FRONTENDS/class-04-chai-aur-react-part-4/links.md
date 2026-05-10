@@ -3,8 +3,8 @@
 ## Class Info
 
 - Section: Frontend React
-- Class Name: Chai Aur React (Part 2)
-- Date: 03 May 2026, Sun
+- Class Name: Chai Aur React (Part 4)
+- Date: 10 May 2026, Sun
 - Time: 07:45 PM
 
 ---
@@ -13,16 +13,16 @@
 
 - Notes are available in the `class-notes` folder.
 
-Status: Done
+Status: Pending
 
 ---
 
 ## Class Code
 
 - React Lab Link: [https://react.chaicode.com/](https://react.chaicode.com/)
-- Code has been dumped into the `class-code` folder.
+- Code will be dumped into the `class-code` folder.
 
-Status: Done
+Status: Pending
 
 ---
 

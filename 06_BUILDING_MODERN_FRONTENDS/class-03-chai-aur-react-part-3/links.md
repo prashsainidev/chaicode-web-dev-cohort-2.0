@@ -3,7 +3,7 @@
 ## Class Info
 
 - Section: Frontend React
-- Class Name: Chai Aur React (Part 2)
+- Class Name: Chai Aur React (Part 3)
 - Date: 03 May 2026, Sun
 - Time: 07:45 PM
 

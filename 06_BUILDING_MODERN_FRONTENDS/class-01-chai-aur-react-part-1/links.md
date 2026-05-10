@@ -20,6 +20,7 @@ Status: Completed
 
 ## Class Code
 
+- React Lab Link: [https://react.chaicode.com/](https://react.chaicode.com/)
 - `class-code/foundation-01` -> first React setup and hello world app
 - `class-code/foundation-02` -> list rendering from array data
 - `class-code/foundation-03` -> reusable component and props flow

@@ -58,7 +58,7 @@ The folder contains the real class code in `foundation-06` to `foundation-07`, a
 
 Refer to `links.md` for:
 
-- Class codebase link (`react.chaicode.com`)
+- React Lab link (`react.chaicode.com`)
 - Whiteboard links (pending)
 - Official React documentation references
 
