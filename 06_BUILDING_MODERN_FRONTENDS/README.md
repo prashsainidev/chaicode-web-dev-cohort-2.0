@@ -28,4 +28,6 @@ class-name/
 ## Tracked Classes
 
 1. `class-01-chai-aur-react-part-1` -> React setup, JSX, props, state, effects
-2. `class-02-chai-aur-react-part-2` -> upcoming continuation
+2. `class-02-chai-aur-react-part-2` -> advanced state, `useRef`, complex `useEffect`, data fetching
+3. `class-03-chai-aur-react-part-3` -> custom hooks, React without JSX, SSR basics, Error Boundaries
+4. `class-04-chai-aur-react-part-4` -> upcoming continuation
