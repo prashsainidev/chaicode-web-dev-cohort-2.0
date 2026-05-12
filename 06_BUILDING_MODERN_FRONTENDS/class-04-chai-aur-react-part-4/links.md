@@ -20,7 +20,7 @@ Status: Pending
 ## Class Code
 
 - React Lab Link: [https://react.chaicode.com/](https://react.chaicode.com/)
-- Code will be dumped into the `class-code` folder.
+- Code will be added into the `class-code` folder once it is available.
 
 Status: Pending
 
@@ -28,9 +28,9 @@ Status: Pending
 
 ## Resources
 
-- Eraser / TLDraw Whiteboard Link: **Not provided yet**
+- Eraser / TLDraw Whiteboard Link: [https://app.eraser.io/workspace/sZg1BvWS8tvwMr6J3GHs](https://app.eraser.io/workspace/sZg1BvWS8tvwMr6J3GHs)
 
-Status: Pending
+Status: Done
 
 ---
 

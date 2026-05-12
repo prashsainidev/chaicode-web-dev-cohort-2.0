@@ -4,31 +4,36 @@
 
 This class was held on `10 May 2026`.
 
-This session worked as the continuation of React fundamentals:
+This session continues the React fundamentals track. For now, only the class
+whiteboard/resource link has been captured. Class code, notes, practice work,
+and any assignment details will be updated once the class code is available.
 
-- (Topics to be updated after class)
+The folder follows the same structure used in Class 03:
 
-The folder contains the real class code in `class-code`, and this README reflects the structure established in previous classes.
+- `class-code` for official class code
+- `practice` for my own practice work
+- `class-notes` for class notes
+- `assignments` for any class-specific assignment details
 
 ---
 
 ## What I Learned
 
-### (Topic)
-- (details)
+- Topics are pending and will be updated after the class code/content is added.
 
 ---
 
 ## Practice Highlights
 
-- my practice folder is currently "Pending"
+- Practice work is currently pending.
+- Will update the `practice` folder once I work through the class code.
 
 ---
 
 ## Assignment
 
 - Assignment details are currently pending.
-- Will update this section if a specific follow-up task is assigned.
+- Will update the `assignments` folder if a specific follow-up task is assigned.
 
 ---
 
@@ -37,11 +42,12 @@ The folder contains the real class code in `class-code`, and this README reflect
 Refer to `links.md` for:
 
 - React Lab link (`react.chaicode.com`)
-- Whiteboard links
+- Eraser / TLDraw whiteboard link
 - Official React documentation references
 
 ---
 
 ## Key Takeaways
 
-- (To be updated)
+- The class resource link is captured.
+- Code, practice, notes, and assignment details are pending until the class code is available.
