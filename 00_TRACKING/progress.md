@@ -8,7 +8,7 @@ This file tracks my cohort progress in a clearer way so I can see:
 - what is practiced
 - how blog writing is growing alongside the classes
 
-Last updated: May 4, 2026
+Last updated: May 16, 2026
 
 ---
 
@@ -115,7 +115,16 @@ Note:
 | Chai Aur React (Part 1)  | 02 May 2026, Fri, 07:45 PM | Done     | Not applicable | Done    | In progress | In progress | Pending |
 | Chai Aur React (Part 2)  | 03 May 2026, Sat, 07:45 PM | Done     | Not applicable | Done    | In progress | Pending     | Pending |
 | Chai Aur React (Part 3)  | 09 May 2026, Sat, 07:45 PM | Done     | Not applicable | Done    | In progress | Pending     | Pending |
-| Chai Aur React (Part 4)  | 10 May 2026, Sun, 07:45 PM | Pending  | Pending        | Pending | Pending     | Pending     | Pending |
+| Chai Aur React (Part 4)  | 10 May 2026, Sun, 07:45 PM | Pending  | Pending        | Done    | Pending     | Pending     | Pending |
+
+---
+
+## 07 Full Stack Development
+
+| Class                    | Date                       | Live     | Rewatch        | Notes   | Practice    | Assignment  | Blog    |
+| ------------------------ | -------------------------- | -------- | -------------- | ------- | ----------- | ----------- | ------- |
+| Full Stack (Part 1)      | 16 May 2026, Sat, 07:45 PM | Pending  | Pending        | Pending | Pending     | Pending     | Pending |
+| Full Stack (Part 2)      | 17 May 2026, Sun, 07:45 PM | Upcoming | Upcoming       | Pending | Pending     | Pending     | Pending |
 
 ---
 
@@ -136,6 +145,7 @@ Note:
 | T11 - Resume Building & ATS Mastery    | 09 Apr 2026, Thu, 08:45 PM | Done | Not applicable | Done | Not applicable | Not applicable | Not applicable |
 | T12 - HR Round & Interview Confidence  | 16 Apr 2026, Thu, 08:45 PM | Done | Not applicable | Done | Not applicable | Not applicable | Not applicable |
 | T13 - Salary Negotiation & Offer Strategy | 23 Apr 2026, Thu, 08:45 PM | Done | Not applicable | Done | Not applicable | Not applicable | Not applicable |
+| T14 - React Masterclass                   | 14 May 2026, Thu, 08:00 PM | Done | Not applicable | Done | Pending        | Pending        | Pending        |
 
 ---
 
@@ -152,7 +162,7 @@ Note:
 | P7 - TypeScript Master Class              | 24 Apr 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
 | P8 - Node.js & Express                    | 01 May 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
 | P9 - RESTful API Design                   | 08 May 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
-| P10 - Databases Deep Dive                 | 15 May 2026, Fri, 07:45 PM | Upcoming | Upcoming | Not applicable | Not applicable | Not applicable | Not applicable |
+| P10 - Databases Deep Dive                 | 15 May 2026, Fri, 07:45 PM | Pending | Pending | Pending | Pending | Pending | Not applicable |
 
 ---
 
