@@ -8,7 +8,7 @@ This file tracks my cohort progress in a clearer way so I can see:
 - what is practiced
 - how blog writing is growing alongside the classes
 
-Last updated: May 16, 2026
+Last updated: May 17, 2026
 
 ---
 
@@ -123,7 +123,7 @@ Note:
 
 | Class                    | Date                       | Live     | Rewatch        | Notes   | Practice    | Assignment  | Blog    |
 | ------------------------ | -------------------------- | -------- | -------------- | ------- | ----------- | ----------- | ------- |
-| Full Stack (Part 1)      | 16 May 2026, Sat, 07:45 PM | Pending  | Pending        | Pending | Pending     | Pending     | Pending |
+| Full Stack (Part 1)      | 16 May 2026, Sat, 07:45 PM | Done     | Not applicable | Done    | In progress | Pending     | Pending |
 | Full Stack (Part 2)      | 17 May 2026, Sun, 07:45 PM | Upcoming | Upcoming       | Pending | Pending     | Pending     | Pending |
 
 ---
