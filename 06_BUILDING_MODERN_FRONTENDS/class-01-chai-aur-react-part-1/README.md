@@ -104,11 +104,14 @@ That is a very important bridge from basic React syntax to real app behavior.
 
 ---
 
-## Assignment
+## Assignment & Projects
 
 I added a React + FreeAPI assignment here:
-
 - [React FreeAPI Warmup](assignments/react-freeapi-warmup.md)
+
+**MasterJi FreeAPI Projects:**
+During this class, 8 official FreeAPI projects were also assigned (Random Users, Meals, Cats, Jokes, Quotes, Products, YouTube, Auth). 
+- All 8 projects are properly linked and tracked in the **[Assignments Index](assignments/README.md)** so we remember they belong to this class, while their actual files stay safely in the `42_PROJECTS` folder.
 
 This fits well with the class because after learning `useState` and `useEffect`, the next smart step is consuming a real API inside a React UI.
 
