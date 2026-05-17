@@ -7,8 +7,8 @@ The official assignment instructions and tracking are maintained in the central 
 ## Assigned Projects
 
 1. **Tic Tac Toe Game**
-   - Details: [11-tic-tac-toe-game.md](../../../../42_PROJECTS/cohort-projects/11-tic-tac-toe-game.md)
+   - Details: [11-tic-tac-toe-game.md](../../../42_PROJECTS/cohort-projects/11-tic-tac-toe-game.md)
    - Status: Pending
 2. **Stopwatch and Timer App**
-   - Details: [12-stopwatch-and-timer-app.md](../../../../42_PROJECTS/cohort-projects/12-stopwatch-and-timer-app.md)
+   - Details: [12-stopwatch-and-timer-app.md](../../../42_PROJECTS/cohort-projects/12-stopwatch-and-timer-app.md)
    - Status: Pending
