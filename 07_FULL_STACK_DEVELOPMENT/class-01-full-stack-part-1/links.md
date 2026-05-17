@@ -11,25 +11,26 @@
 
 ## Notes
 
-- Notes will be available in the `class-notes` folder.
+- Notes are deeply documented in the `class-notes/README.md` file.
 
-Status: Pending
+Status: Done
 
 ---
 
 ## Class Code
 
-- Code will be added into the `class-code` folder once it is available.
+- Code is located in the `class-code/trpc-monorepo-main` folder.
+- Original GitHub Repo: [piyushgarg-dev/trpc-monorepo](https://github.com/piyushgarg-dev/trpc-monorepo)
 
-Status: Pending
+Status: Done
 
 ---
 
 ## Resources
 
-- Whiteboard Link: **Not provided yet**
+- Whiteboard Link: [Eraser Workspace](https://app.eraser.io/workspace/wl0xkhj90dxtbC2391Hx)
 
-Status: Pending
+Status: Done
 
 ---
 
