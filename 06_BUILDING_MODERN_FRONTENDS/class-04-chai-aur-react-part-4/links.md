@@ -36,9 +36,9 @@ Status: Done
 
 ## Assignment
 
-- Assignment details are not documented yet
+- Tic Tac Toe Game and Stopwatch/Timer App assignments are documented in the `assignments` folder.
 
-Status: Pending
+Status: Done
 
 ---
 

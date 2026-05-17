@@ -32,8 +32,7 @@ The folder follows the same structure used in Class 03:
 
 ## Assignment
 
-- Assignment details are currently pending.
-- Will update the `assignments` folder if a specific follow-up task is assigned.
+- Assignment details (Tic Tac Toe & Stopwatch Timer) are documented in the `assignments` folder and linked to the main `cohort-projects` directory.
 
 ---
 
