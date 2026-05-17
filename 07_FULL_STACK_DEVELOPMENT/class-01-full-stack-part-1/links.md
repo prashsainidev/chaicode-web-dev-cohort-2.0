@@ -36,9 +36,9 @@ Status: Done
 
 ## Assignment
 
-- Assignment details are not documented yet
+- Todo App Practice -> [Open Assignment](./assignments/todo-app-monorepo-practice.md)
 
-Status: Pending
+Status: Documented
 
 ---
 

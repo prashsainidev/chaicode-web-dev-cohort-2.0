@@ -34,8 +34,7 @@ The folder follows the standard structure:
 
 ## Assignment
 
-- Assignment details are currently pending.
-- Will update the `assignments` folder if a specific follow-up task is assigned.
+- **[Todo App (Monorepo Practice)](assignments/todo-app-monorepo-practice.md)**: A personal practice assignment to build a full-stack Todo App from scratch within the tRPC monorepo architecture.
 
 ---
 
